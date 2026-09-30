@@ -396,149 +396,224 @@
     </section>
 
     <!-- ======================================================================
-         05. THE APOTHECARY: 37 PREPARATIONS CATALOGUE & SHOWCASE
+         05. THE APOTHECARY: MATERIA MEDICA & FORMULARY CATALOGUE
          ====================================================================== -->
     <section class="apothecary-archive" id="apothecary">
       <div class="apothecary-archive__inner">
-
-        <div class="apothecary-header" data-animate="fade-up">
-          <div class="meta-tag">
-            <span class="meta-tag__dot"></span>
-            <span>THE APOTHECARY ARCHIVE</span>
+        <!-- Formulary Header & Archival Indexing -->
+        <header class="apothecary-header" data-animate="fade-up">
+          <div class="apothecary-meta-bar">
+            <span class="apothecary-meta-label">MATERIA MEDICA · BAGBAZAR</span>
+            <span class="apothecary-meta-count">37 PREPARATIONS INDEXED</span>
           </div>
-          <h2 class="section-title" data-animate="split-lines">Classical Preparations & Botanical Compounding</h2>
+          <h2 class="section-title" data-animate="split-lines">Classical Preparations &amp; Botanical Compounding</h2>
           <p class="section-lead">
             An in-house compendium of 37 proprietary and classical formulations prepared from ethically sourced Himalayan minerals and wild-harvested botanicals.
           </p>
-
-          <!-- Filter Navigation -->
-          <div class="apothecary-filters" id="apothecaryFilters" role="tablist">
-            <button class="filter-btn is-active" data-filter="all">ALL (37)</button>
-            <button class="filter-btn" data-filter="churna">CHURNA (POWDERS)</button>
-            <button class="filter-btn" data-filter="vati">VATI (TABLETS)</button>
-            <button class="filter-btn" data-filter="mineral">MINERAL & SHILAJIT</button>
-            <button class="filter-btn" data-filter="special">CLASSICAL BLENDS</button>
+          <!-- Archival Directory Classification Index -->
+          <div class="apothecary-index-nav" id="apothecaryFilters" role="tablist" aria-label="Apothecary classification index">
+            <span class="index-nav__caption">INDEX CLASSIFICATION:</span>
+            <div class="index-nav__group">
+              <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+                <span class="btn-idx">00</span> ALL (37)
+              </button>
+              <button class="filter-btn" data-filter="churna" role="tab" aria-selected="false">
+                <span class="btn-idx">01</span> CHURNA (POWDERS)
+              </button>
+              <button class="filter-btn" data-filter="vati" role="tab" aria-selected="false">
+                <span class="btn-idx">02</span> VATI (TABLETS)
+              </button>
+              <button class="filter-btn" data-filter="mineral" role="tab" aria-selected="false">
+                <span class="btn-idx">03</span> MINERAL &amp; SHILAJIT
+              </button>
+              <button class="filter-btn" data-filter="special" role="tab" aria-selected="false">
+                <span class="btn-idx">04</span> CLASSICAL BLENDS
+              </button>
+            </div>
           </div>
-        </div>
-
-        <!-- Editorial Horizontal Product Catalog -->
+        </header>
+        <!-- Formulary Catalogue Grid of Specimen Plates -->
         <div class="apothecary-grid" id="apothecaryGrid">
-
-          <!-- Product 01: Shilajit -->
+          <!-- Specimen 01: Shilajit -->
           <article class="apothecary-item" data-category="mineral" data-animate="fade-up">
-            <div class="item-meta">
-              <span class="item-num">ARCHIVE / 01</span>
-              <span class="item-tag">HIGH-ALTITUDE EXUDATE</span>
-            </div>
-            <div class="item-content">
-              <div class="item-heading">
-                <h3 class="item-name">Shuddha Shilajit</h3>
-                <span class="item-nep" lang="ne">शुद्ध शिलाजीत</span>
+            <div class="plate-mast">
+              <div class="plate-mast__ref">
+                <span class="plate-number">PLATE 01</span>
+                <span class="plate-code">CATALOG REF. SK-SPEC-01</span>
               </div>
-              <p class="item-desc">
-                Purified high-altitude Himalayan mineral resin harvested from cliff faces. Rejuvenative rasayana rich in fulvic acid, known for cellular stamina, deep mineral balance, and restorative vitality.
-              </p>
-              <div class="item-details">
-                <span class="detail-row"><strong>Origin:</strong> High Himalayan Rock Strata</span>
-                <span class="detail-row"><strong>Standard:</strong> Purified & Classical Triphala Shodhana</span>
-                <span class="detail-row"><strong>Counter:</strong> Available in Traditional Presentation Box</span>
-              </div>
+              <span class="plate-class">HIGH-ALTITUDE MINERAL EXUDATE</span>
             </div>
-            <div class="item-visual">
-              <img src="assets/images/product-shilajit.jpg" alt="Pure Himalayan Shilajit by Shree Krishna Aushadhalaya in traditional box" width="554" height="1200" loading="lazy">
+            <div class="plate-body">
+              <div class="item-visual" title="Click to inspect specimen">
+                <img src="assets/images/product-shilajit.jpg" alt="Pure Himalayan Shilajit by Shree Krishna Aushadhalaya in traditional box" width="554" height="1200" loading="lazy">
+                <span class="specimen-inspect-hint" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Inspect Specimen
+                </span>
+              </div>
+              <div class="item-content">
+                <div class="item-heading">
+                  <h3 class="item-name">Shuddha Shilajit</h3>
+                  <span class="item-nep" lang="ne">शुद्ध शिलाजीत</span>
+                </div>
+                <p class="item-desc">
+                  Purified high-altitude Himalayan mineral resin harvested from cliff faces. Rejuvenative rasayana rich in fulvic acid, known for cellular stamina, deep mineral balance, and restorative vitality.
+                </p>
+                <dl class="item-ledger">
+                  <div class="ledger-row">
+                    <dt>ORIGIN</dt>
+                    <dd>High Himalayan Rock Strata</dd>
+                  </div>
+                  <div class="ledger-row">
+                    <dt>STANDARD</dt>
+                    <dd>Purified &amp; Classical Triphala Shodhana</dd>
+                  </div>
+                  <div class="ledger-row">
+                    <dt>DISPENSING</dt>
+                    <dd>Available in Traditional Presentation Box at Counter</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </article>
-
-          <!-- Product 02: Ashwagandha Churna -->
+          <!-- Specimen 02: Ashwagandha Churna -->
           <article class="apothecary-item" data-category="churna" data-animate="fade-up" data-delay="0.1">
-            <div class="item-meta">
-              <span class="item-num">ARCHIVE / 02</span>
-              <span class="item-tag">SINGLE HERB ROOT POWDER</span>
-            </div>
-            <div class="item-content">
-              <div class="item-heading">
-                <h3 class="item-name">Ashwagandha Churna</h3>
-                <span class="item-nep" lang="ne">अश्वगन्धा चूर्ण</span>
+            <div class="plate-mast">
+              <div class="plate-mast__ref">
+                <span class="plate-number">PLATE 02</span>
+                <span class="plate-code">CATALOG REF. SK-SPEC-02</span>
               </div>
-              <p class="item-desc">
-                Pure Withania somnifera root milled in-house. A premier adaptogenic botanical supporting nervous system calming, sound sleep, physical vigor, and musculoskeletal strength.
-              </p>
-              <div class="item-details">
-                <span class="detail-row"><strong>Origin:</strong> Selected Botanical Roots</span>
-                <span class="detail-row"><strong>Milling:</strong> Stone-milled at Bagbazar premises</span>
-                <span class="detail-row"><strong>Seal:</strong> Traditional Shree Krishna Aushadhalaya Label</span>
-              </div>
+              <span class="plate-class">SINGLE HERB ROOT POWDER</span>
             </div>
-            <div class="item-visual">
-              <img src="assets/images/product-ashwagandha.jpg" alt="Ashwagandha Churna bottle by Shree Krishna Aushadhalaya Bagbazar" width="554" height="1200" loading="lazy">
+            <div class="plate-body">
+              <div class="item-visual" title="Click to inspect specimen">
+                <img src="assets/images/product-ashwagandha.jpg" alt="Ashwagandha Churna bottle by Shree Krishna Aushadhalaya Bagbazar" width="554" height="1200" loading="lazy">
+                <span class="specimen-inspect-hint" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Inspect Specimen
+                </span>
+              </div>
+              <div class="item-content">
+                <div class="item-heading">
+                  <h3 class="item-name">Ashwagandha Churna</h3>
+                  <span class="item-nep" lang="ne">अश्वगन्धा चूर्ण</span>
+                </div>
+                <p class="item-desc">
+                  Pure Withania somnifera root milled in-house. A premier adaptogenic botanical supporting nervous system calming, sound sleep, physical vigor, and musculoskeletal strength.
+                </p>
+                <dl class="item-ledger">
+                  <div class="ledger-row">
+                    <dt>ORIGIN</dt>
+                    <dd>Selected Botanical Roots</dd>
+                  </div>
+                  <div class="ledger-row">
+                    <dt>MILLING</dt>
+                    <dd>Stone-milled at Bagbazar premises</dd>
+                  </div>
+                  <div class="ledger-row">
+                    <dt>AUTHENTICITY</dt>
+                    <dd>Traditional Shree Krishna Aushadhalaya Label &amp; Seal</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </article>
-
-          <!-- Product 03: Triphala Tablets -->
+          <!-- Specimen 03: Triphala Tablets -->
           <article class="apothecary-item" data-category="vati" data-animate="fade-up" data-delay="0.15">
-            <div class="item-meta">
-              <span class="item-num">ARCHIVE / 03</span>
-              <span class="item-tag">CLASSICAL COMPOUND VATI</span>
-            </div>
-            <div class="item-content">
-              <div class="item-heading">
-                <h3 class="item-name">Triphala Tablets</h3>
-                <span class="item-nep" lang="ne">त्रिफला वटी</span>
+            <div class="plate-mast">
+              <div class="plate-mast__ref">
+                <span class="plate-number">PLATE 03</span>
+                <span class="plate-code">CATALOG REF. SK-SPEC-03</span>
               </div>
-              <p class="item-desc">
-                The revered classical triad of Haritaki, Bibhitaki, and Amalaki compressed into convenient traditional vatis. Gently regulates digestive Agni, clears metabolic residue, and tones tissue vitality.
-              </p>
-              <div class="item-details">
-                <span class="detail-row"><strong>Formula:</strong> Classical Charaka Samhita Proportion</span>
-                <span class="detail-row"><strong>Action:</strong> Tridoshic Digestive Harmony</span>
-                <span class="detail-row"><strong>Counter:</strong> Glass Container Preservation</span>
-              </div>
+              <span class="plate-class">CLASSICAL COMPOUND VATI</span>
             </div>
-            <div class="item-visual">
-              <img src="assets/images/product-triphala.jpg" alt="Trifala Tablets bottle by Shree Krishna Aushadhalaya" width="554" height="1200" loading="lazy">
+            <div class="plate-body">
+              <div class="item-visual" title="Click to inspect specimen">
+                <img src="assets/images/product-triphala.jpg" alt="Trifala Tablets bottle by Shree Krishna Aushadhalaya" width="554" height="1200" loading="lazy">
+                <span class="specimen-inspect-hint" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Inspect Specimen
+                </span>
+              </div>
+              <div class="item-content">
+                <div class="item-heading">
+                  <h3 class="item-name">Triphala Tablets</h3>
+                  <span class="item-nep" lang="ne">त्रिफला वटी</span>
+                </div>
+                <p class="item-desc">
+                  The revered classical triad of Haritaki, Bibhitaki, and Amalaki compressed into convenient traditional vatis. Gently regulates digestive Agni, clears metabolic residue, and tones tissue vitality.
+                </p>
+                <dl class="item-ledger">
+                  <div class="ledger-row">
+                    <dt>FORMULA</dt>
+                    <dd>Classical Charaka Samhita Proportion</dd>
+                  </div>
+                  <div class="ledger-row">
+                    <dt>THERAPEUTIC ACTION</dt>
+                    <dd>Tridoshic Digestive Harmony</dd>
+                  </div>
+                  <div class="ledger-row">
+                    <dt>PRESERVATION</dt>
+                    <dd>Glass Container Preservation at Bagbazar Counter</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </article>
-
-          <!-- Product 04: Sitopaladi Churna -->
+          <!-- Specimen 04: Sitopaladi Churna -->
           <article class="apothecary-item" data-category="churna special" data-animate="fade-up" data-delay="0.2">
-            <div class="item-meta">
-              <span class="item-num">ARCHIVE / 04</span>
-              <span class="item-tag">CLASSICAL RESPIRATORY COMPOUND</span>
-            </div>
-            <div class="item-content">
-              <div class="item-heading">
-                <h3 class="item-name">Sitopaladi Churna</h3>
-                <span class="item-nep" lang="ne">सितोपलादि चूर्ण</span>
+            <div class="plate-mast">
+              <div class="plate-mast__ref">
+                <span class="plate-number">PLATE 04</span>
+                <span class="plate-code">CATALOG REF. SK-SPEC-04</span>
               </div>
-              <p class="item-desc">
-                Time-honored blend of Vanshlochan, Pippali, Ela, Twak, and rock sugar crystals. Traditionally prescribed for throat soothing, upper respiratory ease, mucosal balance, and post-seasonal recovery.
-              </p>
-              <div class="item-details">
-                <span class="detail-row"><strong>Compounding:</strong> Micro-pulverized Himalayan botanicals</span>
-                <span class="detail-row"><strong>Anupana:</strong> Traditionally taken with raw honey or ghee</span>
-                <span class="detail-row"><strong>Counter:</strong> Sealed Apothecary Dispensary Bottle</span>
-              </div>
+              <span class="plate-class">CLASSICAL RESPIRATORY COMPOUND</span>
             </div>
-            <div class="item-visual">
-              <img src="assets/images/product-sitopaladi.jpg" alt="Setopaladi Churna traditional compound by Shree Krishna Aushadhalaya" width="554" height="1200" loading="lazy">
+            <div class="plate-body">
+              <div class="item-visual" title="Click to inspect specimen">
+                <img src="assets/images/product-sitopaladi.jpg" alt="Setopaladi Churna traditional compound by Shree Krishna Aushadhalaya" width="554" height="1200" loading="lazy">
+                <span class="specimen-inspect-hint" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Inspect Specimen
+                </span>
+              </div>
+              <div class="item-content">
+                <div class="item-heading">
+                  <h3 class="item-name">Sitopaladi Churna</h3>
+                  <span class="item-nep" lang="ne">सितोपलादि चूर्ण</span>
+                </div>
+                <p class="item-desc">
+                  Time-honored blend of Vanshlochan, Pippali, Ela, Twak, and rock sugar crystals. Traditionally prescribed for throat soothing, upper respiratory ease, mucosal balance, and post-seasonal recovery.
+                </p>
+                <dl class="item-ledger">
+                  <div class="ledger-row">
+                    <dt>COMPOUNDING</dt>
+                    <dd>Micro-pulverized Himalayan botanicals</dd>
+                  </div>
+                  <div class="ledger-row">
+                    <dt>TRADITIONAL ANUPANA</dt>
+                    <dd>Prescribed with raw honey or pure ghee carrier</dd>
+                  </div>
+                  <div class="ledger-row">
+                    <dt>DISPENSING</dt>
+                    <dd>Sealed Apothecary Dispensary Bottle</dd>
+                  </div>
+                </dl>
+              </div>
             </div>
           </article>
-
         </div>
-
-        <!-- Catalogue Notice & Compendium Note -->
-        <div class="catalogue-footer" data-animate="fade-up">
+        <!-- Catalogue Notice & Compendium Colophon -->
+        <footer class="catalogue-footer" data-animate="fade-up">
           <div class="catalogue-footer__inner">
-            <span class="cat-pill">THE FULL COMPENDIUM</span>
+            <span class="cat-pill">THE COMPLETE COMPENDIUM</span>
             <p>
               Our complete pharmacopeia of <strong>37 proprietary formulations</strong> (including Avipattikar Churna, Dantamrit, Kasturyadi, Vanaspati Taila, Shantiprina, and custom rasayanas) is prepared and dispensed on-site. Prescriptions and individualized herbal blends are compounded directly at our Bagbazar counter.
             </p>
           </div>
-        </div>
-
+        </footer>
       </div>
     </section>
-
     <!-- ======================================================================
          06. CONSULTATION: DISTINCT IDENTITY & RHYTHM OF THE PRACTICE
          ====================================================================== -->
