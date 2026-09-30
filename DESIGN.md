@@ -1,76 +1,76 @@
-# ART DIRECTION SPECIFICATION: SHREE KRISHNA AUSHADHALAYA
-## Version 5.0 — The Apothecary Archive (Cultural Monograph & Museum Monograph)
+inde# DESIGN SYSTEM SPECIFICATION: SHREE KRISHNA AUSHADHALAYA
+## Version 4.0 — Warm Wellness & Bento Motion Architecture
 
-> **Institution**: Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)  
-> **Physical Address**: Bagbazar, Ward No. 28 (formerly Ward 31), Kathmandu 44600, Nepal  
-> **Coordinates**: 27°42'21.0"N 85°19'04.0"E  
-> **Core Concept**: The Apothecary Archive — Contemporary digital archive belonging to a real, historic Ayurvedic institution in Kathmandu.  
-> **Primary Visual Principle**: **Restraint**. Every visual element earns its place. Timelessness over trends.
+> **Brand**: Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)  
+> **Location**: Bagbazar, Ward No. 28 (formerly Ward 31), Kathmandu 44600, Nepal  
+> **Core Aesthetic**: Warm Wellness, Editorial Dignity, Fluid Momentum Scrolling, and Authentic Photographic Anchors.
 
 ---
 
-## 1. Editorial Art Direction & Atmosphere
+## 1. Visual Hierarchy & Architecture
 
-The visual identity translates the authentic authority of a generational Baidya family medical institution into a contemporary digital monograph:
-- **Atmospheric Archetypes**: Luxury editorial publishing, museum archive, botanical specimen catalogue, historic apothecary, Kathmandu architectural heritage, Japanese editorial restraint, high-end cultural institution, printed monograph, quiet confidence.
-- **Strictly Prohibited**: Wellness startup tropes, spa aesthetics, supplement e-commerce styles, generic clinic templates, SaaS landing page patterns, yellow/gold glowing gradients, excessive glassmorphism, bloated 24px pill cards.
+The website translates the unhurried authority of a century-old Ayurvedic practice into a contemporary 2026 digital experience:
 
----
-
-## 2. Refined Color System
-
-The palette replaces warm/yellow/gold tendencies with paper grounds, physical printing inks, deep botanical forest greens, and restrained brass accents:
-
-| Token | Hex | Role & Usage |
-| :--- | :--- | :--- |
-| **Paper** | `#F5F1E8` | Primary archival canvas ground across major sections |
-| **Light Paper** | `#FAF8F3` | Elevated light surface: mountings, cards, and specimen plates |
-| **Dark Paper** | `#EAE3D5` | Tinted archival ground, dividing plates, and subtle neutral fills |
-| **Ink** | `#20241F` | Primary typography, high-contrast structural hairlines |
-| **Soft Ink** | `#4E514A` | Secondary editorial body copy, metadata, and curatorial notes |
-| **Forest** | `#26382E` | Signature institutional deep forest green (primary interactive buttons, headers) |
-| **Deep Forest** | `#18261F` | Deepest botanical ground (Formulation Partners, footer, theme color) |
-| **Soft Sage** | `#879287` | Muted organic rules, subtle badges, and botanical accents |
-| **Brass** | `#9A7845` | Archival brass accent **ONLY** (restrained, never dominant, no glowing effects) |
-| **Soft Brass** | `#C2AA7C` | Muted brass highlight for dark forest backgrounds |
-
-### Brass & Gradient Rule:
-- Brass is an archival accent **only**.
-- Never use brass/gold as a dominant background.
-- Never create yellow/gold gradients.
-- Never create glowing gold effects.
-
----
-
-## 3. Disciplined Typography Hierarchy
-
-- **Monumental Display**: `Instrument Serif`, `clamp(2.85rem, 6.75vw, 5.5rem)`, line-height `0.98`. Reserved exclusively for *SHREE KRISHNA AUSHADHALAYA*, *1968*, and selected major statements.
-- **Editorial Headings**: `Instrument Serif`, `clamp(2rem, 3.8vw, 3rem)`, letter-spacing `-0.015em`, line-height `1.08`.
-- **Cultural Identity**: `Noto Serif Devanagari` for authentic Nepali Devanagari typography.
-- **UI, Body & Metadata**: `Satoshi`, clean, legible, humanistic sans-serif. Body text at `1rem`, line-height `1.7`. Archival metadata at `0.75rem`, letter-spacing `0.08em` uppercase.
+1. **Glow-Emitting Arrival (Hero)**:
+   - Deep amber radial glow orb (`--glow-warm`) behind the visual plane.
+   - Monumental editorial typography in `Instrument Serif`.
+   - GSAP Split-Text letterform slide-up animation.
+   - Rounded 24px vertical photograph plane extending down toward the trust bar.
+2. **Horizontal Trust Ribbon**:
+   - Clean, rounded badge presentation confirming registered status, 365-day access, and on-site pharmacy.
+3. **Editorial About Spread**:
+   - 20px-rounded cinematic dispensary photograph paired with unhurried clinical observation prose.
+4. **Heritage Numeric Counter Strip**:
+   - Rolling numerical counters (`100+` Years, `365` Days Open, `12hr` Hours, `1:1` Care) rolling up on viewport entrance.
+5. **The Methods of Care (Services)**:
+   - 3-card elevated grid with Roman numerals (`I`, `II`, `III`), subtle hover lift, and generous padding.
+6. **Asymmetric Bento Photographic Archive (Gallery)**:
+   - 3-column CSS Grid with tall, wide, and square image specimens.
+   - Parallax scroll scrub on all images.
+   - Hover scale and smooth upward-sliding caption overlays.
+7. **The Apothecary Collection (Deep Forest Temperature Shift)**:
+   - Rich contrast shift into deep botanical forest green (`#1A2C22`).
+   - Classical formulations catalog with interactive slide-in hover triggers.
+8. **Bagbazar Access & Visiting Grid**:
+   - Landscape banner of Bagbazar road approach.
+   - 3 white elevated cards for Hours, Location & Google Maps, and Direct Lines (Phone + WhatsApp).
+9. **Monograph Footer**:
+   - Monumental low-opacity Devanagari signature (`श्री कृष्ण औषधालय`) spanning the bottom of the canvas.
 
 ---
 
-## 4. Controlled Geometry & Radii
+## 2. Design Tokens
 
-To eliminate the "generic app card" look and maintain the precision of a printed museum catalogue:
-- **Large Archival Photographs**: `0–6px` (sharp contact-print framing, thin hairline border).
-- **Modern UI Cards & Panels**: `12–16px` max (never bloated 24px).
-- **Buttons & Filter Pills**: `999px` (clean pill with minimal padding and crisp typography).
-- **Dividers & Rules**: `1px solid rgba(32, 36, 31, 0.12)`.
+### Colors
+```css
+--c-bg-primary: #FDFBF7;      /* Warm paper ground */
+--c-bg-secondary: #FFFFFF;    /* Clean card surfaces */
+--c-bg-dark: #1A2C22;         /* Deep botanical forest */
+--c-bg-footer: #0A0A09;       /* Deep near-black footer */
+--c-accent-primary: #1A2C22;  /* Forest green interactive */
+--c-accent-hover: #2A3F30;    /* Forest green hover */
+--c-accent-ochre: #87591A;    /* Archival brass/ochre (5.8:1 contrast, WCAG AA) */
+--c-accent-warm: #E8D5B7;     /* Soft gold highlight */
+```
+
+### Typography
+- **Headlines / Display**: `Instrument Serif`, Georgia, serif
+- **Body & UI**: `Satoshi`, -apple-system, sans-serif
+- **Cultural Identity**: `Noto Serif Devanagari`
+- **Hero Title**: `clamp(3.5rem, 9vw, 8rem)`
+- **Section Titles**: `clamp(2.25rem, 5vw, 4.5rem)`
+- **Body Text**: `1.0625rem`, line-height `1.7`
+
+### Radii
+- Pill Buttons & Badges: `border-radius: 100px;`
+- Cards & Image Frames: `border-radius: 24px;`
+- Small Elements: `border-radius: 8px;`
 
 ---
 
-## 5. Architectural Section Sequence
-
-1. **Monograph Masthead & Nav**: Transparent paper blur, dark forest brand Devanagari, hairline lower rule.
-2. **01. Archival Hero Composition**: Asymmetric layout, top metadata bar with exact GPS coordinates (`27°42'21.0"N 85°19'04.0"E`), monumental display title, Devanagari subtitle, standfirst, disciplined CTAs, and facade plate mount.
-3. **02. Institution Ledger ("What We Are")**: 4-column ledger separated by fine vertical rules (`I. Clinical Practice`, `II. Apothecary`, `III. Compounding`, `IV. Global Reach`).
-4. **03. The 1968 Archive**: Monumental `1968` mark, sharp contact-print plate, crimson sky indicator dot with white ring, curatorial caption.
-5. **04. Our Practice**: Editorial essay with 3 columns (`01. The Family`, `02. The Pharmacy`, `03. The Practice`) and full-width dispensary interior panorama.
-6. **05. The Apothecary**: 37 classical preparations catalog with tactile category filters, neutral paper specimen plates, and full compendium notice.
-7. **06. Clinical Consultation & Rhythm**: Consultation hours card (`09:00 — 11:00`), WhatsApp direct booking, and "A Day at the Aushadhalaya" rhythm timeline (`07:00` to `20:00`).
-8. **07. Formulation Partners**: Contrast shift to Deep Botanical Forest (`#18261F`), 4 pillars, compounding facilities visual.
-9. **08. The Visual Archive**: Asymmetric architectural photography bento, sharp plate corners (`6px`), Instagram follow pill.
-10. **09. Find Us in Bagbazar (Visit)**: Street context plate, interactive Google Maps embed, address and timings ledger, direct communication links.
-11. **10. Archival Colophon (Footer)**: Deep Forest ground, 3-column directory, quiet Devanagari seal at `0.08` opacity, GPS coordinates, copyright.
+## 3. Motion & Interaction Specifications
+- **Lenis Smooth Scroll**: Initialized with momentum dampening and tied into `gsap.ticker`.
+- **ScrollTrigger Reveals**: Triggered at `top 85%` with `power3.out` easing.
+- **Split-Text Headlines**: Words wrapped in hidden overflow spans and staggered by `0.05s`.
+- **Parallax Scrub**: Parallax translation of `-30px` applied to `.img-frame img`.
+- **Zero Layout Thrash**: Animations restricted strictly to `transform` and `opacity`.
