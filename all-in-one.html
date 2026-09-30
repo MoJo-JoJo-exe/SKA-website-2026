@@ -880,11 +880,12 @@ button {
 }
 
 /* ==========================================================================
-   03. THE 1968 ARCHIVE: EMOTIONAL EXHIBITION CENTERPIECE
+   03. THE 1968 ARCHIVE: CURATED PHOTOGRAPHIC RECORD
    ========================================================================== */
 .archive-exhibition {
-  padding: 6.5rem 0;
+  padding: clamp(5rem, 8vw, 8.5rem) 0;
   background-color: var(--c-bg-primary);
+  position: relative;
 }
 
 .archive-exhibition__inner {
@@ -893,8 +894,9 @@ button {
   padding: 0 var(--container-padding);
 }
 
+/* Archival Metadata Header */
 .archive-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
 }
 
 .archive-header__meta {
@@ -902,18 +904,40 @@ button {
   justify-content: space-between;
   align-items: baseline;
   border-bottom: 1px solid var(--c-border-subtle);
-  padding-bottom: 0.75rem;
-  margin-bottom: 2rem;
+  padding-bottom: 0.875rem;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
   font-size: var(--text-meta);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
 }
 
+.archive-meta-doc {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.archive-meta-doc .meta-sep {
+  color: var(--c-border-strong);
+  font-weight: 300;
+}
+
+.archive-meta-index {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+  letter-spacing: 0.06em;
+  font-size: 0.6875rem;
+}
+
+/* Headline Composition: Monumental Year + Context */
 .archive-headline-wrap {
   display: flex;
   align-items: baseline;
-  gap: clamp(1.5rem, 4vw, 4rem);
+  gap: clamp(2rem, 5vw, 5rem);
   flex-wrap: wrap;
 }
 
@@ -922,41 +946,48 @@ button {
   font-size: var(--text-giant);
   line-height: 0.85;
   color: var(--c-accent-forest);
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
+  font-weight: 400;
 }
 
 .archive-headline-context {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.35rem;
 }
 
 .archive-place {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 1;
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  line-height: 1.05;
   color: var(--c-text-primary);
+  font-weight: 400;
+  letter-spacing: -0.025em;
 }
 
 .archive-date-nep {
   font-family: var(--font-dev);
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
   color: var(--c-accent-ochre);
+  font-weight: 500;
 }
 
-/* Exhibition Photo Frame */
+/* Photographic Exhibition Plate (Authentic, Crisp Frame, Not an App Card) */
 .archive-frame {
   position: relative;
   width: 100%;
-  max-height: 720px;
-  border-radius: var(--radius-lg);
+  border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  border: 1px solid rgba(28, 27, 24, 0.12);
+  box-shadow: 0 16px 44px -12px rgba(28, 27, 24, 0.09);
+  background-color: var(--c-bg-surface-tint);
 }
 
 .archive-frame img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 760px;
   object-fit: cover;
   display: block;
   image-rendering: -webkit-optimize-contrast;
@@ -966,103 +997,133 @@ button {
   transform: translateZ(0);
 }
 
-/* Archival Locator Pin (Positioned in the sky ABOVE the yellow building - never covers the house) */
-.archive-pin {
+/* Museum Catalogue Annotation (Minimal, hairline indicator, zero coverage of building) */
+.archive-annotation {
   position: absolute;
-  top: 4%;
-  right: 2.5%;
+  top: clamp(1rem, 3.5vw, 2.5rem);
+  right: clamp(1rem, 3vw, 2.5rem);
   z-index: 10;
   display: flex;
-  align-items: center;
-  gap: 0.85rem;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
 }
 
-.archive-pin__pulse {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #E03131;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 0 0 0 rgba(224, 49, 49, 0.7);
-  animation: pulse-ring 2s infinite;
-  flex-shrink: 0;
-}
-
-@keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(224, 49, 49, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(224, 49, 49, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(224, 49, 49, 0); }
-}
-
-.archive-pin__badge {
-  background: rgba(22, 36, 28, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius-md);
-  padding: 0.65rem 1rem;
+.archive-annotation__tag {
+  background: rgba(22, 36, 28, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(253, 251, 247, 0.16);
+  border-radius: 3px;
+  padding: 0.65rem 0.95rem;
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  max-width: 280px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+  gap: 0.15rem;
+  max-width: 270px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
   text-align: right;
 }
 
-.pin-tag {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+.ann-index {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   color: var(--c-accent-ochre-light);
+  text-transform: uppercase;
 }
 
-.pin-title {
+.ann-subject {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  line-height: 1.2;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #FFFFFF;
 }
 
-.pin-note {
-  font-size: 0.75rem;
-  color: rgba(253, 251, 247, 0.85);
+.ann-detail {
+  font-size: 0.6875rem;
+  color: rgba(253, 251, 247, 0.72);
   line-height: 1.35;
 }
 
-/* Curatorial Caption */
+.archive-annotation__lead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1.5rem;
+}
+
+.ann-line {
+  width: 1px;
+  height: 20px;
+  background: rgba(253, 251, 247, 0.55);
+}
+
+.ann-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #D4A574;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Editorial Curatorial Caption */
 .archive-curation {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 3rem;
+  grid-template-columns: minmax(200px, 240px) 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
   border-top: 1px solid var(--c-border-subtle);
-  padding-top: 1.75rem;
+  padding-top: 2rem;
   align-items: flex-start;
 }
 
-.archive-curation__badge span {
-  display: inline-block;
-  font-size: var(--text-meta);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
-  padding: 0.35rem 0.85rem;
-  background-color: var(--c-tint-pill);
-  border-radius: var(--radius-pill);
+.archive-curation__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
 }
 
-.curation-title {
+.curation-kicker {
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--c-accent-ochre);
+}
+
+.curation-dates {
   font-family: var(--font-serif);
-  font-size: 1.375rem;
+  font-size: 1.1875rem;
   color: var(--c-text-primary);
-  margin-bottom: 0.5rem;
+  display: flex;
+  gap: 0.35rem;
+  align-items: baseline;
+  line-height: 1.3;
+}
+
+.curation-slash {
+  color: var(--c-text-muted);
+  opacity: 0.45;
+  font-size: 0.875rem;
+}
+
+.curation-location {
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.archive-curation__body {
+  max-width: 640px;
 }
 
 .curation-desc {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: var(--c-text-muted);
-  line-height: 1.7;
-  max-width: 880px;
+  line-height: 1.75;
 }
+
 
 /* ==========================================================================
    04. OUR PRACTICE: EDITORIAL ESSAY ("A PLACE OF PRACTICE")
@@ -2083,29 +2144,47 @@ button {
     padding-bottom: 0;
   }
 
+  .archive-headline-wrap {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .archive-giant-year {
+    font-size: clamp(3.5rem, 15vw, 6rem);
+    line-height: 0.9;
+  }
+
+  .archive-annotation {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .archive-annotation__tag {
+    max-width: 200px;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .ann-subject {
+    font-size: 0.8125rem;
+  }
+
+  .ann-detail {
+    display: none;
+  }
+
+  .ann-line {
+    height: 14px;
+  }
+
   .archive-curation {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
-  .archive-pin {
-    top: 3%;
-    right: 2%;
-    gap: 0.5rem;
-  }
-
-  .archive-pin__badge {
-    max-width: 210px;
-    padding: 0.45rem 0.75rem;
-  }
-
-  .pin-title {
-    font-size: 0.875rem;
-  }
-
-  .pin-note {
-    font-size: 0.6875rem;
-    line-height: 1.3;
+  .curation-desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
   }
 
   .practice-columns {
@@ -2183,9 +2262,7 @@ button {
     scroll-behavior: auto !important;
   }
 
-  .archive-pin__pulse {
-    animation: none !important;
-  }
+  /* archive pin pulse removed in editorial redesign */
 }
 
 /* ==========================================================================
@@ -2535,54 +2612,61 @@ button {
     </section>
 
     <!-- ======================================================================
-         03. THE 1968 ARCHIVE: EMOTIONAL EXHIBITION CENTERPIECE
+         03. THE 1968 ARCHIVE: CURATED PHOTOGRAPHIC RECORD
          ====================================================================== -->
     <section class="archive-exhibition" id="archive-1968">
       <div class="archive-exhibition__inner">
-        
-        <div class="archive-header" data-animate="fade-up">
+        <!-- Archival Record Metadata -->
+        <header class="archive-header" data-animate="fade-up">
           <div class="archive-header__meta">
-            <span class="archive-badge">DOCUMENT 001 · PHOTOGRAPHIC ARCHIVE</span>
-            <span class="archive-vol">THE ARCHIVE / 01</span>
+            <div class="archive-meta-doc">
+              <span>DOCUMENT 001</span>
+              <span class="meta-sep">/</span>
+              <span>PHOTOGRAPHIC ARCHIVE</span>
+            </div>
+            <span class="archive-meta-index">PLATE · 1968-KTM-01</span>
           </div>
-
           <div class="archive-headline-wrap">
             <span class="archive-giant-year" data-animate="split-lines">1968</span>
             <div class="archive-headline-context">
               <h2 class="archive-place">Bagbazar, Kathmandu</h2>
-              <p class="archive-date-nep" lang="ne">ऐतिहासिक अभिलेख — २०२५ वि.सं.</p>
+              <span class="archive-date-nep" lang="ne">ऐतिहासिक अभिलेख — २०२५ वि.सं.</span>
             </div>
           </div>
-        </div>
-
-        <!-- Major Exhibition Plate (Nearly Fills Viewport) -->
-        <div class="archive-frame" data-animate="fade-up" data-delay="0.1">
+        </header>
+        <!-- Museum Photographic Plate -->
+        <figure class="archive-frame" data-animate="fade-up" data-delay="0.1">
           <img src="assets/images/heritage-1968-bagbazar.jpg" alt="Archival color photograph of Bagbazar road in 1968 AD (2025 BS), showing pedestrians and Shree Krishna Aushadhalaya shop in the right foreground corner" width="1920" height="1250" loading="lazy">
-          
-          <!-- Red Pointer Placed in the Sky Directly Above the House (Never Covers the Facade) -->
-          <div class="archive-pin" title="Shree Krishna Aushadhalaya corner shopfront in 1968">
-            <div class="archive-pin__badge">
-              <span class="pin-tag">CORNER RIGHT · 1968 AD</span>
-              <strong class="pin-title">Shree Krishna Aushadhalaya</strong>
-              <span class="pin-note">Ochre-yellow shopfront visible at the right edge of this photograph</span>
+          <!-- Museum Catalogue Annotation -->
+          <figcaption class="archive-annotation" role="note" aria-label="Premises location note">
+            <div class="archive-annotation__tag">
+              <span class="ann-index">FIG. 01 · CORNER RIGHT</span>
+              <strong class="ann-subject">Shree Krishna Aushadhalaya</strong>
+              <span class="ann-detail">Historic ochre building &amp; timber shopfront</span>
             </div>
-            <span class="archive-pin__pulse"></span>
-          </div>
-        </div>
-
-        <!-- Archival Curatorial Caption -->
+            <div class="archive-annotation__lead" aria-hidden="true">
+              <span class="ann-line"></span>
+              <span class="ann-dot"></span>
+            </div>
+          </figcaption>
+        </figure>
+        <!-- Narrow Editorial Curatorial Caption -->
         <div class="archive-curation" data-animate="fade-up">
-          <div class="archive-curation__badge">
-            <span>ARCHIVAL RECORD · 1968 AD / २०२५ वि.सं.</span>
+          <div class="archive-curation__meta">
+            <span class="curation-kicker">ARCHIVAL RECORD</span>
+            <div class="curation-dates">
+              <span class="curation-ad">1968 AD</span>
+              <span class="curation-slash">/</span>
+              <span class="curation-bs" lang="ne">२०२५ वि.सं.</span>
+            </div>
+            <span class="curation-location">Bagbazar, Kathmandu</span>
           </div>
           <div class="archive-curation__body">
-            <h3 class="curation-title">Bagbazar road, 1968 AD · २०२५ वि.सं.</h3>
             <p class="curation-desc">
               The Shree Krishna Aushadhalaya shopfront appears at the right-hand corner. From the quiet dirt road of 1968 to today's vibrant commercial street, our family institution has maintained an unbroken physical sanctuary of traditional Ayurvedic medicine at this exact location. Historical royal associations and physician correspondence remain preserved in our family archives.
             </p>
           </div>
         </div>
-
       </div>
     </section>
 
