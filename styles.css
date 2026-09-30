@@ -1686,7 +1686,7 @@ button {
   font-size: clamp(4.5rem, 16vw, 13rem);
   line-height: 1;
   color: #FFFFFF;
-  opacity: 0.04;
+  opacity: 0.11;
   text-align: center;
   white-space: nowrap;
   pointer-events: none;
@@ -1973,4 +1973,149 @@ button {
   .archive-pin__pulse {
     animation: none !important;
   }
+}
+
+/* ==========================================================================
+   IMPROVEMENTS BATCH 2 — Scroll Progress, Nav Spy, Map, Instagram, UI Polish
+   ========================================================================== */
+
+/* #15: Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #B8924C, #D4A855);
+  z-index: 9999;
+  border-radius: 0 2px 2px 0;
+  pointer-events: none;
+  will-change: width;
+}
+
+/* #10: Nav Scroll-Spy Active Link */
+.nav__link.is-active {
+  color: #B8924C;
+}
+.nav__link.is-active .nav__link-num {
+  color: #B8924C;
+}
+
+/* #1: Google Maps Embed */
+.visit-map-embed {
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 24px rgba(26, 44, 34, 0.12);
+  border: 1px solid rgba(26, 44, 34, 0.08);
+}
+.visit-map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 0;
+}
+@media (max-width: 768px) {
+  .visit-map-embed iframe { height: 260px; }
+}
+
+/* #14: Instagram CTA near Gallery */
+.gallery-instagram-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #B8924C;
+  text-decoration: none;
+  border: 1px solid rgba(184, 146, 76, 0.35);
+  border-radius: 100px;
+  padding: 0.45rem 1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.gallery-instagram-cta:hover {
+  background: rgba(184, 146, 76, 0.1);
+  border-color: #B8924C;
+}
+
+/* #9: Warmer Consultation Card */
+.consultation-box {
+  background: linear-gradient(135deg, #FDFAF5 0%, #F5EFE4 100%);
+  border: 1px solid rgba(184, 146, 76, 0.2);
+  border-radius: var(--radius-lg, 20px);
+}
+.consultation-box__header {
+  background: rgba(184, 146, 76, 0.07);
+  border-bottom: 1px solid rgba(184, 146, 76, 0.15);
+  border-radius: var(--radius-lg, 20px) var(--radius-lg, 20px) 0 0;
+}
+
+/* #8: Larger product images with zoom hint */
+.item-visual {
+  min-width: 150px;
+  max-width: 190px;
+}
+.item-visual img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  cursor: zoom-in;
+  transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s;
+}
+.item-visual img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 40px rgba(26, 44, 34, 0.2);
+}
+
+/* Lightbox overlay */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 9, 0.93);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox-overlay.is-open {
+  display: flex;
+}
+.lightbox-overlay img {
+  max-width: 88vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  animation: lb-in 0.3s cubic-bezier(.16,1,.3,1);
+}
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10001;
+}
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.22);
 }

@@ -6,6 +6,26 @@
   <title>Shree Krishna Aushadhalaya — Historic Baidya Family Ayurvedic Clinic & Apothecary, Bagbazar, Kathmandu</title>
   <meta name="description" content="Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय). Generational Baidya family Ayurvedic clinic, botanical pharmacy, and formulation compendium in Bagbazar, Kathmandu. Documented in archival records since 1968 AD (2025 BS).">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#1A2C22">
+
+  <!-- Open Graph (Social Preview — WhatsApp, Facebook, Instagram DMs) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mojo-jojo-exe.github.io/SKA-website-2026/">
+  <meta property="og:title" content="Shree Krishna Aushadhalaya — Baidya Family Ayurvedic Clinic, Bagbazar">
+  <meta property="og:description" content="Generational Baidya family Ayurvedic clinic and botanical pharmacy in Bagbazar, Kathmandu. Personal consultations, 37 classical formulations, open daily 7 AM – 8 PM.">
+  <meta property="og:image" content="https://mojo-jojo-exe.github.io/SKA-website-2026/assets/images/facade-full.jpg">
+  <meta property="og:locale" content="en_NP">
+  <meta property="og:site_name" content="Shree Krishna Aushadhalaya">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shree Krishna Aushadhalaya — Bagbazar, Kathmandu">
+  <meta name="twitter:description" content="Historic Baidya family Ayurvedic clinic & pharmacy. Open daily 7 AM – 8 PM, Bagbazar, Kathmandu.">
+  <meta name="twitter:image" content="https://mojo-jojo-exe.github.io/SKA-website-2026/assets/images/facade-full.jpg">
+
+
   <!-- Schema.org MedicalClinic -->
   <script type="application/ld+json">
   {
@@ -59,6 +79,9 @@
 </head>
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
+
   <!-- ============ SMART NAVIGATION ============ -->
   <header class="nav" id="nav">
     <div class="nav__inner">
@@ -96,7 +119,7 @@
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu__inner">
       <div class="mobile-menu__header">
-        <span class="mobile-menu__label">THE ARCHIVE DIRECTORY</span>
+        <span class="mobile-menu__label">NAVIGATE</span>
         <span class="mobile-menu__dev">श्री कृष्ण औषधालय</span>
       </div>
 
@@ -161,8 +184,8 @@
               <span>Explore the Archive</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a href="#consultation" class="btn btn--outline">
-              <span>Book Consultation</span>
+            <a href="https://wa.me/9779843748078?text=Hello%2C%20I%20would%20like%20to%20book%20an%20Ayurvedic%20consultation%20at%20Shree%20Krishna%20Aushadhalaya%2C%20Bagbazar." target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+              <span>Book Consultation ↗</span>
             </a>
           </div>
 
@@ -285,7 +308,7 @@
             <div class="archive-pin__badge">
               <span class="pin-tag">CORNER RIGHT · 1968 AD</span>
               <strong class="pin-title">Shree Krishna Aushadhalaya</strong>
-              <span class="pin-note">Historic ochre-yellow building with traditional timber shopfront below</span>
+              <span class="pin-note">Ochre-yellow shopfront visible at the right edge of this photograph</span>
             </div>
             <span class="archive-pin__pulse"></span>
           </div>
@@ -682,6 +705,10 @@
           </div>
           <h2 class="section-title" data-animate="split-lines">Bagbazar Through the Lens</h2>
           <p class="section-lead">Authentic glimpses of our landmark premises, signage, dispensary interior, and historic neighborhood.</p>
+          <a href="https://www.instagram.com/into_the_ayurveda/?hl=en" target="_blank" rel="noopener noreferrer" class="gallery-instagram-cta" data-animate="fade-up">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span>Follow @into_the_ayurveda for more</span>
+          </a>
         </div>
 
         <div class="asymmetric-gallery">
@@ -750,6 +777,20 @@
             <div class="img-frame">
               <img src="assets/images/street-context.jpg" alt="Approaching Shree Krishna Aushadhalaya on Bagbazar road, Kathmandu" width="1024" height="473" loading="lazy">
             </div>
+          </div>
+
+          <!-- Embedded Google Map -->
+          <div class="visit-map-embed" data-animate="fade-up">
+            <iframe
+              src="https://maps.google.com/maps?q=27.705833,85.317778&z=17&output=embed"
+              width="100%"
+              height="420"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Shree Krishna Aushadhalaya location — Bagbazar, Kathmandu">
+            </iframe>
           </div>
 
           <!-- Address and Schedule Editorial Rows -->
@@ -870,6 +911,12 @@
       <span>Directions</span>
     </a>
   </aside>
+
+  <!-- Lightbox Overlay (for product image zoom) -->
+  <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Image zoom view">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image">✕</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
 
   <!-- Local Scripts (Local copies — zero CDN dependency) -->
   <script src="assets/js/gsap.min.js"></script>

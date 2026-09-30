@@ -6,6 +6,26 @@
   <title>Shree Krishna Aushadhalaya — Historic Baidya Family Ayurvedic Clinic & Apothecary, Bagbazar, Kathmandu</title>
   <meta name="description" content="Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय). Generational Baidya family Ayurvedic clinic, botanical pharmacy, and formulation compendium in Bagbazar, Kathmandu. Documented in archival records since 1968 AD (2025 BS).">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#1A2C22">
+
+  <!-- Open Graph (Social Preview — WhatsApp, Facebook, Instagram DMs) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mojo-jojo-exe.github.io/SKA-website-2026/">
+  <meta property="og:title" content="Shree Krishna Aushadhalaya — Baidya Family Ayurvedic Clinic, Bagbazar">
+  <meta property="og:description" content="Generational Baidya family Ayurvedic clinic and botanical pharmacy in Bagbazar, Kathmandu. Personal consultations, 37 classical formulations, open daily 7 AM – 8 PM.">
+  <meta property="og:image" content="https://mojo-jojo-exe.github.io/SKA-website-2026/assets/images/facade-full.jpg">
+  <meta property="og:locale" content="en_NP">
+  <meta property="og:site_name" content="Shree Krishna Aushadhalaya">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shree Krishna Aushadhalaya — Bagbazar, Kathmandu">
+  <meta name="twitter:description" content="Historic Baidya family Ayurvedic clinic & pharmacy. Open daily 7 AM – 8 PM, Bagbazar, Kathmandu.">
+  <meta name="twitter:image" content="https://mojo-jojo-exe.github.io/SKA-website-2026/assets/images/facade-full.jpg">
+
+
   <!-- Schema.org MedicalClinic -->
   <script type="application/ld+json">
   {
@@ -1744,7 +1764,7 @@ button {
   font-size: clamp(4.5rem, 16vw, 13rem);
   line-height: 1;
   color: #FFFFFF;
-  opacity: 0.04;
+  opacity: 0.11;
   text-align: center;
   white-space: nowrap;
   pointer-events: none;
@@ -2033,9 +2053,157 @@ button {
   }
 }
 
+/* ==========================================================================
+   IMPROVEMENTS BATCH 2 — Scroll Progress, Nav Spy, Map, Instagram, UI Polish
+   ========================================================================== */
+
+/* #15: Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #B8924C, #D4A855);
+  z-index: 9999;
+  border-radius: 0 2px 2px 0;
+  pointer-events: none;
+  will-change: width;
+}
+
+/* #10: Nav Scroll-Spy Active Link */
+.nav__link.is-active {
+  color: #B8924C;
+}
+.nav__link.is-active .nav__link-num {
+  color: #B8924C;
+}
+
+/* #1: Google Maps Embed */
+.visit-map-embed {
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 24px rgba(26, 44, 34, 0.12);
+  border: 1px solid rgba(26, 44, 34, 0.08);
+}
+.visit-map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 0;
+}
+@media (max-width: 768px) {
+  .visit-map-embed iframe { height: 260px; }
+}
+
+/* #14: Instagram CTA near Gallery */
+.gallery-instagram-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #B8924C;
+  text-decoration: none;
+  border: 1px solid rgba(184, 146, 76, 0.35);
+  border-radius: 100px;
+  padding: 0.45rem 1rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.gallery-instagram-cta:hover {
+  background: rgba(184, 146, 76, 0.1);
+  border-color: #B8924C;
+}
+
+/* #9: Warmer Consultation Card */
+.consultation-box {
+  background: linear-gradient(135deg, #FDFAF5 0%, #F5EFE4 100%);
+  border: 1px solid rgba(184, 146, 76, 0.2);
+  border-radius: var(--radius-lg, 20px);
+}
+.consultation-box__header {
+  background: rgba(184, 146, 76, 0.07);
+  border-bottom: 1px solid rgba(184, 146, 76, 0.15);
+  border-radius: var(--radius-lg, 20px) var(--radius-lg, 20px) 0 0;
+}
+
+/* #8: Larger product images with zoom hint */
+.item-visual {
+  min-width: 150px;
+  max-width: 190px;
+}
+.item-visual img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  cursor: zoom-in;
+  transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s;
+}
+.item-visual img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 40px rgba(26, 44, 34, 0.2);
+}
+
+/* Lightbox overlay */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 9, 0.93);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lightbox-overlay.is-open {
+  display: flex;
+}
+.lightbox-overlay img {
+  max-width: 88vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  animation: lb-in 0.3s cubic-bezier(.16,1,.3,1);
+}
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10001;
+}
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.22);
+}
+
 </style>
 </head>
 <body>
+
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgressBar" class="scroll-progress-bar" aria-hidden="true"></div>
 
   <!-- ============ SMART NAVIGATION ============ -->
   <header class="nav" id="nav">
@@ -2074,7 +2242,7 @@ button {
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-menu__inner">
       <div class="mobile-menu__header">
-        <span class="mobile-menu__label">THE ARCHIVE DIRECTORY</span>
+        <span class="mobile-menu__label">NAVIGATE</span>
         <span class="mobile-menu__dev">श्री कृष्ण औषधालय</span>
       </div>
 
@@ -2139,8 +2307,8 @@ button {
               <span>Explore the Archive</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a href="#consultation" class="btn btn--outline">
-              <span>Book Consultation</span>
+            <a href="https://wa.me/9779843748078?text=Hello%2C%20I%20would%20like%20to%20book%20an%20Ayurvedic%20consultation%20at%20Shree%20Krishna%20Aushadhalaya%2C%20Bagbazar." target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+              <span>Book Consultation ↗</span>
             </a>
           </div>
 
@@ -2263,7 +2431,7 @@ button {
             <div class="archive-pin__badge">
               <span class="pin-tag">CORNER RIGHT · 1968 AD</span>
               <strong class="pin-title">Shree Krishna Aushadhalaya</strong>
-              <span class="pin-note">Historic ochre-yellow building with traditional timber shopfront below</span>
+              <span class="pin-note">Ochre-yellow shopfront visible at the right edge of this photograph</span>
             </div>
             <span class="archive-pin__pulse"></span>
           </div>
@@ -2660,6 +2828,10 @@ button {
           </div>
           <h2 class="section-title" data-animate="split-lines">Bagbazar Through the Lens</h2>
           <p class="section-lead">Authentic glimpses of our landmark premises, signage, dispensary interior, and historic neighborhood.</p>
+          <a href="https://www.instagram.com/into_the_ayurveda/?hl=en" target="_blank" rel="noopener noreferrer" class="gallery-instagram-cta" data-animate="fade-up">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span>Follow @into_the_ayurveda for more</span>
+          </a>
         </div>
 
         <div class="asymmetric-gallery">
@@ -2728,6 +2900,20 @@ button {
             <div class="img-frame">
               <img src="assets/images/street-context.jpg" alt="Approaching Shree Krishna Aushadhalaya on Bagbazar road, Kathmandu" width="1024" height="473" loading="lazy">
             </div>
+          </div>
+
+          <!-- Embedded Google Map -->
+          <div class="visit-map-embed" data-animate="fade-up">
+            <iframe
+              src="https://maps.google.com/maps?q=27.705833,85.317778&z=17&output=embed"
+              width="100%"
+              height="420"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Shree Krishna Aushadhalaya location — Bagbazar, Kathmandu">
+            </iframe>
           </div>
 
           <!-- Address and Schedule Editorial Rows -->
@@ -2848,6 +3034,12 @@ button {
       <span>Directions</span>
     </a>
   </aside>
+
+  <!-- Lightbox Overlay (for product image zoom) -->
+  <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Image zoom view">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image">✕</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
 
   <!-- Local Scripts (Local copies — zero CDN dependency) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -3133,6 +3325,82 @@ button {
     ScrollTrigger.refresh();
   });
   ScrollTrigger.refresh();
+
+})();
+
+/* ============================================================
+   EXTRA FEATURES — Scroll Progress + Nav Spy + Lightbox
+   ============================================================ */
+(function() {
+  'use strict';
+
+  // --- Scroll Progress Bar ---
+  const progressBar = document.getElementById('scrollProgressBar');
+  if (progressBar) {
+    const updateProgress = () => {
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // --- Nav Scroll-Spy ---
+  const navLinks = document.querySelectorAll('.nav__menu .nav__link');
+  if (navLinks.length > 0) {
+    const sectionIds = Array.from(navLinks).map(l => l.getAttribute('href')).filter(h => h && h.startsWith('#'));
+    const sections = sectionIds.map(id => document.querySelector(id)).filter(Boolean);
+
+    const onScroll = () => {
+      const scrollMid = (window.scrollY || window.pageYOffset) + window.innerHeight * 0.4;
+      let activeId = sectionIds[0];
+      sections.forEach((sec, i) => {
+        if (sec.offsetTop <= scrollMid) activeId = sectionIds[i];
+      });
+      navLinks.forEach(l => {
+        l.classList.toggle('is-active', l.getAttribute('href') === activeId);
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // --- Product Image Lightbox ---
+  const overlay   = document.getElementById('lightboxOverlay');
+  const lbImg     = document.getElementById('lightboxImg');
+  const lbClose   = document.getElementById('lightboxClose');
+
+  if (overlay && lbImg && lbClose) {
+    const productImgs = document.querySelectorAll('.item-visual img');
+
+    const openLightbox = (img) => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      overlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    };
+
+    const closeLightbox = () => {
+      overlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    };
+
+    productImgs.forEach(img => {
+      img.addEventListener('click', () => openLightbox(img));
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+    });
+  }
 
 })();
 
