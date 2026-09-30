@@ -203,12 +203,15 @@
       heroWords.push(...splitTextToWords(line));
     });
 
+    const heroTopMeta = heroSection.querySelector('.hero-archival__top-meta');
     const heroDev = heroSection.querySelector('.hero-archival__devanagari');
     const heroStandfirst = heroSection.querySelector('.hero-archival__standfirst');
     const heroCtas = heroSection.querySelector('.hero-archival__ctas');
     const heroFootnote = heroSection.querySelector('.hero-archival__footnote');
     const heroVisual = heroSection.querySelector('.hero-archival__visual');
+    const heroRail = heroSection.querySelector('.hero-archival__rail');
 
+    if (heroTopMeta) heroTl.from(heroTopMeta, { opacity: 0, y: -10, duration: 0.7 }, 0.1);
     if (heroWords.length > 0) {
       heroTl.from(heroWords, { opacity: 0, y: '100%', stagger: 0.05, duration: 0.85 }, 0.15);
     }
@@ -216,7 +219,8 @@
     if (heroStandfirst) heroTl.from(heroStandfirst, { opacity: 0, y: 15, duration: 0.7 }, 0.5);
     if (heroCtas) heroTl.from(heroCtas, { opacity: 0, y: 15, duration: 0.7 }, 0.6);
     if (heroFootnote) heroTl.from(heroFootnote, { opacity: 0, duration: 0.6 }, 0.7);
-    if (heroVisual) heroTl.from(heroVisual, { opacity: 0, scale: 0.97, duration: 1.1 }, 0.3);
+    if (heroVisual) heroTl.from(heroVisual, { opacity: 0, scale: 0.98, duration: 1.1 }, 0.3);
+    if (heroRail) heroTl.from(heroRail, { opacity: 0, x: 10, duration: 0.9 }, 0.7);
   }
 
   // 8. Subtle Scroll-Driven Reveals for Sections Below Hero

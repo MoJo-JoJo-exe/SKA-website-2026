@@ -8,32 +8,34 @@
    1. DESIGN TOKENS & SYSTEM VARIABLES
    ========================================================================== */
 :root {
-  /* Canvas & Background Colors */
-  --c-bg-primary: #FDFBF7;         /* Warm archival paper ground */
-  --c-bg-secondary: #FFFFFF;       /* Crisp white editorial surface */
-  --c-bg-surface-tint: #F5EFE6;    /* Subtle warm parchment tint */
-  --c-bg-dark: #16241C;            /* Deep botanical forest green */
-  --c-bg-dark-surface: #1E3328;   /* Slightly lighter dark green for inner cards */
-  --c-bg-footer: #0A0F0C;          /* Deepest near-black forest */
+  /* Canvas & Background Colors (Archival Publication Palette) */
+  --c-bg-primary: #F7F3EA;         /* Paper */
+  --c-bg-secondary: #FFFFFF;       /* Clean publication white */
+  --c-bg-surface-tint: #EDE2D0;    /* Warm paper */
+  --c-paper-warm: #EDE2D0;         /* Warm archival paper ground */
+  --c-bg-dark: #14271E;            /* Forest */
+  --c-bg-dark-surface: #244033;   /* Soft forest */
+  --c-bg-footer: #0B0D0C;          /* Black */
 
   /* Text & Ink Colors */
-  --c-text-primary: #1C1B18;       /* Primary dark ink */
-  --c-text-muted: #5E5852;         /* Secondary editorial body text */
-  --c-text-light: #FDFBF7;         /* Light cream text for dark themes */
-  --c-text-light-muted: #B3AAA0;   /* Muted light text */
+  --c-text-primary: #1C211D;       /* Ink */
+  --c-text-muted: #5C5850;         /* Muted text (WCAG AA > 4.5:1 on warm paper) */
+  --c-text-light: #F7F3EA;         /* Paper cream text for dark themes */
+  --c-text-light-muted: #B8B2A7;   /* Muted light text */
 
   /* Accents & Archival Metals */
-  --c-accent-forest: #16241C;      /* Deep primary forest */
-  --c-accent-hover: #263D30;       /* Interactive button hover */
-  --c-accent-ochre: #87591A;       /* Archival brass/ochre (5.85:1 contrast, WCAG AA) */
-  --c-accent-ochre-light: #D4A574; /* Warm ochre highlight for dark backgrounds */
-  --c-accent-warm: #E8D5B7;        /* Soft amber tint */
-  --c-tint-pill: rgba(135, 89, 26, 0.08);
+  --c-accent-forest: #14271E;      /* Forest */
+  --c-accent-hover: #244033;       /* Soft forest hover */
+  --c-accent-ochre: #875214;       /* Ochre — darkened for WCAG AA ≥4.5:1 on all paper grounds */
+  --c-accent-ochre-light: #D4AA6A; /* Light ochre (WCAG AA ≥4.5:1 on soft forest) */
+  --c-accent-terracotta: #9A5037;  /* Terracotta */
+  --c-accent-blue: #315C61;        /* Heritage blue */
+  --c-tint-pill: rgba(135, 82, 20, 0.08);
 
   /* Borders & Dividers */
-  --c-border-subtle: rgba(28, 27, 24, 0.12);
-  --c-border-strong: rgba(28, 27, 24, 0.28);
-  --c-border-dark: rgba(255, 255, 255, 0.14);
+  --c-border-subtle: rgba(28, 33, 29, 0.12);
+  --c-border-strong: rgba(28, 33, 29, 0.28);
+  --c-border-dark: rgba(247, 243, 234, 0.14);
 
   /* Typography Stack */
   --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -504,12 +506,74 @@ button {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid var(--c-border-subtle);
-  padding-bottom: 1rem;
+  padding-bottom: 1.125rem;
   margin-bottom: 3.5rem;
   font-size: var(--text-meta);
   letter-spacing: 0.04em;
   color: var(--c-accent-ochre);
   font-weight: 600;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.meta-archive-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--c-accent-ochre);
+}
+
+.meta-plate-tag {
+  font-weight: 700;
+  color: var(--c-accent-forest);
+  background-color: rgba(20, 39, 30, 0.06);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+.meta-sep {
+  opacity: 0.4;
+}
+
+.meta-place-tag, .meta-coords-tag {
+  font-weight: 500;
+}
+
+.meta-status-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.status-indicator-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #2F9E44;
+  box-shadow: 0 0 0 3px rgba(47, 158, 68, 0.2);
+}
+
+.status-indicator-label {
+  font-weight: 700;
+  color: var(--c-accent-forest);
+}
+
+.status-indicator-sep {
+  opacity: 0.4;
+}
+
+.status-indicator-hours {
+  color: var(--c-text-muted);
+  font-weight: 500;
 }
 
 .hero-archival__layout {
@@ -517,6 +581,7 @@ button {
   grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(3rem, 6vw, 6.5rem);
   align-items: flex-start;
+  position: relative;
 }
 
 .hero-archival__text {
@@ -582,6 +647,22 @@ button {
   width: 100%;
 }
 
+.hero-archival__rail {
+  position: absolute;
+  top: 2rem;
+  right: -2rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--c-accent-ochre);
+  opacity: 0.65;
+  pointer-events: none;
+  user-select: none;
+}
+
 .facade-plate {
   position: relative;
   border-radius: var(--radius-lg);
@@ -609,7 +690,7 @@ button {
   left: 0;
   width: 100%;
   padding: 1.25rem 1.5rem;
-  background: linear-gradient(to top, rgba(22, 36, 28, 0.92) 0%, rgba(22, 36, 28, 0) 100%);
+  background: linear-gradient(to top, rgba(20, 39, 30, 0.92) 0%, rgba(20, 39, 30, 0) 100%);
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
@@ -625,13 +706,13 @@ button {
 }
 
 /* ==========================================================================
-   02. "WHAT WE ARE" INSTITUTION INFORMATION STRIP
+   01 / THE INSTITUTION: FOUR FACETS EDITORIAL SPREAD
    ========================================================================== */
 .institution-strip {
   border-top: 1px solid var(--c-border-subtle);
   border-bottom: 1px solid var(--c-border-subtle);
   background-color: var(--c-bg-secondary);
-  padding: 4.5rem 2rem;
+  padding: 5.5rem 2rem;
 }
 
 .institution-strip__inner {
@@ -640,23 +721,27 @@ button {
 }
 
 .strip-header {
-  margin-bottom: 3.5rem;
-  max-width: 820px;
+  margin-bottom: 4rem;
 }
 
-.strip-kicker {
-  font-size: var(--text-meta);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
-  display: block;
-  margin-bottom: 0.5rem;
+.strip-header__layout {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 3.5rem;
+  align-items: baseline;
+  margin-top: 1.25rem;
 }
 
 .strip-title {
   font-size: var(--text-headline);
   color: var(--c-accent-forest);
   line-height: 1.15;
+}
+
+.strip-lead {
+  font-size: 1.0625rem;
+  color: var(--c-text-muted);
+  line-height: 1.7;
 }
 
 .strip-grid {
@@ -668,12 +753,16 @@ button {
 .strip-col {
   display: flex;
   flex-direction: column;
-  padding: 1.25rem 1.5rem;
-  border-right: 1px solid var(--c-border-subtle);
+  padding: 1.5rem 1.75rem;
+  background-color: var(--c-bg-primary);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
-.strip-col:last-child {
-  border-right: none;
+.strip-col:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-warm);
 }
 
 .strip-col__meta {
@@ -694,12 +783,12 @@ button {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--c-text-muted);
+  color: var(--c-accent-forest);
 }
 
 .strip-col__title {
   font-family: var(--font-serif);
-  font-size: 1.625rem;
+  font-size: 1.5rem;
   color: var(--c-text-primary);
   margin-bottom: 0.75rem;
   line-height: 1.2;
@@ -718,7 +807,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  border-top: 1px solid rgba(28, 27, 24, 0.08);
+  border-top: 1px solid rgba(28, 33, 29, 0.08);
   padding-top: 0.85rem;
 }
 
@@ -732,17 +821,18 @@ button {
 }
 
 /* ==========================================================================
-   03. THE 1968 ARCHIVE: EMOTIONAL EXHIBITION CENTERPIECE
+   02 / THE ARCHIVE: 1968 EXHIBITION CENTERPIECE
    ========================================================================== */
 .archive-exhibition {
-  padding: 6.5rem 0;
-  background-color: var(--c-bg-primary);
+  padding: 6.5rem 2rem;
+  background-color: var(--c-paper-warm);
+  border-top: 1px solid var(--c-border-subtle);
+  border-bottom: 1px solid var(--c-border-subtle);
 }
 
 .archive-exhibition__inner {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--container-padding);
 }
 
 .archive-header {
@@ -841,7 +931,7 @@ button {
 }
 
 .archive-pin__badge {
-  background: rgba(22, 36, 28, 0.95);
+  background: rgba(20, 39, 30, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -870,7 +960,7 @@ button {
 
 .pin-note {
   font-size: 0.75rem;
-  color: rgba(253, 251, 247, 0.8);
+  color: rgba(247, 243, 234, 0.8);
   line-height: 1.4;
 }
 
@@ -880,7 +970,7 @@ button {
   grid-template-columns: 200px 1fr;
   gap: 3rem;
   border-top: 1px solid var(--c-border-subtle);
-  padding-top: 1.75rem;
+  padding-top: 2rem;
   align-items: flex-start;
 }
 
@@ -891,30 +981,49 @@ button {
   letter-spacing: 0.04em;
   color: var(--c-accent-ochre);
   padding: 0.35rem 0.85rem;
-  background-color: var(--c-tint-pill);
+  background-color: rgba(160, 107, 39, 0.1);
   border-radius: var(--radius-pill);
+}
+
+.curation-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+}
+
+.c-meta-item strong {
+  color: var(--c-accent-forest);
+  font-weight: 700;
+  margin-right: 0.25rem;
 }
 
 .curation-title {
   font-family: var(--font-serif);
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   color: var(--c-text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
 }
 
 .curation-desc {
   font-size: 1rem;
   color: var(--c-text-muted);
-  line-height: 1.7;
+  line-height: 1.75;
   max-width: 880px;
 }
 
 /* ==========================================================================
-   04. OUR PRACTICE: EDITORIAL ESSAY ("A PLACE OF PRACTICE")
+   03 / THE PRACTICE: EDITORIAL ESSAY ("A PLACE OF PRACTICE")
    ========================================================================== */
 .editorial-practice {
   padding: 6rem 2rem;
-  background-color: var(--c-bg-secondary);
+  background-color: var(--c-bg-primary);
   border-top: 1px solid var(--c-border-subtle);
 }
 
@@ -992,58 +1101,68 @@ button {
 }
 
 /* ==========================================================================
-   05. THE APOTHECARY: 37 PREPARATIONS CATALOGUE
+   04 / THE APOTHECARY: 37 PREPARATIONS CATALOGUE & SPECIMEN ARCHIVE
    ========================================================================== */
 .apothecary-archive {
-  padding: 6.5rem 0;
-  background-color: var(--c-bg-primary);
-  border-top: 1px solid var(--c-border-subtle);
+  padding: 7rem 2rem;
+  background-color: var(--c-bg-dark);
+  color: var(--c-text-light);
+  border-top: 1px solid var(--c-border-dark);
 }
 
 .apothecary-archive__inner {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--container-padding);
 }
 
 .apothecary-header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 4rem;
 }
 
-/* Filter Navigation */
+.section-title--light {
+  color: var(--c-text-light);
+}
+
+.section-lead--light {
+  color: var(--c-text-light-muted);
+}
+
+/* Filter Navigation in Dark Theme */
 .apothecary-filters {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
   margin-top: 2.5rem;
-  border-bottom: 1px solid var(--c-border-subtle);
-  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--c-border-dark);
+  padding-bottom: 1.5rem;
 }
 
 .filter-btn {
-  padding: 0.5rem 1.25rem;
+  padding: 0.55rem 1.35rem;
   border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--c-text-muted);
-  border: 1px solid transparent;
+  color: var(--c-text-light-muted);
+  border: 1px solid rgba(247, 243, 234, 0.18);
+  background-color: transparent;
   transition: all var(--transition-fast);
 }
 
 .filter-btn:hover {
-  color: var(--c-text-primary);
+  color: var(--c-text-light);
+  border-color: rgba(247, 243, 234, 0.35);
 }
 
 .filter-btn.is-active {
-  background-color: var(--c-accent-forest);
+  background-color: var(--c-accent-ochre);
   color: #FFFFFF;
-  border-color: var(--c-accent-forest);
+  border-color: var(--c-accent-ochre);
 }
 
-/* Horizontal Editorial Products Layout */
+/* Horizontal Editorial Products Layout in Dark Theme */
 .apothecary-grid {
   display: flex;
   flex-direction: column;
@@ -1056,37 +1175,39 @@ button {
   grid-template-columns: 200px 1fr 280px;
   gap: 3rem;
   padding: 2.5rem;
-  background-color: var(--c-bg-secondary);
+  background-color: var(--c-bg-dark-surface);
+  border: 1px solid rgba(247, 243, 234, 0.08);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-warm);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
   align-items: center;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
 }
 
 .apothecary-item:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-warm-hover);
+  border-color: rgba(198, 154, 85, 0.3);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
 }
 
 .item-meta {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  border-right: 1px solid var(--c-border-subtle);
+  border-right: 1px solid rgba(247, 243, 234, 0.12);
   padding: 1.25rem 1.5rem;
 }
 
 .item-num {
   font-family: var(--font-serif);
   font-size: 1.5rem;
-  color: var(--c-accent-ochre);
+  color: var(--c-accent-ochre-light);
 }
 
 .item-tag {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--c-text-muted);
+  color: var(--c-text-light-muted);
 }
 
 .item-heading {
@@ -1100,21 +1221,21 @@ button {
 .item-name {
   font-family: var(--font-serif);
   font-size: 2rem;
-  color: var(--c-text-primary);
+  color: var(--c-text-light);
   line-height: 1.1;
 }
 
 .item-nep {
   font-family: var(--font-dev);
   font-size: 1.125rem;
-  color: var(--c-accent-ochre);
+  color: var(--c-accent-ochre-light);
   font-weight: 500;
 }
 
 .item-desc {
   font-size: 0.9375rem;
-  color: var(--c-text-muted);
-  line-height: 1.65;
+  color: var(--c-text-light-muted);
+  line-height: 1.7;
   margin-bottom: 1.25rem;
   max-width: 640px;
 }
@@ -1124,20 +1245,21 @@ button {
   flex-direction: column;
   gap: 0.35rem;
   font-size: 0.8125rem;
-  color: var(--c-text-muted);
-  border-top: 1px solid rgba(28, 27, 24, 0.06);
+  color: var(--c-text-light-muted);
+  border-top: 1px solid rgba(247, 243, 234, 0.1);
   padding-top: 0.85rem;
 }
 
 .detail-row strong {
-  color: var(--c-accent-forest);
+  color: var(--c-accent-ochre-light);
   font-weight: 600;
 }
 
 /* Contained Product Plate */
 .item-visual {
   height: 240px;
-  background: radial-gradient(circle at center, #F4EEE2 0%, #E6DCCD 100%);
+  background: radial-gradient(circle at center, #2C4D3E 0%, #1A3327 100%);
+  border: 1px solid rgba(247, 243, 234, 0.1);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -1150,7 +1272,7 @@ button {
   max-height: 90%;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 14px 20px rgba(31, 30, 27, 0.15));
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.4));
   transition: transform 0.6s var(--ease-out);
 }
 
@@ -1160,7 +1282,7 @@ button {
 
 /* Compendium Footer */
 .catalogue-footer {
-  border-top: 1px solid var(--c-border-subtle);
+  border-top: 1px solid var(--c-border-dark);
   padding-top: 2.5rem;
 }
 
@@ -1168,8 +1290,8 @@ button {
   display: flex;
   align-items: center;
   gap: 2rem;
-  background-color: rgba(135, 89, 26, 0.04);
-  border: 1px solid rgba(135, 89, 26, 0.15);
+  background-color: rgba(247, 243, 234, 0.04);
+  border: 1px solid rgba(198, 154, 85, 0.22);
   border-radius: var(--radius-md);
   padding: 1.5rem 2rem;
 }
@@ -1178,22 +1300,25 @@ button {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  color: var(--c-accent-ochre-light);
+  background-color: rgba(198, 154, 85, 0.12);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
   white-space: nowrap;
 }
 
 .catalogue-footer__inner p {
   font-size: 0.9375rem;
-  color: var(--c-text-muted);
+  color: var(--c-text-light-muted);
   line-height: 1.6;
 }
 
 /* ==========================================================================
-   06. CONSULTATION: DISTINCT IDENTITY & RHYTHM OF THE PRACTICE
+   05 / CONSULTATION: DISTINCT IDENTITY & RHYTHM OF THE PRACTICE
    ========================================================================== */
 .practice-consultation {
   padding: 6.5rem 2rem;
-  background-color: var(--c-bg-secondary);
+  background-color: var(--c-bg-primary);
   border-top: 1px solid var(--c-border-subtle);
 }
 
@@ -1228,7 +1353,7 @@ button {
 
 /* Consultation Hours Box */
 .consultation-box {
-  background-color: var(--c-bg-primary);
+  background-color: var(--c-bg-secondary);
   border: 1px solid var(--c-border-subtle);
   border-radius: var(--radius-lg);
   padding: 3rem;
@@ -1332,7 +1457,7 @@ button {
 .rhythm-step--highlight::before {
   background-color: var(--c-accent-ochre);
   border-color: var(--c-accent-ochre);
-  box-shadow: 0 0 0 4px rgba(135, 89, 26, 0.2);
+  box-shadow: 0 0 0 4px rgba(160, 107, 39, 0.2);
 }
 
 .rhythm-time {
@@ -1359,7 +1484,7 @@ button {
 }
 
 /* ==========================================================================
-   07. FORMULATION PARTNERS (REFINED INTERNATIONAL SECTION)
+   06 / FORMULATION PARTNERS (REFINED INTERNATIONAL SECTION)
    ========================================================================== */
 .partners-section {
   padding: 6.5rem 2rem;
@@ -1430,11 +1555,11 @@ button {
 }
 
 /* ==========================================================================
-   08. THE VISUAL ARCHIVE: ASYMMETRIC ARCHITECTURAL GALLERY
+   07 / THE VISUAL ARCHIVE: ASYMMETRIC ARCHITECTURAL GALLERY
    ========================================================================== */
 .visual-archive {
   padding: 6.5rem 2rem;
-  background-color: var(--c-bg-secondary);
+  background-color: var(--c-paper-warm);
   border-top: 1px solid var(--c-border-subtle);
 }
 
@@ -1479,10 +1604,10 @@ button {
 }
 
 /* ==========================================================================
-   09. FIND US IN BAGBAZAR (VISIT SECTION)
+   08 / VISIT: FIND US IN BAGBAZAR
    ========================================================================== */
 .visit-section {
-  padding: 6.5rem 0;
+  padding: 6.5rem 2rem;
   background-color: var(--c-bg-primary);
   border-top: 1px solid var(--c-border-subtle);
 }
@@ -1490,7 +1615,6 @@ button {
 .visit-section__inner {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--container-padding);
 }
 
 .visit-mast {
@@ -1594,12 +1718,12 @@ button {
 }
 
 /* ==========================================================================
-   10. FOOTER & ARCHIVAL COLOPHON
+   FOOTER & ARCHIVAL COLOPHON
    ========================================================================== */
 .footer {
   background-color: var(--c-bg-footer);
   color: var(--c-text-light);
-  padding: 6rem 0 3rem;
+  padding: 6rem 2rem 3rem;
   position: relative;
   overflow: hidden;
 }
@@ -1607,7 +1731,6 @@ button {
 .footer__inner {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--container-padding);
 }
 
 .footer__top {
@@ -1699,7 +1822,7 @@ button {
 }
 
 /* ==========================================================================
-   15. FLOATING MOBILE ACTION BAR (CALL · WHATSAPP · DIRECTIONS)
+   FLOATING MOBILE ACTION BAR (CALL · WHATSAPP · DIRECTIONS)
    ========================================================================== */
 .mobile-action-bar {
   display: none;
@@ -1707,7 +1830,7 @@ button {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(253, 251, 247, 0.96);
+  background-color: rgba(247, 243, 234, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid var(--c-border-subtle);
