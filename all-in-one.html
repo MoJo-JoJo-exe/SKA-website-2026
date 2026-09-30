@@ -567,9 +567,11 @@ button {
 /* ==========================================================================
    01. ARCHIVAL PUBLICATION HERO COMPOSITION
    ========================================================================== */
+
+/* Hero section outer container */
 .hero-archival {
-  padding-top: calc(var(--header-height) + 2rem);
-  padding-bottom: 5rem;
+  padding-top: calc(var(--header-height) + 3.5rem);
+  padding-bottom: 6rem;
   position: relative;
   max-width: var(--container-width);
   margin: 0 auto;
@@ -577,132 +579,198 @@ button {
   padding-right: var(--container-padding);
 }
 
+/* Top metadata bar — archival, not marketing */
 .hero-archival__top-meta {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   border-bottom: 1px solid var(--c-border-subtle);
-  padding-bottom: 1rem;
-  margin-bottom: 3.5rem;
+  padding-bottom: 0.875rem;
+  margin-bottom: 4rem;
   font-size: var(--text-meta);
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
-  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: var(--font-sans);
 }
 
+.hero-meta-item {
+  color: var(--c-text-muted);
+}
+
+.hero-meta-item--coords {
+  color: var(--c-text-muted);
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* Two-column layout: text left, image right */
 .hero-archival__layout {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(3rem, 6vw, 6.5rem);
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: clamp(3rem, 7vw, 7rem);
   align-items: flex-start;
 }
 
 .hero-archival__text {
   display: flex;
   flex-direction: column;
+  padding-top: 0.25rem;
 }
 
+/* Institution name — dominant typographic element */
 .hero-archival__title {
+  font-family: var(--font-serif);
   font-size: var(--text-hero);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   color: var(--c-accent-forest);
-  margin-bottom: 1.75rem;
+  margin-bottom: 2rem;
 }
 
 .hero-title-line {
   display: block;
 }
 
+/* Devanagari identity — quieter, secondary to Latin title */
 .hero-archival__devanagari {
-  margin-bottom: 1.75rem;
+  margin-bottom: 2.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.2rem;
+  border-left: 2px solid var(--c-border-subtle);
+  padding-left: 1rem;
 }
 
 .dev-line {
   font-family: var(--font-dev);
-  font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
   color: var(--c-accent-ochre);
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
-.hero-archival__standfirst {
-  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+.dev-line--sub {
+  font-size: clamp(0.8125rem, 1.3vw, 1rem);
   color: var(--c-text-muted);
-  line-height: 1.7;
-  max-width: 580px;
-  margin-bottom: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
+/* Standfirst — one clear editorial sentence */
+.hero-archival__standfirst {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: var(--c-text-muted);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 2.75rem;
+}
+
+/* CTA group — strong primary, quiet secondary */
 .hero-archival__ctas {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 2.75rem;
 }
 
+/* Secondary link — plain text, not a button */
+.hero-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--c-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.hero-secondary-link:hover {
+  color: var(--c-accent-forest);
+}
+
+.hero-secondary-link svg {
+  transition: transform var(--transition-fast);
+}
+
+.hero-secondary-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* Footnote — operational facts, quiet */
 .hero-archival__footnote {
   font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   color: var(--c-text-muted);
   border-top: 1px solid var(--c-border-subtle);
   padding-top: 1.25rem;
-  max-width: 480px;
+  max-width: 460px;
+  font-weight: 400;
+  opacity: 0.75;
 }
 
-/* Oversized Facade Visual Breaking Grid */
+/* Image column */
 .hero-archival__visual {
   position: relative;
   width: 100%;
 }
 
+/* Facade plate — editorial, not rounded-card */
 .facade-plate {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: 6px;
   overflow: hidden;
   box-shadow: var(--shadow-warm-hover);
   background-color: var(--c-bg-surface-tint);
-  height: clamp(520px, 75vh, 860px);
+  height: clamp(540px, 80vh, 900px);
+  margin: 0;
 }
 
 .facade-plate img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: auto;
-  transition: transform 1.2s var(--ease-out);
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
-.facade-plate:hover img {
-  transform: scale(1.025);
-}
-
+/* Caption overlay */
 .facade-plate__caption {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 1.25rem 1.5rem;
-  background: linear-gradient(to top, rgba(22, 36, 28, 0.92) 0%, rgba(22, 36, 28, 0) 100%);
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(22, 36, 28, 0.88) 0%, rgba(22, 36, 28, 0) 100%);
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .f-num {
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--c-accent-ochre-light);
+  font-style: italic;
 }
+
+.f-label {
+  color: rgba(253, 251, 247, 0.65);
+}
+
 
 /* ==========================================================================
    02. "WHAT WE ARE" INSTITUTION INFORMATION STRIP
@@ -1831,7 +1899,10 @@ button {
    ========================================================================== */
 @media (max-width: 1200px) {
   .hero-archival__layout {
-    gap: 3.5rem;
+    gap: 3rem;
+  }
+  .hero-archival {
+    padding-top: calc(var(--header-height) + 2.75rem);
   }
   
   .strip-grid {
@@ -1864,10 +1935,39 @@ button {
 
   .hero-archival__layout {
     grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  /* On tablet/mobile: image appears ABOVE text */
+  .hero-archival__text {
+    order: 2;
+  }
+
+  .hero-archival__visual {
+    order: 1;
   }
 
   .facade-plate {
-    height: 520px;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 cinematic crop on tablet */
+    border-radius: 4px;
+  }
+
+  .facade-plate img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .hero-archival__standfirst {
+    max-width: 100%;
+  }
+
+  .hero-archival__footnote {
+    max-width: 100%;
   }
 
   .partners-grid {
@@ -1927,10 +2027,45 @@ button {
     display: flex;
   }
 
+  .hero-archival {
+    padding-top: calc(var(--header-height) + 1.75rem);
+    padding-bottom: 4rem;
+  }
+
   .hero-archival__top-meta {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.35rem;
+    gap: 0.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-archival__title {
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-archival__devanagari {
+    margin-bottom: 1.75rem;
+  }
+
+  .facade-plate {
+    padding-bottom: 100%; /* square crop on small phones */
+  }
+
+  .facade-plate img {
+    object-position: center 15%;
+  }
+
+  .hero-archival__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-archival__ctas .btn--primary {
+    width: 100%;
+    justify-content: center;
   }
 
   .strip-grid {
@@ -2271,64 +2406,62 @@ button {
 
   <main id="mainContent">
 
+
     <!-- ======================================================================
          01. ARCHIVAL PUBLICATION HERO COMPOSITION
          ====================================================================== -->
     <section class="hero-archival" id="hero">
+
       <div class="hero-archival__top-meta">
-        <div class="meta-tag">
-          <span class="meta-tag__dot"></span>
-          <span>EST. BAGBAZAR · KATHMANDU</span>
-        </div>
-        <div class="meta-coords">
-          <span>27°42'21.0"N 85°19'04.0"E</span>
-        </div>
+        <span class="hero-meta-item">EST. BAGBAZAR · KATHMANDU</span>
+        <span class="hero-meta-item hero-meta-item--coords">27°42'21.0"N 85°19'04.0"E</span>
       </div>
 
       <div class="hero-archival__layout">
         <!-- Text Column -->
         <div class="hero-archival__text">
           <h1 class="hero-archival__title">
-            <span class="hero-title-line" data-animate="split-lines">SHREE KRISHNA</span>
-            <span class="hero-title-line" data-animate="split-lines">AUSHADHALAYA</span>
+            <span class="hero-title-line" data-animate="split-lines">Shree Krishna</span>
+            <span class="hero-title-line" data-animate="split-lines">Aushadhalaya</span>
           </h1>
 
           <div class="hero-archival__devanagari" data-animate="fade-up">
-            <span class="dev-line">परम्परागत आयुर्वेदिक चिकित्सा</span>
-            <span class="dev-line">तथा औषधालय</span>
+            <span class="dev-line">श्री कृष्ण औषधालय</span>
+            <span class="dev-line dev-line--sub">परम्परागत आयुर्वेदिक चिकित्सा · बागबजार</span>
           </div>
 
           <p class="hero-archival__standfirst" data-animate="fade-up">
-            A generational Baidya family Ayurvedic practice and botanical pharmacy in the heart of Kathmandu. Personal doctor consultations, authentic compounding, and classical medicines preserved across generations.
+            A Baidya family Ayurvedic clinic and botanical pharmacy — practising classical medicine, personal consultation, and in-house compounding at this address in Bagbazar, Kathmandu.
           </p>
 
           <div class="hero-archival__ctas" data-animate="fade-up">
-            <a href="#archive-1968" class="btn btn--primary">
-              <span>Explore the Archive</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <a href="https://wa.me/9779843748078?text=Hello%2C%20I%20would%20like%20to%20book%20an%20Ayurvedic%20consultation%20at%20Shree%20Krishna%20Aushadhalaya%2C%20Bagbazar." target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+              <span>Book Consultation</span>
             </a>
-            <a href="https://wa.me/9779843748078?text=Hello%2C%20I%20would%20like%20to%20book%20an%20Ayurvedic%20consultation%20at%20Shree%20Krishna%20Aushadhalaya%2C%20Bagbazar." target="_blank" rel="noopener noreferrer" class="btn btn--outline">
-              <span>Book Consultation ↗</span>
+            <a href="#archive-1968" class="hero-secondary-link">
+              Explore the Archive
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
 
           <div class="hero-archival__footnote" data-animate="fade-up">
-            <span>Document Record: Baidya Heritage · Bagbazar</span>
+            <span>Pharmacy 7 AM– 8 PM daily · Consultations 9 – 11 AM, Sun–Fri ·  01-5322079</span>
           </div>
         </div>
 
-        <!-- Oversized Architectural Facade Visual -->
+        <!-- Architectural Facade Visual -->
         <div class="hero-archival__visual" data-animate="fade-up" data-delay="0.2">
-          <div class="facade-plate">
-            <img src="assets/images/facade-full.jpg" alt="Shree Krishna Aushadhalaya building facade — historic three-story ochre-yellow building with traditional timber windows in Bagbazar, Kathmandu" width="473" height="1024" loading="eager" fetchpriority="high">
-            <div class="facade-plate__caption">
+          <figure class="facade-plate">
+            <img src="assets/images/facade-full.jpg" alt="Shree Krishna Aushadhalaya — the historic three-storey timber-and-masonry building at Bagbazar, Kathmandu" width="946" height="2048" loading="eager" fetchpriority="high">
+            <figcaption class="facade-plate__caption">
               <span class="f-num">PLATE 01</span>
-              <span class="f-label">Clinic & Dispensary · Bagbazar</span>
-            </div>
-          </div>
+              <span class="f-label">Clinic &amp; Dispensary · Bagbazar</span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
+
 
     <!-- ======================================================================
          02. "WHAT WE ARE" INSTITUTION INFORMATION STRIP
