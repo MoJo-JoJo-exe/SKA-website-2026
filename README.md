@@ -1,76 +1,108 @@
 # Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)
-### Authentic Ayurvedic Clinic & Dispensary · 31 Bagbazar, Kathmandu, Nepal
+### Historic Baidya Family Ayurvedic Clinic & Apothecary · Bagbazar, Kathmandu, Nepal
 
-Official website codebase for Shree Krishna Aushadhalaya, built with a modern wellness aesthetic featuring warm radial glows, Lenis smooth scrolling, GSAP scroll-driven animations, an authentic Bento image gallery, and full WCAG AA accessibility.
+[![Live Website](https://img.shields.io/badge/Live_Site-mojo--jojo--exe.github.io%2FSKA--website--2026-16241C?style=for-the-badge)](https://mojo-jojo-exe.github.io/SKA-website-2026/)
+[![WCAG AA](https://img.shields.io/badge/Accessibility-WCAG_AA_Pass-87591A?style=for-the-badge)](#)
+[![Zero Build](https://img.shields.io/badge/Architecture-Zero_Dependencies-16241C?style=for-the-badge)](#)
 
----
-
-## 🚀 Quick Start (Run Locally)
-
-This site is built with vanilla HTML, CSS, and JavaScript. It has **zero build steps** and requires no Node.js/npm dependencies to run.
-
-```bash
-# In PowerShell / Terminal:
-cd C:\Users\Bigat\.gemini\antigravity\scratch\shree-krishna-aushadhalaya
-python -m http.server 8088
-```
-
-Open your browser at: **[http://localhost:8088/](http://localhost:8088/)**
+Official digital archive and institutional website for **Shree Krishna Aushadhalaya** (श्री कृष्ण औषधालय), a historic generational Baidya family Ayurvedic clinic, botanical pharmacy, and licensed compounding institution located on Bagbazar road in central Kathmandu, Nepal. Documented in archival color photography since **1968 AD (2025 BS)**.
 
 ---
 
-## 📁 Project Structure
+## 🌐 Live Website
+
+- **Production URL**: **[https://mojo-jojo-exe.github.io/SKA-website-2026/](https://mojo-jojo-exe.github.io/SKA-website-2026/)**
+- **Repository**: [https://github.com/MoJo-JoJo-exe/SKA-website-2026](https://github.com/MoJo-JoJo-exe/SKA-website-2026)
+
+---
+
+## 🏛️ Verified Institutional Information
+
+| Field | Detail |
+|---|---|
+| **Institution** | Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय) |
+| **Tradition** | Generational Baidya Family Stewardship · Ayurvedic Medicine & Compounding |
+| **Exact Address** | Bagbazar, Ward No. 28 (formerly Ward 31), Kathmandu 44600, Nepal |
+| **GPS Coordinates** | `27°42'21.0"N 85°19'04.0"E` (Decimal: `27.705833, 85.317778`) |
+| **Herbal Pharmacy** | **7:00 AM – 8:00 PM**, Daily (Sunday – Saturday, 365 days a year) |
+| **Doctor Consultations** | **9:00 AM – 11:00 AM**, Sunday through Friday *(Closed Saturday for consultations)* |
+| **Landline** | `01-5322079` |
+| **Mobile** | `984-3748078` |
+| **WhatsApp Business** | `+977 984-3748078` ([Chat Direct](https://wa.me/9779843748078)) |
+| **Official Email** | `shreekrishna_aush@hotmail.com` |
+| **Instagram** | [@into_the_ayurveda](https://www.instagram.com/into_the_ayurveda/?hl=en) |
+| **Google Maps Pin** | [View on Google Maps](https://maps.app.goo.gl/NF5HAXusb7DdSV8k9) |
+
+---
+
+## 🎨 Editorial Art Direction: *The Apothecary Archive*
+
+The website is art-directed as a **contemporary editorial publication and archival museum catalogue** for a century-old Himalayan medical institution. It avoids the visual cliches of wellness startups, spa templates, or standard ecommerce grids.
+
+### Narrative Architecture
+1. **01 · Title Plate (Hero)**: All-caps monumental serif masthead (`SHREE KRISHNA AUSHADHALAYA`), bilingual Devanagari identity, archival coordinate header, real operational footnote, and 6px framed facade plate.
+2. **02 · The Institution**: 4-column editorial strip defining Clinical Practice, Herbal Pharmacy, Compounding, and Global Reach.
+3. **03 · The 1968 Archive**: Monumental `1968` archival exhibition plate with hairline museum annotation and curatorial caption.
+4. **04 · Our Practice**: Three-column essay on generational stewardship, classical dispensary stocks, and holistic constitutional balance (Prakriti / Vikriti).
+5. **05 · The Apothecary**: Materia Medica specimen compendium with classification filters (Churnas, Vatis, Minerals, Classical Blends), specification ledgers, and interactive specimen lightbox.
+6. **06 · Clinical Consultation**: Architectural consultation hours folio paired with "A Day at the Aushadhalaya" operational rhythm timeline.
+7. **07 · Formulation Partners**: Dark botanical temperature shift detailing classical compounding and export partnerships across Europe.
+8. **08 · The Visual Archive**: Asymmetric architectural gallery of authentic Bagbazar signboards, doors, timber eaves, and street context.
+9. **09 · Visit Bagbazar**: Street approach photography, interactive Google Map embed, complete contact details, and direct action CTAs.
+10. **10 · Archival Colophon**: Comprehensive archive directory, official contact channels, and monumental watermark seal (`श्री कृष्ण औषधालय`).
+
+---
+
+## 📂 Codebase & File Structure
 
 ```
-shree-krishna-aushadhalaya/
-├── index.html        # Semantic HTML5 narrative with Schema.org JSON-LD
-├── styles.css        # CSS custom properties, fluid typography, warm gradients & Bento grid
-├── script.js         # Lenis momentum smooth scroll & GSAP ScrollTrigger controller
-├── AI_HANDOFF.md     # Master prompt & system guide for feeding this site into other AIs
-├── DESIGN.md         # Design system specifications & token mapping
+SKA-website-2026/
+├── index.html            # Semantic HTML5 archival publication with Schema.org JSON-LD
+├── styles.css            # Complete design system: tokens, editorial grid, responsive rules
+├── script.js             # Lenis smooth scroll, GSAP ScrollTrigger reveals, filter & lightbox
+├── all-in-one.html       # Bundled standalone distribution file (zero external requests)
+├── bundle.cjs            # Inliner build utility (generates all-in-one.html)
+├── favicon.svg           # High-contrast Devanagari typographic favicon (श्री)
+├── .nojekyll             # Prevents GitHub Pages Jekyll processing
+├── DESIGN.md             # Art direction specification & design token system
+├── AI_HANDOFF.md         # Master guide & boundary rules for AI contributors
 └── assets/
-    └── images/
-        ├── facade-full.jpg          # Three-story clinic facade portrait
-        ├── dispensary-interior.jpg  # Dispensary counter & apothecary archive
-        ├── century-heritage.jpg     # Timber windows with festive marigold garlands
-        ├── signboard-detail.jpg     # Registered hand-painted vintage signboard
-        ├── indoor-signboard.jpg     # Wall plaque: आयुर्वेदीय हरेक औषधि पाइन्छ
-        └── street-context.jpg       # Bagbazar road approach & streetscape
+    ├── js/               # Vendored local copies (GSAP, ScrollTrigger, Lenis)
+    └── images/           # Super-sampled, high-fidelity architectural & product photography
 ```
 
 ---
 
-## 🛠️ How to Make Changes
+## 🚀 Running Locally
 
-### 1. Edit Text or Contact Information
-Open `index.html`:
-- **Hours & Address**: Look for `.visit__card` and `.footer__top`.
-- **Phone Numbers**: Look for `tel:015322079` or `tel:9843748078`.
-- **WhatsApp**: Look for `https://wa.me/9779843748078`.
-- **Instagram**: Look for `https://www.instagram.com/into_the_ayurveda/?hl=en`.
+The project requires **no compilers, no npm dependencies, and no build pipeline** to run.
 
-### 2. Add New Photos
-1. Put your image file inside `assets/images/`.
-2. Wrap it with an `<div class="img-frame"><img src="assets/images/your-photo.jpg" alt="..."></div>`.
-3. It automatically inherits smooth rounded corners, warm shadows, parallax scroll, and hover scale!
+```powershell
+# Open with any local HTTP server:
+python -m http.server 8080
+# or
+npx serve .
+```
 
-### 3. Add or Modify Animations
-To make any new element animate in on scroll, add `data-animate="fade-up"` to it in `index.html`. You can also stagger it with `data-delay="0.1"`, `data-delay="0.2"`, etc.
+Visit `http://localhost:8080` in any browser.
 
----
-
-## 🤖 Feeding this Project into Another AI
-
-When sharing this project with ChatGPT, Claude, Cursor, v0, Bolt, or Windsurf:
-1. **Copy the contents of `AI_HANDOFF.md`** and paste it at the beginning of your prompt.
-2. Tell the AI what specific section you want to add or change.
-3. The AI will strictly respect your colors, Lenis smooth scrolling, GSAP animations, and verified clinic facts without breaking anything!
+To regenerate the standalone `all-in-one.html` bundle after editing:
+```powershell
+node bundle.cjs
+```
 
 ---
 
-## 🌐 Free 1-Click Deployment Options
+## ♿ Accessibility & Performance Standards
 
-You can deploy this website for free in under 60 seconds:
-- **Netlify**: Drag and drop the `shree-krishna-aushadhalaya` folder into [app.netlify.com/drop](https://app.netlify.com/drop).
-- **Vercel**: Run `npx vercel` in this folder, or connect your GitHub repository.
-- **Cloudflare Pages / GitHub Pages**: Push to a GitHub repo and enable Pages.
+- **WCAG 2.1 AA Compliant**: All text combinations meet or exceed the 4.5:1 contrast minimum (e.g. `--c-accent-ochre` #87591A has a 5.85:1 contrast ratio against the paper background).
+- **Keyboard Navigation**: Dedicated `:focus-visible` styling on all interactive links, filters, and buttons.
+- **Prefers-Reduced-Motion**: Complete animation bypass when users request reduced motion in system settings.
+- **Image Optimization**: Hero image uses `loading="eager"` and `fetchpriority="high"`; all subsequent photographic plates use native `loading="lazy"`.
+- **Zero Third-Party Trackers**: Self-contained fonts and vendored scripts.
+
+---
+
+## 📄 License & Attribution
+
+© Shree Krishna Aushadhalaya. Historic Baidya family Ayurvedic institution, Bagbazar, Kathmandu. All rights reserved.

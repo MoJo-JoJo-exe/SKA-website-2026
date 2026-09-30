@@ -1,7 +1,7 @@
 # AI HANDOFF & MASTER SYSTEM PROMPT
 ## Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)
 
-> **Instructions for any AI assistant (ChatGPT, Claude, Cursor, v0, Windsurf, Midjourney, etc.) working on this project:**
+> **Instructions for any AI assistant (ChatGPT, Claude, Cursor, v0, Windsurf, Gemini, etc.) working on this project:**
 > Read this document completely before proposing copy, designing graphics, or writing code. This project has an established visual language, interaction engine, and strict factual boundaries. Preserve them.
 
 ---
@@ -9,10 +9,11 @@
 ## 1. Project Identity & Verified Facts
 
 - **Institution**: Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)
-- **Nature**: Authentic, generational **Baidya family Ayurvedic clinic and botanical pharmacy** in Kathmandu, Nepal.
+- **Nature**: Authentic, generational **Baidya family Ayurvedic clinic, botanical pharmacy, and compounding compendium** in Kathmandu, Nepal.
 - **Location**: Bagbazar, Kathmandu 44600, Nepal.
   - **Important Ward Clarification**: In historical municipal numbering, the clinic was located in **Ward 31**. Under current municipal delimitation, Bagbazar is **Ward 28**.
   - **Rule**: Do **NOT** combine "31" and "Bagbazar" as a single street address ("31 Bagbazar" is deprecated). Only mention ward numbering where necessary (such as in legal address blocks: `Bagbazar, Ward No. 28 (formerly Ward 31), Kathmandu 44600`).
+- **GPS Coordinates**: `27°42'21.0"N 85°19'04.0"E` (Decimal: `27.705833, 85.317778`)
 - **Heritage**: Documented in archival color photography dated **1968 AD (2025 BS)** showing the traditional corner shopfront on Bagbazar road. Historical royal family associations and unbroken generational Baidya stewardship.
 - **Official Contact Details**:
   - **Official Email**: `shreekrishna_aush@hotmail.com`
@@ -22,96 +23,89 @@
   - **Instagram**: `@into_the_ayurveda` (`https://www.instagram.com/into_the_ayurveda/?hl=en`)
   - **Google Maps**: `https://maps.app.goo.gl/NF5HAXusb7DdSV8k9`
 - **Operating Hours**:
-  - **Herbal Pharmacy & Dispensary**: **7:00 AM – 8:00 PM**, Daily (Sunday through Saturday, 365 days).
-  - **Doctor Consultations**: **9:00 AM – 11:00 AM**, Sunday through Friday (Closed Saturdays for doctor consultations; pharmacy remains open).
-- **International Capabilities**: Formulates and supplies classical and customized Ayurvedic medicines to partner companies across Europe and internationally.
+  - **Herbal Pharmacy & Dispensary**: **7:00 AM – 8:00 PM**, Daily (Sunday through Saturday, 365 days a year).
+  - **Doctor Consultations**: **9:00 AM – 11:00 AM**, Sunday through Friday *(Closed Saturdays for doctor consultations; pharmacy remains open).*
+- **International Compounding**: Formulates and supplies classical and customized Ayurvedic medicines to partner companies across Europe and internationally.
+- **Production URL**: [https://mojo-jojo-exe.github.io/SKA-website-2026/](https://mojo-jojo-exe.github.io/SKA-website-2026/)
+- **GitHub Repository**: [https://github.com/MoJo-JoJo-exe/SKA-website-2026](https://github.com/MoJo-JoJo-exe/SKA-website-2026)
 
 ---
 
-## 2. Visual & Architectural Design System
+## 2. Visual & Architectural Design System: *The Apothecary Archive*
 
-- **Aesthetic Direction**: Warm editorial wellness meets living Himalayan heritage. Inspired by high-end modern layout references (Havenly, Enblox) featuring warm amber radial glows, soft momentum scrolling, rounded geometry, and monumental bilingual typography.
+- **Aesthetic Direction**: Contemporary Materia Medica & Archival Institutional Record. Quiet confidence, editorial dignity, architectural restraint, and authentic photographic anchors.
+- **Strict Anti-Patterns (DO NOT INTRODUCE)**:
+  - ❌ No amber/yellow radial glow orbs or gradient washes.
+  - ❌ No generic rounded app cards (`border-radius: 24px` is banned).
+  - ❌ No pulsating red radar pins or decorative badges covering historic photos.
+  - ❌ No ecommerce shopping carts, price tags, or "Buy Now" buttons.
+  - ❌ No invented claims, fake awards, fake certifications, or unverified ingredients.
 - **Color Palette**:
   ```css
-  --c-bg-primary: #FDFBF7;      /* Warm paper ground */
-  --c-bg-secondary: #FFFFFF;    /* Clean card surfaces */
-  --c-bg-dark: #1A2C22;         /* Deep botanical forest (temperature shift sections) */
-  --c-bg-footer: #0A0A09;       /* Deep near-black footer */
-  --c-accent-primary: #1A2C22;  /* Forest green for buttons and badges */
-  --c-accent-hover: #2A3F30;    /* Interactive button hover */
-  --c-accent-ochre: #87591A;    /* Archival brass/ochre (WCAG AA 5.85:1 contrast) */
-  --c-accent-warm: #E8D5B7;     /* Soft amber highlight */
-  --glow-warm: radial-gradient(circle at center, rgba(232, 213, 183, 0.8) 0%, rgba(212, 165, 116, 0.4) 40%, rgba(196, 149, 106, 0) 70%);
+  --c-bg-primary: #FDFBF7;         /* Warm archival paper ground */
+  --c-bg-secondary: #FFFFFF;       /* Crisp white editorial surface */
+  --c-bg-surface-tint: #F5EFE6;    /* Subtle warm parchment tint */
+  --c-bg-dark: #16241C;            /* Deep botanical forest green */
+  --c-bg-footer: #0A0F0C;          /* Deepest near-black forest */
+  --c-text-primary: #1C1B18;       /* Primary dark ink */
+  --c-text-muted: #5E5852;         /* Secondary editorial body text */
+  --c-text-light: #FDFBF7;         /* Light cream text for dark themes */
+  --c-text-light-muted: #B3AAA0;   /* Muted light text */
+  --c-accent-forest: #16241C;      /* Deep primary forest */
+  --c-accent-hover: #263D30;       /* Interactive button hover */
+  --c-accent-ochre: #87591A;       /* Archival brass/ochre (WCAG AA 5.85:1 contrast) */
+  --c-accent-ochre-light: #D4A574; /* Warm ochre highlight for dark backgrounds */
   ```
-- **Typography Pairing**:
-  - Headlines/Display: `Instrument Serif` (Google Fonts)
-  - Body/UI: `Satoshi` (Fontshare)
-  - Cultural/Devanagari: `Noto Serif Devanagari`
-- **Key UI Components**:
-  - **Pill Badges (`.pill`)**: `border-radius: 100px;` with live indicator dot (`.pill__dot`).
-  - **Pill Buttons (`.btn`)**: `border-radius: 100px;` with smooth hover lift and SVG arrow micro-interaction.
-  - **Image Frames (`.img-frame`)**: `border-radius: 24px; overflow: hidden;` with subtle warm-tinted shadow (`--shadow-warm`).
-  - **Cards (`.service-card`, `.med-card`, `.visit__card`)**: `border-radius: 24px;` with smooth hover lift (`translateY(-8px)`).
-  - **Zero Hidden States in CSS**: All content is 100% visible by default in HTML/CSS (`opacity: 1; transform: none`). GSAP applies dynamic entry animations progressively.
+- **Typography**:
+  - Headlines/Display: `'Instrument Serif', Georgia, serif`
+  - Body/UI: `'Satoshi', -apple-system, sans-serif`
+  - Cultural/Devanagari: `'Noto Serif Devanagari', serif`
+- **Key UI Atoms**:
+  - **Pill Buttons (`.btn`)**: `border-radius: 100px;` with subtle hover lift.
+  - **Photographic Plates (`.img-frame`, `.facade-plate`, `.archive-frame`)**: `border-radius: 6px` (or `4px`), hairline borders, quiet captions.
+  - **Museum Annotation (`.archive-annotation`)**: Restrained hairline rule (`1px`) with pinpoint dot (`5px`) and muted catalog tag box.
+  - **Materia Medica Specimens (`.apothecary-item`)**: Specimen frame with click-to-zoom lightbox, classification index, and specification ledger (`<dl>`, `<dt>`, `<dd>`).
 
 ---
 
-## 3. Tech Stack & Motion Engine
+## 3. Tech Stack & Engineering Standards
 
-- **Vanilla HTML5 & CSS3**: Pure semantic markup with Schema.org `MedicalClinic` JSON-LD. Zero CSS frameworks (no Tailwind, no Bootstrap).
-- **Offline / Local Scripts** (`assets/js/`):
-  - **Lenis 1.1.18** (`assets/js/lenis.min.js`): Smooth scroll physics without touch-hijacking.
-  - **GSAP 3.12.5 & ScrollTrigger** (`assets/js/gsap.min.js`, `assets/js/ScrollTrigger.min.js`): Standalone timeline for Hero on load; ScrollTrigger for subsequent sections.
-- **Zero Build Tools**: No Node/npm, Webpack, or Vite needed to run. Simply run `python -m http.server 8088` or deploy directly to Netlify, Vercel, or GitHub Pages.
-
----
-
-## 4. Photography & Asset Inventory
-
-All images are located in `assets/images/`:
-
-| Filename | Role & Placement | Notes |
-| :--- | :--- | :--- |
-| `facade-full.jpg` | **Hero Visual Plane** & **Gallery Bento** | Three-story historic ochre building with traditional timber windows. |
-| `heritage-1968-bagbazar.jpg` | **1968 AD Archival Spotlight** & **Gallery** | 1968 AD (2025 BS) photograph with pulsing locator pin on right corner shopfront. |
-| `facade-timber-eaves.jpg` | **European Partnership Section** | Angled perspective of building facade with blue timber eaves. |
-| `street-entrance-perspective.jpg` | **Gallery Bento (Tall portrait)** | Street-level view looking up at registered door entrance. |
-| `dispensary-interior.jpg` | **About Section** & **Gallery Bento** | Wide wooden counter, classical amber glass bottles, authentic scales. |
-| `century-heritage.jpg` | **Gallery Bento** | Upper facade adorned with festive orange marigold garlands. |
-| `signboard-detail.jpg` | **Gallery Bento** | Historic hand-painted clinic signboard. |
-| `indoor-signboard.jpg` | **Formulations Section** | Traditional Devanagari signboard (`आयुर्वेदीय हरेक औषधि पाइन्छ`). |
-| `street-context.jpg` | **Visit Landmark Banner** | Bagbazar street approach. |
-| `product-shilajit.jpg` | **Medicines Showcase Card 1** | Pure Himalayan Shilajit (शुद्ध शिलाजीत) in traditional box. |
-| `product-ashwagandha.jpg` | **Medicines Showcase Card 2** | Ashwagandha Churna (अश्वगन्धा चूर्ण) with visible clinic seal. |
-| `product-triphala.jpg` | **Medicines Showcase Card 3** | Triphala Tablets (त्रिफला वटी) bottle. |
-| `product-sitopaladi.jpg` | **Medicines Showcase Card 4** | Sitopaladi Churna (सितोपलादि चूर्ण) bottle. |
+- **Zero-Dependency Core**: Pure semantic HTML5, native CSS3 with custom properties, and vanilla modern JavaScript.
+- **Vendored Libraries** (`assets/js/`):
+  - **Lenis 1.1.18** (`assets/js/lenis.min.js`): Physics-based smooth scroll tied directly to `gsap.ticker`.
+  - **GSAP 3.12.5 & ScrollTrigger** (`assets/js/gsap.min.js`, `assets/js/ScrollTrigger.min.js`): Immediate hero timeline and scroll-triggered section reveals.
+- **Accessibility & Motion**:
+  - Full keyboard focusability with visible `:focus-visible` styling (`outline: 2px solid var(--c-accent-ochre)`).
+  - High contrast (WCAG AA passing throughout).
+  - Complete animation and momentum scroll bypass when `prefers-reduced-motion: reduce` is detected.
+- **Bundler Utility**: `node bundle.cjs` compiles `index.html`, `styles.css`, and `script.js` into a standalone, portable `all-in-one.html`.
 
 ---
 
-## 5. PROMPT TEMPLATE TO PASTE INTO OTHER AIs
+## 4. Master Prompt Template for Future AI Collaborators
 
 Copy and paste the prompt below into ChatGPT, Claude, Gemini, or any creative AI for copy, text, layout, or graphic critique:
 
 ```markdown
-You are an expert creative director, copywriter, and brand strategist specializing in luxury wellness, traditional medicine, and heritage institutions (similar to Aesop, Buly 1803, Forest Essentials, Kama Ayurveda).
+You are an expert creative director, editorial designer, and brand strategist specializing in historic medical archives and traditional pharmacopeias (think contemporary botanical archives, museum catalogues, Aesop, Buly 1803).
 
 Review the website structure, copy, and visual identity of:
 **Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)**
-Historic Baidya Family Ayurvedic Clinic & Pharmacy in Bagbazar, Kathmandu, Nepal.
+Historic Baidya Family Ayurvedic Clinic & Apothecary in Bagbazar, Kathmandu, Nepal.
+Live Site: https://mojo-jojo-exe.github.io/SKA-website-2026/
 
 ### Essential Business Context:
-- **Heritage**: Generational Baidya family practice. Archival color photography from 1968 AD (2025 BS) confirms continuous operation on Bagbazar road. Historic royal associations exist in family archives.
-- **Location**: Bagbazar, Kathmandu (Ward 28, formerly Ward 31). Note: Never write "31 Bagbazar" as a single street name.
+- **Heritage**: Generational Baidya family practice. Archival color photography from 1968 AD (2025 BS) confirms continuous operation at the corner of Bagbazar road. Historical royal associations exist in family archives.
+- **Location**: Bagbazar, Kathmandu (Ward 28, formerly Ward 31). GPS: 27°42'21.0"N 85°19'04.0"E. Note: Never write "31 Bagbazar" as a single street name.
 - **Services**: 
-  - Pharmacy & Dispensary: 7:00 AM – 8:00 PM Daily (Sunday–Saturday).
-  - Doctor Consultations: 9:00 AM – 11:00 AM (Sunday–Friday).
+  - Herbal Pharmacy & Dispensary: 7:00 AM – 8:00 PM Daily (365 days).
+  - Clinical Doctor Consultations: 9:00 AM – 11:00 AM (Sunday–Friday).
   - Custom Compounding & European Export: Formulating bespoke botanical compounds for European partner companies.
-- **Visual Identity**: Warm paper ground (#FDFBF7), deep botanical forest green (#1A2C22), warm archival ochre (#87591A), glowing amber radial gradients, typography using Instrument Serif + Satoshi + Noto Serif Devanagari.
-- **Official Email**: shreekrishna_aush@hotmail.com | Phone: 01-5322079, 984-3748078
+- **Visual Identity**: "The Apothecary Archive" — Warm archival paper ground (#FDFBF7), deep botanical forest green (#16241C), archival ochre/brass (#87591A), Instrument Serif + Satoshi + Noto Serif Devanagari. Architectural plates with 4px–6px radii, no generic rounded cards, no yellow gradients.
+- **Official Email**: shreekrishna_aush@hotmail.com | Phone: 01-5322079, 984-3748078 | WhatsApp: +977 984-3748078
 
-### What I need from you:
-1. **Copywriting Critique & Refinement**: Review headline and section copy across Hero, 1968 Heritage, About, Consultations, Classical Medicines, and European Export. Suggest elevated, poetic, yet strictly authentic text variations that honor Himalayan botanical traditions without sounding like generic spa marketing.
-2. **Graphic & Visual Suggestions**: Propose art direction ideas for photography, product presentation, certificate/archival displays, and packaging presentation.
-3. **Product Showcase Expansion**: Suggestions on how to display more of our 37 proprietary products (herbal churnas, vatis, oils, Shilajit) in a "low-key, dignified, and editorial" manner that does not look like a commercial e-commerce store.
-4. **Heritage Storytelling**: How best to frame the upcoming historical photos (including photos with the King and archival royal correspondence) once uploaded.
+### Guidelines for Changes:
+1. Maintain strict factual integrity (no invented medical claims, awards, or historical dates).
+2. Respect the established "Apothecary Archive" visual identity.
+3. Keep all interactions understated, authentic, and dignified.
 ```
