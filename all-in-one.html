@@ -25,8 +25,8 @@
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 27.7058,
-      "longitude": 85.3178
+      "latitude": 27.705889,
+      "longitude": 85.317778
     },
     "hasMap": "https://maps.app.goo.gl/NF5HAXusb7DdSV8k9",
     "telephone": ["+977-1-5322079", "+977-984-3748078"],
@@ -654,6 +654,8 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
   transition: transform 1.2s var(--ease-out);
 }
 
@@ -869,6 +871,11 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Archival Locator Pin (Positioned in the sky ABOVE the yellow building - never covers the house) */
@@ -882,14 +889,6 @@ button {
   gap: 0.85rem;
 }
 
-.archive-pin__target {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  flex-shrink: 0;
-}
-
 .archive-pin__pulse {
   width: 18px;
   height: 18px;
@@ -899,20 +898,6 @@ button {
   box-shadow: 0 0 0 0 rgba(224, 49, 49, 0.7);
   animation: pulse-ring 2s infinite;
   flex-shrink: 0;
-}
-
-.archive-pin__arrow {
-  color: #E03131;
-  font-size: 1.125rem;
-  font-weight: 900;
-  line-height: 1;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 2px #FFFFFF;
-  animation: bounce-arrow 1.8s infinite ease-in-out;
-}
-
-@keyframes bounce-arrow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(3px); }
 }
 
 @keyframes pulse-ring {
@@ -2128,7 +2113,7 @@ button {
           <span>EST. BAGBAZAR · KATHMANDU</span>
         </div>
         <div class="meta-coords">
-          <span>27°42′21″ N · 85°19′04″ E</span>
+          <span>27°42′21.2″ N · 85°19′04.0″ E</span>
         </div>
       </div>
 
@@ -2271,7 +2256,7 @@ button {
 
         <!-- Major Exhibition Plate (Nearly Fills Viewport) -->
         <div class="archive-frame" data-animate="fade-up" data-delay="0.1">
-          <img src="assets/images/heritage-1968-bagbazar.jpg" alt="Archival color photograph of Bagbazar road in 1968 AD (2025 BS), showing pedestrians and Shree Krishna Aushadhalaya shop in the right foreground corner" width="960" height="640" loading="lazy">
+          <img src="assets/images/heritage-1968-bagbazar.jpg" alt="Archival color photograph of Bagbazar road in 1968 AD (2025 BS), showing pedestrians and Shree Krishna Aushadhalaya shop in the right foreground corner" width="1920" height="1250" loading="lazy">
           
           <!-- Red Pointer Placed in the Sky Directly Above the House (Never Covers the Facade) -->
           <div class="archive-pin" title="Shree Krishna Aushadhalaya corner shopfront in 1968">
@@ -2280,10 +2265,7 @@ button {
               <strong class="pin-title">Shree Krishna Aushadhalaya</strong>
               <span class="pin-note">Historic ochre-yellow building with traditional timber shopfront below</span>
             </div>
-            <div class="archive-pin__target">
-              <span class="archive-pin__pulse"></span>
-              <span class="archive-pin__arrow" aria-hidden="true">↓</span>
-            </div>
+            <span class="archive-pin__pulse"></span>
           </div>
         </div>
 
@@ -2755,7 +2737,7 @@ button {
               <strong class="v-name">Shree Krishna Aushadhalaya</strong>
               <span class="v-line">Bagbazar, Ward No. 28 (formerly Ward 31)</span>
               <span class="v-line">Kathmandu 44600, Nepal</span>
-              <span class="v-coords">Coordinates: 27°42′21″ N, 85°19′04″ E</span>
+              <span class="v-coords">Coordinates: 27°42′21.2″ N, 85°19′04.0″ E</span>
             </div>
 
             <div class="v-detail-col">
@@ -2844,7 +2826,7 @@ button {
 
       <div class="footer__bottom">
         <span>© <span id="year"></span> Shree Krishna Aushadhalaya. Historic Baidya family Ayurvedic institution. All rights reserved.</span>
-        <span>LAT 27°42′21″ N · LONG 85°19′04″ E · BAGBAZAR, KATHMANDU</span>
+        <span>LAT 27°42′21.2″ N · LONG 85°19′04.0″ E · BAGBAZAR, KATHMANDU</span>
       </div>
     </div>
   </footer>
