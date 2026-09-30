@@ -119,7 +119,7 @@
   --font-dev: 'Noto Serif Devanagari', 'Mangal', serif;
 
   /* Typography Scale */
-  --text-hero: clamp(3.25rem, 8.5vw, 7.5rem);
+  --text-hero: clamp(2.75rem, 8.5vw, 7.5rem);
   --text-giant: clamp(4.5rem, 13vw, 12rem);
   --text-section: clamp(2.25rem, 5vw, 4.25rem);
   --text-headline: clamp(1.75rem, 3.5vw, 2.75rem);
@@ -204,6 +204,21 @@ button {
 [lang="ne"], .dev-text {
   font-family: var(--font-dev);
 }
+
+/* Accessible focus states — keyboard only, not mouse */
+:focus-visible {
+  outline: 2px solid var(--c-accent-ochre);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Suppress focus ring for elements with custom styles */
+.btn:focus-visible,
+.nav__link:focus-visible {
+  outline: 2px solid var(--c-accent-ochre);
+  outline-offset: 3px;
+}
+
 
 /* ==========================================================================
    3. REUSABLE EDITORIAL ATOMS
@@ -311,9 +326,9 @@ button {
 
 /* Image Frames */
 .img-frame {
-  border-radius: var(--radius-lg);
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: var(--shadow-warm);
+  box-shadow: 0 8px 32px -8px rgba(40, 32, 20, 0.1);
   position: relative;
   background-color: var(--c-bg-surface-tint);
 }
@@ -779,12 +794,13 @@ button {
   border-top: 1px solid var(--c-border-subtle);
   border-bottom: 1px solid var(--c-border-subtle);
   background-color: var(--c-bg-secondary);
-  padding: 4.5rem 2rem;
+  padding: clamp(4.5rem, 6vw, 6rem) 0;
 }
 
 .institution-strip__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .strip-header {
@@ -810,18 +826,23 @@ button {
 .strip-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2.5rem;
+  gap: 0;
 }
 
 .strip-col {
   display: flex;
   flex-direction: column;
-  padding: 1.25rem 1.5rem;
+  padding: 0 2rem;
   border-right: 1px solid var(--c-border-subtle);
+}
+
+.strip-col:first-child {
+  padding-left: 0;
 }
 
 .strip-col:last-child {
   border-right: none;
+  padding-right: 0;
 }
 
 .strip-col__meta {
@@ -1129,7 +1150,7 @@ button {
    04. OUR PRACTICE: EDITORIAL ESSAY ("A PLACE OF PRACTICE")
    ========================================================================== */
 .editorial-practice {
-  padding: 6rem 2rem;
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
@@ -1137,6 +1158,7 @@ button {
 .editorial-practice__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .practice-lead {
@@ -1563,7 +1585,7 @@ button {
    06. CONSULTATION: DISTINCT IDENTITY & RHYTHM OF THE PRACTICE
    ========================================================================== */
 .practice-consultation {
-  padding: 6.5rem 2rem;
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
@@ -1571,6 +1593,7 @@ button {
 .practice-consultation__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .consultation-mast {
@@ -1597,16 +1620,21 @@ button {
   align-items: flex-start;
 }
 
-/* Consultation Hours Box */
+/* Consultation Hours Box — Architectural Folio */
 .consultation-box {
   background-color: var(--c-bg-primary);
   border: 1px solid var(--c-border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 3rem;
+  border-radius: 4px;
+  padding: clamp(2rem, 3.5vw, 2.75rem);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  box-shadow: var(--shadow-warm);
+  gap: 1.75rem;
+  box-shadow: 0 8px 30px -10px rgba(28, 27, 24, 0.06);
+}
+
+.consultation-box__header {
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 1.5rem;
 }
 
 .c-badge {
@@ -1654,7 +1682,7 @@ button {
 }
 
 .consultation-box__footer {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--c-text-muted);
   border-top: 1px solid var(--c-border-subtle);
   padding-top: 1.25rem;
@@ -1733,7 +1761,7 @@ button {
    07. FORMULATION PARTNERS (REFINED INTERNATIONAL SECTION)
    ========================================================================== */
 .partners-section {
-  padding: 6.5rem 2rem;
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
   background-color: var(--c-bg-dark);
   color: var(--c-text-light);
   border-top: 1px solid var(--c-border-dark);
@@ -1742,6 +1770,7 @@ button {
 .partners-section__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .partners-grid {
@@ -1804,7 +1833,7 @@ button {
    08. THE VISUAL ARCHIVE: ASYMMETRIC ARCHITECTURAL GALLERY
    ========================================================================== */
 .visual-archive {
-  padding: 6.5rem 2rem;
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
@@ -1812,6 +1841,7 @@ button {
 .visual-archive__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .visual-archive__header {
@@ -1853,7 +1883,7 @@ button {
    09. FIND US IN BAGBAZAR (VISIT SECTION)
    ========================================================================== */
 .visit-section {
-  padding: 6.5rem 0;
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
   background-color: var(--c-bg-primary);
   border-top: 1px solid var(--c-border-subtle);
 }
@@ -1876,7 +1906,7 @@ button {
 
 .visit-photo-plate {
   height: 420px;
-  border-radius: var(--radius-lg);
+  border-radius: 6px;
   overflow: hidden;
 }
 
@@ -2125,13 +2155,22 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .strip-col:nth-child(2) {
+  .strip-col:nth-child(1), .strip-col:nth-child(3) {
+    padding-left: 0;
+    padding-right: 2rem;
+    border-right: 1px solid var(--c-border-subtle);
+  }
+
+  .strip-col:nth-child(2), .strip-col:nth-child(4) {
+    padding-left: 2rem;
+    padding-right: 0;
     border-right: none;
   }
 
   .strip-col:nth-child(3), .strip-col:nth-child(4) {
     border-top: 1px solid var(--c-border-subtle);
     padding-top: 2rem;
+    margin-top: 1.5rem;
   }
 
   /* apothecary-item uses fluid responsive grid */
@@ -2309,7 +2348,11 @@ button {
   .strip-col {
     border-right: none;
     border-bottom: 1px solid var(--c-border-subtle);
-    padding: 1.5rem 1.25rem;
+    padding: 1.75rem 0;
+  }
+
+  .strip-col:first-child {
+    padding-top: 0;
   }
 
   .strip-col:last-child {
@@ -2435,6 +2478,11 @@ button {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .footer__giant {
+    font-size: clamp(2.75rem, 12vw, 4.5rem);
+    margin: 0.5rem 0 2rem;
+  }
 }
 
 /* ==========================================================================
@@ -2461,29 +2509,31 @@ button {
   top: 0;
   left: 0;
   width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, #B8924C, #D4A855);
+  height: 2px;
+  background: var(--c-accent-ochre);
   z-index: 9999;
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 1px 1px 0;
   pointer-events: none;
   will-change: width;
 }
 
 /* #10: Nav Scroll-Spy Active Link */
 .nav__link.is-active {
-  color: #B8924C;
+  color: var(--c-accent-forest);
+  font-weight: 600;
 }
 .nav__link.is-active .nav__link-num {
-  color: #B8924C;
+  color: var(--c-accent-ochre);
 }
 
-/* #1: Google Maps Embed */
+/* #1: Google Maps Embed Plate */
 .visit-map-embed {
-  border-radius: var(--radius-lg, 20px);
+  border-radius: 6px;
   overflow: hidden;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 24px rgba(26, 44, 34, 0.12);
-  border: 1px solid rgba(26, 44, 34, 0.08);
+  box-shadow: 0 8px 32px -8px rgba(40, 32, 20, 0.1);
+  border: 1px solid var(--c-border-subtle);
+  background-color: var(--c-bg-surface-tint);
 }
 .visit-map-embed iframe {
   display: block;
@@ -2505,28 +2555,16 @@ button {
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.04em;
-  color: #B8924C;
+  color: var(--c-accent-ochre);
   text-decoration: none;
-  border: 1px solid rgba(184, 146, 76, 0.35);
+  border: 1px solid rgba(135, 89, 26, 0.35);
   border-radius: 100px;
   padding: 0.45rem 1rem;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
 }
 .gallery-instagram-cta:hover {
-  background: rgba(184, 146, 76, 0.1);
-  border-color: #B8924C;
-}
-
-/* #9: Warmer Consultation Card */
-.consultation-box {
-  background: linear-gradient(135deg, #FDFAF5 0%, #F5EFE4 100%);
-  border: 1px solid rgba(184, 146, 76, 0.2);
-  border-radius: var(--radius-lg, 20px);
-}
-.consultation-box__header {
-  background: rgba(184, 146, 76, 0.07);
-  border-bottom: 1px solid rgba(184, 146, 76, 0.15);
-  border-radius: var(--radius-lg, 20px) var(--radius-lg, 20px) 0 0;
+  background-color: var(--c-tint-pill);
+  border-color: var(--c-accent-ochre);
 }
 
 /* Specimen Inspection Lightbox Overlay */
