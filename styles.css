@@ -1,78 +1,100 @@
 /* ==========================================================================
    SHREE KRISHNA AUSHADHALAYA (श्री कृष्ण औषधालय)
-   Design System: Archival Publication & Editorial Apothecary
+   Art Direction: The Apothecary Archive — Timeless Cultural Monograph
    Bagbazar, Ward No. 28, Kathmandu, Nepal
+   Coordinates: 27°42'21.0"N 85°19'04.0"E
    ========================================================================== */
 
 /* ==========================================================================
-   1. DESIGN TOKENS & SYSTEM VARIABLES
+   1. COLOR SYSTEM & DESIGN TOKENS
+   Aesthetic: Museum Archive, Monograph Publishing, Historic Apothecary,
+   Kathmandu Architectural Heritage, Japanese Editorial Restraint.
    ========================================================================== */
 :root {
-  /* Canvas & Background Colors */
-  --c-bg-primary: #FDFBF7;         /* Warm archival paper ground */
-  --c-bg-secondary: #FFFFFF;       /* Crisp white editorial surface */
-  --c-bg-surface-tint: #F5EFE6;    /* Subtle warm parchment tint */
-  --c-bg-dark: #16241C;            /* Deep botanical forest green */
-  --c-bg-dark-surface: #1E3328;   /* Slightly lighter dark green for inner cards */
-  --c-bg-footer: #0A0F0C;          /* Deepest near-black forest */
+  /* --- The Canonical Archive Palette --- */
+  --c-paper:          #F5F1E8;   /* Primary canvas: warm historic paper ground */
+  --c-paper-light:    #FAF8F3;   /* Elevated light surface: mountings & clean cards */
+  --c-paper-dark:     #EAE3D5;   /* Tinted paper tone: dividing plates & neutral fills */
+  
+  --c-ink:            #20241F;   /* Primary typography & structural rules */
+  --c-ink-soft:       #4E514A;   /* Secondary typography, metadata, curatorial notes */
+  
+  --c-forest:         #26382E;   /* Signature clinical deep forest */
+  --c-forest-deep:    #18261F;   /* Deepest forest ground: partners & archival colophon */
+  --c-forest-hover:   #121E17;   /* Interactive dark hover */
+  
+  --c-sage:           #879287;   /* Muted botanical sage for quiet rules & accents */
+  --c-brass:          #9A7845;   /* Archival brass accent ONLY (restrained, never dominant) */
+  --c-brass-soft:     #C2AA7C;   /* Soft brass highlight for dark forest backgrounds */
 
-  /* Text & Ink Colors */
-  --c-text-primary: #1C1B18;       /* Primary dark ink */
-  --c-text-muted: #5E5852;         /* Secondary editorial body text */
-  --c-text-light: #FDFBF7;         /* Light cream text for dark themes */
-  --c-text-light-muted: #B3AAA0;   /* Muted light text */
+  /* --- Semantic Color Mappings --- */
+  --c-bg-primary:      var(--c-paper);
+  --c-bg-secondary:    var(--c-paper-light);
+  --c-bg-surface-tint: var(--c-paper-dark);
+  --c-bg-dark:         var(--c-forest-deep);
+  --c-bg-dark-surface: var(--c-forest);
+  --c-bg-footer:       var(--c-forest-deep);
 
-  /* Accents & Archival Metals */
-  --c-accent-forest: #16241C;      /* Deep primary forest */
-  --c-accent-hover: #263D30;       /* Interactive button hover */
-  --c-accent-ochre: #87591A;       /* Archival brass/ochre (5.85:1 contrast, WCAG AA) */
-  --c-accent-ochre-light: #D4A574; /* Warm ochre highlight for dark backgrounds */
-  --c-accent-warm: #E8D5B7;        /* Soft amber tint */
-  --c-tint-pill: rgba(135, 89, 26, 0.08);
+  --c-text-primary:    var(--c-ink);
+  --c-text-muted:      var(--c-ink-soft);
+  --c-text-light:      #FAF8F3;
+  --c-text-light-muted:#879287;
 
-  /* Borders & Dividers */
-  --c-border-subtle: rgba(28, 27, 24, 0.12);
-  --c-border-strong: rgba(28, 27, 24, 0.28);
-  --c-border-dark: rgba(255, 255, 255, 0.14);
+  --c-accent-forest:   var(--c-forest);
+  --c-accent-hover:    var(--c-forest-hover);
+  --c-accent-ochre:    var(--c-brass);
+  --c-accent-ochre-light: var(--c-brass-soft);
+  --c-accent-warm:     var(--c-paper-dark);
+  --c-tint-pill:       rgba(38, 56, 46, 0.05);
 
-  /* Typography Stack */
+  /* --- Structural Hairlines & Borders --- */
+  --c-border-subtle:   rgba(32, 36, 31, 0.12);
+  --c-border-medium:   rgba(32, 36, 31, 0.22);
+  --c-border-strong:   rgba(32, 36, 31, 0.40);
+  --c-border-dark:     rgba(250, 248, 243, 0.12);
+
+  /* --- Typography Stack --- */
   --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-dev: 'Noto Serif Devanagari', 'Mangal', serif;
+  --font-sans:  'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-dev:   'Noto Serif Devanagari', 'Mangal', serif;
 
-  /* Typography Scale */
-  --text-hero: clamp(3.25rem, 8.5vw, 7.5rem);
-  --text-giant: clamp(4.5rem, 13vw, 12rem);
-  --text-section: clamp(2.25rem, 5vw, 4.25rem);
-  --text-headline: clamp(1.75rem, 3.5vw, 2.75rem);
-  --text-sub: clamp(1.125rem, 2vw, 1.4rem);
-  --text-body: 1.0625rem;
-  --text-small: 0.875rem;
-  --text-meta: 0.75rem;
+  /* --- Disciplined Typography Scale --- */
+  --text-hero:     clamp(2.85rem, 6.75vw, 5.5rem);
+  --text-giant:    clamp(4.25rem, 11vw, 9.5rem);
+  --text-section:  clamp(2rem, 3.8vw, 3rem);
+  --text-headline: clamp(1.4rem, 2.5vw, 2.1rem);
+  --text-sub:      clamp(1.0625rem, 1.5vw, 1.25rem);
+  --text-body:     1rem;
+  --text-small:    0.875rem;
+  --text-meta:     0.75rem;
 
-  /* Layout & Geometry */
-  --container-width: 1360px;
+  /* --- Layout & Controlled Geometry --- */
+  --container-width:   1320px;
   --container-padding: clamp(1.25rem, 4vw, 3.5rem);
-  --header-height: 80px;
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-pill: 100px;
+  --header-height:     80px;
 
-  /* Shadows */
-  --shadow-warm: 0 16px 40px -12px rgba(40, 32, 20, 0.08);
-  --shadow-warm-hover: 0 24px 50px -12px rgba(40, 32, 20, 0.15);
-  --shadow-dark: 0 20px 48px rgba(0, 0, 0, 0.35);
+  /* Strict, Restrained Radii (No bloated 24px curves) */
+  --radius-sharp: 0px;
+  --radius-xs:    4px;
+  --radius-sm:    6px;
+  --radius-md:    12px;
+  --radius-lg:    16px;
+  --radius-pill:  999px;
 
-  /* Transitions */
+  /* Shadows: Quiet, physical paper separation — never fuzzy artificial glows */
+  --shadow-subtle: 0 1px 3px rgba(32, 36, 31, 0.04), 0 6px 20px rgba(32, 36, 31, 0.03);
+  --shadow-hover:  0 2px 6px rgba(32, 36, 31, 0.06), 0 12px 32px rgba(32, 36, 31, 0.06);
+  --shadow-dark:   0 16px 48px rgba(0, 0, 0, 0.45);
+
+  /* Fluid Motion Timing */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-fast: 0.2s var(--ease-out);
-  --transition-normal: 0.4s var(--ease-out);
-  --transition-slow: 0.8s var(--ease-out);
+  --transition-fast:   0.18s var(--ease-out);
+  --transition-normal: 0.35s var(--ease-out);
+  --transition-slow:   0.7s var(--ease-out);
 }
 
 /* ==========================================================================
-   2. RESET & DOCUMENT DEFAULTS
+   2. RESET & MONOGRAPH DEFAULTS
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -82,7 +104,7 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  scroll-behavior: auto; /* Lenis handles smooth physics */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -100,8 +122,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.08;
   color: var(--c-text-primary);
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -113,6 +136,8 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
 }
 
 button {
@@ -128,114 +153,131 @@ button {
 }
 
 /* ==========================================================================
-   3. REUSABLE EDITORIAL ATOMS
+   3. ARCHIVAL ATOMS & METADATA
    ========================================================================== */
-/* Metadata Tag */
+/* Reading Progress Indicator (Understated 2px hairline, zero gradient) */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--c-forest);
+  z-index: 9999;
+  pointer-events: none;
+  will-change: width;
+}
+
+/* Metadata Archival Label */
 .meta-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-size: var(--text-meta);
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--c-accent-ochre);
+  color: var(--c-ink-soft);
 }
 
 .meta-tag__dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
-  background-color: var(--c-accent-ochre);
+  background-color: var(--c-brass);
 }
 
 .meta-tag--light {
-  color: var(--c-accent-ochre-light);
+  color: var(--c-brass-soft);
 }
 
 .meta-tag__dot--light {
-  background-color: var(--c-accent-ochre-light);
+  background-color: var(--c-brass-soft);
 }
 
-/* Pill Buttons */
+/* Button System: Disciplined Pills & Hairline Outlines */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
-  padding: 0.875rem 1.75rem;
+  padding: 0.8rem 1.75rem;
   border-radius: var(--radius-pill);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
-  transition: transform var(--transition-normal), background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
+  letter-spacing: 0.03em;
+  transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
   cursor: pointer;
   text-align: center;
+  line-height: 1;
 }
 
 .btn--primary {
-  background-color: var(--c-accent-forest);
-  color: #FFFFFF;
-  border: 1px solid var(--c-accent-forest);
+  background-color: var(--c-forest);
+  color: #FAF8F3;
+  border: 1px solid var(--c-forest);
 }
 
 .btn--primary:hover {
-  background-color: var(--c-accent-hover);
-  border-color: var(--c-accent-hover);
-  transform: translateY(-2px);
+  background-color: var(--c-forest-hover);
+  border-color: var(--c-forest-hover);
+  transform: translateY(-1px);
 }
 
 .btn--outline {
   background-color: transparent;
-  color: var(--c-text-primary);
-  border: 1px solid var(--c-border-strong);
+  color: var(--c-ink);
+  border: 1px solid var(--c-border-medium);
 }
 
 .btn--outline:hover {
-  background-color: var(--c-accent-forest);
-  color: #FFFFFF;
-  border-color: var(--c-accent-forest);
-  transform: translateY(-2px);
+  background-color: var(--c-forest);
+  color: #FAF8F3;
+  border-color: var(--c-forest);
+  transform: translateY(-1px);
 }
 
 .btn--light {
-  background-color: #FFFFFF;
-  color: var(--c-accent-forest);
-  border: 1px solid #FFFFFF;
+  background-color: #FAF8F3;
+  color: var(--c-forest-deep);
+  border: 1px solid #FAF8F3;
   font-weight: 600;
 }
 
 .btn--light:hover {
-  background-color: var(--c-accent-warm);
-  transform: translateY(-2px);
+  background-color: var(--c-paper-dark);
+  border-color: var(--c-paper-dark);
+  transform: translateY(-1px);
 }
 
 .btn--nav {
   padding: 0.55rem 1.25rem;
   font-size: 0.8125rem;
-  background-color: var(--c-accent-forest);
-  color: #FFFFFF;
+  background-color: var(--c-forest);
+  color: #FAF8F3;
+  border: 1px solid var(--c-forest);
   border-radius: var(--radius-pill);
 }
 
 .btn--nav:hover {
-  background-color: var(--c-accent-hover);
+  background-color: var(--c-forest-hover);
+  border-color: var(--c-forest-hover);
 }
 
 .btn--lg {
-  padding: 1.125rem 2.25rem;
-  font-size: 1rem;
+  padding: 1rem 2.25rem;
+  font-size: 0.9375rem;
 }
 
 .btn--full {
   width: 100%;
 }
 
-/* Image Frames */
+/* Photographic Plates: Controlled Archival Radii (No 24px bloating) */
 .img-frame {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: var(--shadow-warm);
+  border: 1px solid var(--c-border-subtle);
   position: relative;
   background-color: var(--c-bg-surface-tint);
 }
@@ -248,7 +290,7 @@ button {
 }
 
 .img-frame:hover img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .img-frame--dark {
@@ -258,20 +300,20 @@ button {
 /* Section Title Typography */
 .section-title {
   font-size: var(--text-section);
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  letter-spacing: -0.015em;
+  line-height: 1.08;
   margin: 0.75rem 0 1rem;
 }
 
 .section-lead {
   font-size: var(--text-sub);
   color: var(--c-text-muted);
-  max-width: 720px;
-  line-height: 1.6;
+  max-width: 680px;
+  line-height: 1.65;
 }
 
 /* ==========================================================================
-   4. SMART NAVIGATION & ARCHIVE DIRECTORY
+   4. NAVIGATION & MONOGRAPH MASTHEAD
    ========================================================================== */
 .nav {
   position: fixed;
@@ -282,16 +324,16 @@ button {
   z-index: 100;
   display: flex;
   align-items: center;
-  transition: background-color var(--transition-normal), box-shadow var(--transition-normal), backdrop-filter var(--transition-normal);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  border-bottom: 1px solid transparent;
 }
 
 .nav.is-scrolled,
 .nav.nav--scrolled {
-  background-color: rgba(253, 251, 247, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 4px 24px rgba(28, 27, 24, 0.06);
-  border-bottom: 1px solid rgba(28, 27, 24, 0.08);
+  background-color: rgba(245, 241, 232, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--c-border-subtle);
 }
 
 .nav__inner {
@@ -312,29 +354,30 @@ button {
 
 .nav__brand-dev {
   font-family: var(--font-dev);
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--c-accent-forest);
-  line-height: 1.1;
+  color: var(--c-forest);
+  line-height: 1.15;
 }
 
 .nav__brand-sub {
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--c-accent-ochre);
-  font-weight: 600;
+  color: var(--c-ink-soft);
+  font-weight: 500;
 }
 
 .nav__menu {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1.65rem;
 }
 
 .nav__link {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
+  letter-spacing: 0.03em;
   color: var(--c-text-muted);
   display: inline-flex;
   align-items: baseline;
@@ -344,13 +387,22 @@ button {
 }
 
 .nav__link-num {
-  font-size: 0.75rem;
-  color: var(--c-accent-ochre);
+  font-size: 0.6875rem;
+  color: var(--c-brass);
   font-weight: 600;
 }
 
 .nav__link:hover {
   color: var(--c-text-primary);
+}
+
+.nav__link.is-active {
+  color: var(--c-forest);
+  font-weight: 600;
+}
+
+.nav__link.is-active .nav__link-num {
+  color: var(--c-brass);
 }
 
 .nav__actions {
@@ -377,19 +429,19 @@ button {
   transition: transform var(--transition-fast);
 }
 
-.nav__toggle-bar:nth-child(1) { width: 24px; }
-.nav__toggle-bar:nth-child(2) { width: 18px; }
+.nav__toggle-bar:nth-child(1) { width: 22px; }
+.nav__toggle-bar:nth-child(2) { width: 16px; }
 
 .nav__toggle.nav__toggle--active .nav__toggle-bar:nth-child(1) {
   transform: translateY(4px) rotate(45deg);
 }
 
 .nav__toggle.nav__toggle--active .nav__toggle-bar:nth-child(2) {
-  transform: translateY(-4px) rotate(-45deg) scaleX(1.33);
+  transform: translateY(-4px) rotate(-45deg) scaleX(1.37);
 }
 
 /* ==========================================================================
-   5. ARCHIVAL MOBILE MENU OVERLAY
+   5. MOBILE DIRECTORY OVERLAY
    ========================================================================== */
 .mobile-menu {
   position: fixed;
@@ -414,16 +466,16 @@ button {
 }
 
 .mobile-menu__inner {
-  max-width: 600px;
+  max-width: 540px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 2.25rem;
 }
 
 .mobile-menu__header {
   border-bottom: 1px solid var(--c-border-subtle);
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -432,104 +484,107 @@ button {
 .mobile-menu__label {
   font-size: var(--text-meta);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  letter-spacing: 0.08em;
+  color: var(--c-ink-soft);
 }
 
 .mobile-menu__dev {
   font-family: var(--font-dev);
-  font-size: 2rem;
-  color: var(--c-accent-forest);
+  font-size: 1.75rem;
+  color: var(--c-forest);
 }
 
 .mobile-menu__nav {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .m-link {
   display: flex;
   align-items: baseline;
-  gap: 1rem;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid rgba(28, 27, 24, 0.06);
+  gap: 1.25rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--c-border-subtle);
+  color: var(--c-text-primary);
+  transition: color var(--transition-fast);
 }
 
 .m-num {
-  font-size: 0.8125rem;
-  font-family: var(--font-serif);
-  color: var(--c-accent-ochre);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-brass);
 }
 
 .m-title {
   font-family: var(--font-serif);
-  font-size: 1.625rem;
-  color: var(--c-text-primary);
+  font-size: 1.5rem;
 }
 
 .mobile-menu__footer {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding-top: 1rem;
+  gap: 1.25rem;
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 1.5rem;
 }
 
 .m-contact-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
 }
 
 .m-hours, .m-addr {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--c-text-muted);
+  line-height: 1.55;
 }
 
 /* ==========================================================================
-   01. ARCHIVAL PUBLICATION HERO COMPOSITION
+   01. ARCHIVAL HERO COMPOSITION
+   Quiet confidence, asymmetric tension, generous negative space.
    ========================================================================== */
 .hero-archival {
-  padding-top: calc(var(--header-height) + 2rem);
-  padding-bottom: 5rem;
-  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--header-height) + 2rem) var(--container-padding) 4.5rem;
   max-width: var(--container-width);
   margin: 0 auto;
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
+  position: relative;
 }
 
 .hero-archival__top-meta {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   border-bottom: 1px solid var(--c-border-subtle);
-  padding-bottom: 1rem;
-  margin-bottom: 3.5rem;
+  padding-bottom: 0.75rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.meta-coords {
   font-size: var(--text-meta);
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--c-ink-soft);
 }
 
 .hero-archival__layout {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: clamp(3rem, 6vw, 6.5rem);
-  align-items: flex-start;
-}
-
-.hero-archival__text {
-  display: flex;
-  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  align-items: center;
 }
 
 .hero-archival__title {
   font-size: var(--text-hero);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
-  color: var(--c-accent-forest);
-  margin-bottom: 1.75rem;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  color: var(--c-ink);
+  margin-bottom: 1.25rem;
 }
 
 .hero-title-line {
@@ -537,7 +592,7 @@ button {
 }
 
 .hero-archival__devanagari {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
@@ -545,18 +600,18 @@ button {
 
 .dev-line {
   font-family: var(--font-dev);
-  font-size: clamp(1.25rem, 2.4vw, 1.85rem);
-  color: var(--c-accent-ochre);
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  color: var(--c-forest);
   font-weight: 500;
   line-height: 1.35;
 }
 
 .hero-archival__standfirst {
-  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
   color: var(--c-text-muted);
-  line-height: 1.7;
-  max-width: 580px;
-  margin-bottom: 2.5rem;
+  line-height: 1.75;
+  max-width: 540px;
+  margin-bottom: 2.25rem;
 }
 
 .hero-archival__ctas {
@@ -564,19 +619,19 @@ button {
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 }
 
 .hero-archival__footnote {
   font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--c-text-muted);
+  letter-spacing: 0.05em;
+  color: var(--c-ink-soft);
   border-top: 1px solid var(--c-border-subtle);
   padding-top: 1.25rem;
-  max-width: 480px;
+  max-width: 440px;
 }
 
-/* Oversized Facade Visual Breaking Grid */
+/* Facade Photographic Plate Mount */
 .hero-archival__visual {
   position: relative;
   width: 100%;
@@ -584,11 +639,11 @@ button {
 
 .facade-plate {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: var(--shadow-warm-hover);
+  border: 1px solid var(--c-border-subtle);
   background-color: var(--c-bg-surface-tint);
-  height: clamp(520px, 75vh, 860px);
+  height: clamp(480px, 70vh, 760px);
 }
 
 .facade-plate img {
@@ -596,13 +651,11 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: auto;
   transition: transform 1.2s var(--ease-out);
 }
 
 .facade-plate:hover img {
-  transform: scale(1.025);
+  transform: scale(1.02);
 }
 
 .facade-plate__caption {
@@ -610,9 +663,11 @@ button {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 1.25rem 1.5rem;
-  background: linear-gradient(to top, rgba(22, 36, 28, 0.92) 0%, rgba(22, 36, 28, 0) 100%);
-  color: #FFFFFF;
+  padding: 1rem 1.25rem;
+  background: rgba(24, 38, 31, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #FAF8F3;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -622,55 +677,60 @@ button {
 
 .f-num {
   font-family: var(--font-serif);
-  font-size: 0.9375rem;
-  color: var(--c-accent-ochre-light);
+  font-size: 0.875rem;
+  color: var(--c-brass-soft);
 }
 
 /* ==========================================================================
-   02. "WHAT WE ARE" INSTITUTION INFORMATION STRIP
+   02. "WHAT WE ARE" INSTITUTION LEDGER
+   Pillar architecture: clean hairlines, editorial clarity.
    ========================================================================== */
 .institution-strip {
   border-top: 1px solid var(--c-border-subtle);
   border-bottom: 1px solid var(--c-border-subtle);
   background-color: var(--c-bg-secondary);
-  padding: 4.5rem 2rem;
+  padding: 5rem 0;
 }
 
 .institution-strip__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .strip-header {
   margin-bottom: 3.5rem;
-  max-width: 820px;
+  max-width: 780px;
 }
 
 .strip-kicker {
   font-size: var(--text-meta);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  letter-spacing: 0.08em;
+  color: var(--c-ink-soft);
   display: block;
   margin-bottom: 0.5rem;
 }
 
 .strip-title {
   font-size: var(--text-headline);
-  color: var(--c-accent-forest);
+  color: var(--c-forest);
   line-height: 1.15;
 }
 
 .strip-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2.5rem;
+  gap: 0;
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-sm);
+  background-color: var(--c-paper-light);
 }
 
 .strip-col {
   display: flex;
   flex-direction: column;
-  padding: 1.25rem 1.5rem;
+  padding: 2.25rem 2rem;
   border-right: 1px solid var(--c-border-subtle);
 }
 
@@ -687,21 +747,21 @@ button {
 
 .col-num {
   font-family: var(--font-serif);
-  font-size: 1.75rem;
-  color: var(--c-accent-ochre);
+  font-size: 1.625rem;
+  color: var(--c-brass);
   line-height: 1;
 }
 
 .col-cat {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-text-muted);
+  letter-spacing: 0.08em;
+  color: var(--c-ink-soft);
 }
 
 .strip-col__title {
   font-family: var(--font-serif);
-  font-size: 1.625rem;
+  font-size: 1.5rem;
   color: var(--c-text-primary);
   margin-bottom: 0.75rem;
   line-height: 1.2;
@@ -720,12 +780,12 @@ button {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  border-top: 1px solid rgba(28, 27, 24, 0.08);
+  border-top: 1px solid var(--c-border-subtle);
   padding-top: 0.85rem;
 }
 
 .strip-col__schedule strong {
-  color: var(--c-accent-forest);
+  color: var(--c-forest);
   font-weight: 600;
 }
 
@@ -735,6 +795,7 @@ button {
 
 /* ==========================================================================
    03. THE 1968 ARCHIVE: EMOTIONAL EXHIBITION CENTERPIECE
+   Monumental historical anchor. Contact-print framing.
    ========================================================================== */
 .archive-exhibition {
   padding: 6.5rem 0;
@@ -748,7 +809,7 @@ button {
 }
 
 .archive-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.25rem;
 }
 
 .archive-header__meta {
@@ -757,17 +818,25 @@ button {
   align-items: baseline;
   border-bottom: 1px solid var(--c-border-subtle);
   padding-bottom: 0.75rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
   font-size: var(--text-meta);
   font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  letter-spacing: 0.08em;
+  color: var(--c-ink-soft);
+}
+
+.archive-badge {
+  color: var(--c-forest);
+}
+
+.archive-vol {
+  color: var(--c-brass);
 }
 
 .archive-headline-wrap {
   display: flex;
   align-items: baseline;
-  gap: clamp(1.5rem, 4vw, 4rem);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
   flex-wrap: wrap;
 }
 
@@ -775,8 +844,8 @@ button {
   font-family: var(--font-serif);
   font-size: var(--text-giant);
   line-height: 0.85;
-  color: var(--c-accent-forest);
-  letter-spacing: -0.04em;
+  color: var(--c-forest);
+  letter-spacing: -0.03em;
 }
 
 .archive-headline-context {
@@ -787,25 +856,27 @@ button {
 
 .archive-place {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  line-height: 1;
+  font-size: clamp(1.85rem, 3.5vw, 3rem);
+  line-height: 1.05;
   color: var(--c-text-primary);
 }
 
 .archive-date-nep {
   font-family: var(--font-dev);
-  font-size: 1.25rem;
-  color: var(--c-accent-ochre);
+  font-size: 1.15rem;
+  color: var(--c-ink-soft);
 }
 
-/* Exhibition Photo Frame */
+/* Exhibition Contact-Print Plate (Sharp, museum framing) */
 .archive-frame {
   position: relative;
   width: 100%;
   max-height: 720px;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xs);
   overflow: hidden;
+  border: 1px solid var(--c-border-medium);
   margin-bottom: 2rem;
+  background-color: #0A0A09;
 }
 
 .archive-frame img {
@@ -813,14 +884,12 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: auto;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform: translateZ(0);
 }
 
-/* Archival Locator Pin (Positioned in the sky ABOVE the yellow building - never covers the house) */
+/* Archival Locator Pin (Sky placement: refined dot + museum plate badge) */
 .archive-pin {
   position: absolute;
   top: 4%;
@@ -832,54 +901,53 @@ button {
 }
 
 .archive-pin__pulse {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background-color: #E03131;
+  background-color: #D9383A;
   border: 2px solid #FFFFFF;
-  box-shadow: 0 0 0 0 rgba(224, 49, 49, 0.7);
+  box-shadow: 0 0 0 0 rgba(217, 56, 58, 0.7);
   animation: pulse-ring 2s infinite;
   flex-shrink: 0;
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(224, 49, 49, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(224, 49, 49, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(224, 49, 49, 0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 56, 58, 0.6); }
+  70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(217, 56, 58, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(217, 56, 58, 0); }
 }
 
 .archive-pin__badge {
-  background: rgba(22, 36, 28, 0.95);
+  background: rgba(24, 38, 31, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: var(--radius-md);
-  padding: 0.65rem 1rem;
-  color: #FFFFFF;
+  border: 1px solid rgba(250, 248, 243, 0.16);
+  border-radius: var(--radius-xs);
+  padding: 0.6rem 0.9rem;
+  color: #FAF8F3;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  max-width: 280px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+  max-width: 270px;
   text-align: right;
 }
 
 .pin-tag {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre-light);
+  letter-spacing: 0.08em;
+  color: var(--c-brass-soft);
 }
 
 .pin-title {
   font-family: var(--font-serif);
-  font-size: 1.0625rem;
+  font-size: 1rem;
   line-height: 1.2;
 }
 
 .pin-note {
   font-size: 0.75rem;
-  color: rgba(253, 251, 247, 0.85);
+  color: rgba(250, 248, 243, 0.8);
   line-height: 1.35;
 }
 
@@ -896,11 +964,11 @@ button {
 .archive-curation__badge span {
   display: inline-block;
   font-size: var(--text-meta);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
-  padding: 0.35rem 0.85rem;
-  background-color: var(--c-tint-pill);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--c-forest);
+  padding: 0.35rem 0.75rem;
+  background-color: var(--c-paper-dark);
   border-radius: var(--radius-pill);
 }
 
@@ -912,17 +980,18 @@ button {
 }
 
 .curation-desc {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--c-text-muted);
   line-height: 1.7;
-  max-width: 880px;
+  max-width: 860px;
 }
 
 /* ==========================================================================
-   04. OUR PRACTICE: EDITORIAL ESSAY ("A PLACE OF PRACTICE")
+   04. OUR PRACTICE: EDITORIAL ESSAY
+   Quiet authority, tri-column text ledger.
    ========================================================================== */
 .editorial-practice {
-  padding: 6rem 2rem;
+  padding: 6.5rem 0;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
@@ -930,17 +999,18 @@ button {
 .editorial-practice__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .practice-lead {
-  margin-bottom: 4rem;
-  max-width: 900px;
+  margin-bottom: 3.5rem;
+  max-width: 860px;
 }
 
 .practice-lead__statement {
-  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3.25rem);
   line-height: 1.12;
-  color: var(--c-accent-forest);
+  color: var(--c-forest);
   margin-top: 1.25rem;
 }
 
@@ -948,9 +1018,9 @@ button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 3.5rem;
-  margin-bottom: 4.5rem;
+  margin-bottom: 4rem;
   border-top: 1px solid var(--c-border-subtle);
-  padding-top: 3rem;
+  padding-top: 2.75rem;
 }
 
 .p-col {
@@ -960,23 +1030,24 @@ button {
 
 .p-col__num {
   font-family: var(--font-serif);
-  font-size: 2rem;
-  color: var(--c-accent-ochre);
+  font-size: 1.75rem;
+  color: var(--c-brass);
   line-height: 1;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .p-col__title {
-  font-size: 1.375rem;
+  font-size: 1.125rem;
+  font-weight: 700;
   color: var(--c-text-primary);
   margin-bottom: 0.25rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .p-col__sub {
   font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--c-accent-ochre);
+  font-weight: 500;
+  color: var(--c-ink-soft);
   letter-spacing: 0.04em;
   margin-bottom: 1rem;
 }
@@ -990,18 +1061,23 @@ button {
 .practice-visual {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
+}
+
+.practice-visual .img-frame {
+  border-radius: var(--radius-sm);
 }
 
 .practice-visual__caption {
   font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--c-text-muted);
+  letter-spacing: 0.05em;
+  color: var(--c-ink-soft);
   text-align: right;
 }
 
 /* ==========================================================================
    05. THE APOTHECARY: 37 PREPARATIONS CATALOGUE
+   Botanical specimen compendium layout. Pure neutral ground.
    ========================================================================== */
 .apothecary-archive {
   padding: 6.5rem 0;
@@ -1016,107 +1092,109 @@ button {
 }
 
 .apothecary-header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 /* Filter Navigation */
 .apothecary-filters {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   flex-wrap: wrap;
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   border-bottom: 1px solid var(--c-border-subtle);
   padding-bottom: 1.25rem;
 }
 
 .filter-btn {
-  padding: 0.5rem 1.25rem;
+  padding: 0.45rem 1.15rem;
   border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--c-text-muted);
-  border: 1px solid transparent;
+  color: var(--c-ink-soft);
+  border: 1px solid var(--c-border-subtle);
+  background-color: transparent;
   transition: all var(--transition-fast);
 }
 
 .filter-btn:hover {
   color: var(--c-text-primary);
+  border-color: var(--c-border-medium);
 }
 
 .filter-btn.is-active {
-  background-color: var(--c-accent-forest);
-  color: #FFFFFF;
-  border-color: var(--c-accent-forest);
+  background-color: var(--c-forest);
+  color: #FAF8F3;
+  border-color: var(--c-forest);
 }
 
-/* Horizontal Editorial Products Layout */
+/* Specimen Grid */
 .apothecary-grid {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 4rem;
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
 }
 
 .apothecary-item {
   display: grid;
-  grid-template-columns: 200px 1fr 280px;
-  gap: 3rem;
-  padding: 2.5rem;
+  grid-template-columns: 180px 1fr 220px;
+  gap: 2.5rem;
+  padding: 2.25rem;
   background-color: var(--c-bg-secondary);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-warm);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--c-border-subtle);
   align-items: center;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition: opacity 0.3s ease, transform var(--transition-fast), border-color var(--transition-fast);
 }
 
 .apothecary-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-warm-hover);
+  border-color: var(--c-border-medium);
+  transform: translateY(-2px);
 }
 
 .item-meta {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.35rem;
   border-right: 1px solid var(--c-border-subtle);
-  padding: 1.25rem 1.5rem;
+  padding-right: 1.75rem;
 }
 
 .item-num {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  color: var(--c-accent-ochre);
+  font-size: 1.375rem;
+  color: var(--c-brass);
 }
 
 .item-tag {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-text-muted);
+  letter-spacing: 0.08em;
+  color: var(--c-ink-soft);
 }
 
 .item-heading {
   display: flex;
   align-items: baseline;
   gap: 1.25rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   flex-wrap: wrap;
 }
 
 .item-name {
   font-family: var(--font-serif);
-  font-size: 2rem;
+  font-size: 1.85rem;
   color: var(--c-text-primary);
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .item-nep {
   font-family: var(--font-dev);
-  font-size: 1.125rem;
-  color: var(--c-accent-ochre);
+  font-size: 1.0625rem;
+  color: var(--c-forest);
   font-weight: 500;
 }
 
@@ -1124,30 +1202,31 @@ button {
   font-size: 0.9375rem;
   color: var(--c-text-muted);
   line-height: 1.65;
-  margin-bottom: 1.25rem;
-  max-width: 640px;
+  margin-bottom: 1rem;
+  max-width: 620px;
 }
 
 .item-details {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.3rem;
   font-size: 0.8125rem;
   color: var(--c-text-muted);
-  border-top: 1px solid rgba(28, 27, 24, 0.06);
-  padding-top: 0.85rem;
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 0.75rem;
 }
 
 .detail-row strong {
-  color: var(--c-accent-forest);
+  color: var(--c-forest);
   font-weight: 600;
 }
 
-/* Contained Product Plate */
+/* Neutral Paper Specimen Frame (No yellow radial gradients) */
 .item-visual {
-  height: 240px;
-  background: radial-gradient(circle at center, #F4EEE2 0%, #E6DCCD 100%);
-  border-radius: var(--radius-md);
+  height: 220px;
+  background-color: var(--c-paper);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--c-border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1159,49 +1238,50 @@ button {
   max-height: 90%;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 14px 20px rgba(31, 30, 27, 0.15));
-  transition: transform 0.6s var(--ease-out);
+  cursor: zoom-in;
+  transition: transform 0.5s var(--ease-out);
 }
 
 .apothecary-item:hover .item-visual img {
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 /* Compendium Footer */
 .catalogue-footer {
   border-top: 1px solid var(--c-border-subtle);
-  padding-top: 2.5rem;
+  padding-top: 2rem;
 }
 
 .catalogue-footer__inner {
   display: flex;
   align-items: center;
   gap: 2rem;
-  background-color: rgba(135, 89, 26, 0.04);
-  border: 1px solid rgba(135, 89, 26, 0.15);
-  border-radius: var(--radius-md);
+  background-color: var(--c-bg-secondary);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-sm);
   padding: 1.5rem 2rem;
 }
 
 .cat-pill {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  letter-spacing: 0.08em;
+  color: var(--c-forest);
   white-space: nowrap;
 }
 
 .catalogue-footer__inner p {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--c-text-muted);
   line-height: 1.6;
 }
 
 /* ==========================================================================
-   06. CONSULTATION: DISTINCT IDENTITY & RHYTHM OF THE PRACTICE
+   06. CLINICAL CONSULTATION & RHYTHM
+   Warm paper plate, quiet dignity, no glowing yellow borders.
    ========================================================================== */
 .practice-consultation {
-  padding: 6.5rem 2rem;
+  padding: 6.5rem 0;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
@@ -1209,16 +1289,17 @@ button {
 .practice-consultation__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .consultation-mast {
   margin-bottom: 3.5rem;
-  max-width: 800px;
+  max-width: 760px;
 }
 
 .consultation-title {
   font-size: var(--text-section);
-  color: var(--c-accent-forest);
+  color: var(--c-forest);
   margin: 0.75rem 0 1rem;
 }
 
@@ -1231,49 +1312,48 @@ button {
 .consultation-layout {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  gap: clamp(3rem, 5vw, 5.5rem);
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: flex-start;
 }
 
-/* Consultation Hours Box */
+/* Consultation Hours Box: Pure paper surface, 12px radius, fine hairlines */
 .consultation-box {
-  background-color: var(--c-bg-primary);
-  border: 1px solid var(--c-border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 3rem;
+  background-color: var(--c-paper-light);
+  border: 1px solid var(--c-border-medium);
+  border-radius: var(--radius-md);
+  padding: 2.75rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  box-shadow: var(--shadow-warm);
+  gap: 1.75rem;
 }
 
 .c-badge {
   font-size: var(--text-meta);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  letter-spacing: 0.08em;
+  color: var(--c-ink-soft);
   display: block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .c-hours-huge {
   font-family: var(--font-serif);
-  font-size: clamp(3.5rem, 6vw, 4.75rem);
-  color: var(--c-accent-forest);
+  font-size: clamp(3rem, 5.5vw, 4.25rem);
+  color: var(--c-forest);
   line-height: 0.95;
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
 }
 
 .c-days {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--c-text-primary);
 }
 
 .c-notice {
-  font-size: 0.875rem;
-  color: var(--c-accent-ochre);
+  font-size: 0.8125rem;
+  color: var(--c-brass);
   font-weight: 500;
   margin-top: 0.25rem;
 }
@@ -1292,16 +1372,16 @@ button {
 }
 
 .consultation-box__footer {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--c-text-muted);
   border-top: 1px solid var(--c-border-subtle);
   padding-top: 1.25rem;
 }
 
-/* "A Day at the Aushadhalaya" Rhythm Timeline */
+/* Rhythm Timeline */
 .daily-rhythm {
-  border-left: 2px solid var(--c-border-subtle);
-  padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+  border-left: 1px solid var(--c-border-medium);
+  padding: 0.5rem 0 0.5rem 2.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -1309,8 +1389,8 @@ button {
 .rhythm-title {
   font-size: var(--text-meta);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  letter-spacing: 0.08em;
+  color: var(--c-ink-soft);
   margin-bottom: 2rem;
   display: block;
 }
@@ -1319,7 +1399,7 @@ button {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 2.25rem;
+  gap: 2rem;
 }
 
 .rhythm-step {
@@ -1329,25 +1409,24 @@ button {
 .rhythm-step::before {
   content: '';
   position: absolute;
-  left: calc(-2.5rem - 6px);
-  top: 6px;
-  width: 10px;
-  height: 10px;
+  left: calc(-2.5rem - 4.5px);
+  top: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: var(--c-bg-secondary);
-  border: 2px solid var(--c-accent-forest);
+  border: 2px solid var(--c-forest);
 }
 
 .rhythm-step--highlight::before {
-  background-color: var(--c-accent-ochre);
-  border-color: var(--c-accent-ochre);
-  box-shadow: 0 0 0 4px rgba(135, 89, 26, 0.2);
+  background-color: var(--c-forest);
+  border-color: var(--c-forest);
 }
 
 .rhythm-time {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  color: var(--c-accent-forest);
+  font-size: 1.375rem;
+  color: var(--c-forest);
   line-height: 1;
   display: block;
   margin-bottom: 0.35rem;
@@ -1355,7 +1434,7 @@ button {
 
 .rhythm-desc strong {
   display: block;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--c-text-primary);
   margin-bottom: 0.2rem;
 }
@@ -1363,15 +1442,16 @@ button {
 .rhythm-desc span {
   font-size: 0.875rem;
   color: var(--c-text-muted);
-  line-height: 1.5;
+  line-height: 1.55;
   display: block;
 }
 
 /* ==========================================================================
-   07. FORMULATION PARTNERS (REFINED INTERNATIONAL SECTION)
+   07. FORMULATION PARTNERS (DEEP FOREST MONOGRAPH)
+   Deep Botanical Forest ground (#18261F).
    ========================================================================== */
 .partners-section {
-  padding: 6.5rem 2rem;
+  padding: 6.5rem 0;
   background-color: var(--c-bg-dark);
   color: var(--c-text-light);
   border-top: 1px solid var(--c-border-dark);
@@ -1380,6 +1460,7 @@ button {
 .partners-section__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .partners-grid {
@@ -1397,11 +1478,11 @@ button {
 }
 
 .partners-intro {
-  font-size: 1.0625rem;
+  font-size: 1rem;
   color: var(--c-text-light-muted);
   line-height: 1.7;
-  margin-bottom: 2.5rem;
-  max-width: 600px;
+  margin-bottom: 2.25rem;
+  max-width: 580px;
 }
 
 .partners-pillars {
@@ -1410,19 +1491,20 @@ button {
   gap: 2rem;
   border-top: 1px solid var(--c-border-dark);
   padding-top: 2rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.25rem;
 }
 
 .p-pillar h3 {
-  font-size: 1.125rem;
-  color: var(--c-accent-ochre-light);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-brass-soft);
   margin-bottom: 0.35rem;
 }
 
 .p-pillar p {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--c-text-light-muted);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .partners-visual {
@@ -1431,18 +1513,23 @@ button {
   gap: 0.75rem;
 }
 
+.partners-visual .img-frame {
+  border-radius: var(--radius-sm);
+}
+
 .partners-visual__caption {
   font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: var(--c-text-light-muted);
   text-align: right;
 }
 
 /* ==========================================================================
-   08. THE VISUAL ARCHIVE: ASYMMETRIC ARCHITECTURAL GALLERY
+   08. THE VISUAL ARCHIVE: ASYMMETRIC PHOTOGRAPHIC GALLERY
+   Photographic specimen plates. Sharp corners (6px).
    ========================================================================== */
 .visual-archive {
-  padding: 6.5rem 2rem;
+  padding: 6.5rem 0;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
@@ -1450,27 +1537,55 @@ button {
 .visual-archive__inner {
   max-width: var(--container-width);
   margin: 0 auto;
+  padding: 0 var(--container-padding);
 }
 
 .visual-archive__header {
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
+}
+
+.gallery-instagram-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--c-ink-soft);
+  text-decoration: none;
+  border: 1px solid var(--c-border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 1rem;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.gallery-instagram-cta:hover {
+  background-color: var(--c-paper);
+  border-color: var(--c-border-medium);
+  color: var(--c-ink);
+}
+
+.gallery-instagram-cta svg {
+  flex-shrink: 0;
 }
 
 .asymmetric-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 290px;
-  gap: 1.75rem;
+  grid-auto-rows: 280px;
+  gap: 1.5rem;
 }
 
 .asym-item {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.5rem;
 }
 
 .asym-item .img-frame {
   height: 100%;
+  border-radius: var(--radius-sm);
 }
 
 .asym-item--wide {
@@ -1484,11 +1599,12 @@ button {
 .asym-caption {
   font-size: 0.75rem;
   letter-spacing: 0.04em;
-  color: var(--c-text-muted);
+  color: var(--c-ink-soft);
 }
 
 /* ==========================================================================
    09. FIND US IN BAGBAZAR (VISIT SECTION)
+   Address ledger, interactive Google map, direct communications.
    ========================================================================== */
 .visit-section {
   padding: 6.5rem 0;
@@ -1509,17 +1625,32 @@ button {
 .visit-editorial-layout {
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  gap: 3rem;
 }
 
 .visit-photo-plate {
-  height: 420px;
-  border-radius: var(--radius-lg);
+  height: 400px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
 .visit-photo-plate .img-frame {
   height: 100%;
+  border-radius: var(--radius-sm);
+}
+
+.visit-map-embed {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--c-border-medium);
+  background-color: var(--c-paper-dark);
+}
+
+.visit-map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 400px;
+  border: 0;
 }
 
 .visit-details-strip {
@@ -1540,15 +1671,15 @@ button {
 .v-label {
   font-size: var(--text-meta);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--c-accent-ochre);
+  letter-spacing: 0.08em;
+  color: var(--c-ink-soft);
   margin-bottom: 0.5rem;
   display: block;
 }
 
 .v-name {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.375rem;
   color: var(--c-text-primary);
   line-height: 1.2;
 }
@@ -1560,8 +1691,9 @@ button {
 
 .v-coords {
   font-size: 0.75rem;
-  color: var(--c-accent-ochre);
+  color: var(--c-ink-soft);
   margin-top: 0.35rem;
+  font-weight: 500;
 }
 
 .v-timing-block {
@@ -1572,7 +1704,7 @@ button {
 
 .v-timing-block strong {
   font-size: 0.9375rem;
-  color: var(--c-accent-forest);
+  color: var(--c-forest);
 }
 
 .v-timing-block span {
@@ -1582,7 +1714,7 @@ button {
 
 .v-subnote {
   font-size: 0.75rem;
-  color: var(--c-accent-ochre);
+  color: var(--c-brass);
 }
 
 .v-contact-link {
@@ -1592,7 +1724,7 @@ button {
 }
 
 .v-contact-link:hover {
-  color: var(--c-accent-ochre);
+  color: var(--c-forest);
 }
 
 .visit-actions {
@@ -1604,6 +1736,7 @@ button {
 
 /* ==========================================================================
    10. FOOTER & ARCHIVAL COLOPHON
+   Deep Forest (#18261F), quiet cultural seal.
    ========================================================================== */
 .footer {
   background-color: var(--c-bg-footer);
@@ -1625,7 +1758,7 @@ button {
   gap: 4rem;
   position: relative;
   z-index: 2;
-  margin-bottom: 5rem;
+  margin-bottom: 4.5rem;
 }
 
 .footer__col {
@@ -1636,35 +1769,35 @@ button {
 
 .footer__dev {
   font-family: var(--font-dev);
-  font-size: 2.25rem;
-  color: var(--c-accent-ochre-light);
-  line-height: 1;
-  margin-bottom: 0.35rem;
+  font-size: 2rem;
+  color: var(--c-brass-soft);
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
 }
 
 .footer__en {
   font-family: var(--font-serif);
-  font-size: 1.625rem;
-  color: #FFFFFF;
-  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  color: #FAF8F3;
+  margin-bottom: 0.5rem;
 }
 
 .footer__addr, .footer__services {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--c-text-light-muted);
   line-height: 1.6;
 }
 
 .footer__hours-brief {
   font-size: 0.8125rem;
-  color: var(--c-accent-ochre-light);
+  color: var(--c-brass-soft);
   margin-top: 0.5rem;
 }
 
 .footer__col-title {
   font-size: var(--text-meta);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--c-text-light-muted);
   margin-bottom: 0.75rem;
@@ -1672,26 +1805,26 @@ button {
 
 .footer__col a {
   color: var(--c-text-light);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   transition: color var(--transition-fast);
 }
 
 .footer__col a:hover {
-  color: var(--c-accent-ochre-light);
+  color: var(--c-brass-soft);
 }
 
-/* Giant Archival Seal */
+/* Monumental Devanagari Signature (Quiet 0.08 opacity) */
 .footer__giant {
   font-family: var(--font-dev);
-  font-size: clamp(4.5rem, 16vw, 13rem);
+  font-size: clamp(4rem, 15vw, 12rem);
   line-height: 1;
-  color: #FFFFFF;
-  opacity: 0.11;
+  color: #FAF8F3;
+  opacity: 0.08;
   text-align: center;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  margin: 1rem 0 3rem;
+  margin: 1rem 0 2.5rem;
 }
 
 .footer__bottom {
@@ -1701,14 +1834,14 @@ button {
   border-top: 1px solid var(--c-border-dark);
   padding-top: 2rem;
   font-size: 0.75rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: var(--c-text-light-muted);
   flex-wrap: wrap;
   gap: 1rem;
 }
 
 /* ==========================================================================
-   15. FLOATING MOBILE ACTION BAR (CALL · WHATSAPP · DIRECTIONS)
+   11. FLOATING MOBILE ACTION BAR (CALL · WHATSAPP · DIRECTIONS)
    ========================================================================== */
 .mobile-action-bar {
   display: none;
@@ -1716,13 +1849,12 @@ button {
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(253, 251, 247, 0.96);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color: rgba(245, 241, 232, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid var(--c-border-subtle);
   z-index: 95;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-  padding: 0.6rem 1rem max(0.6rem, env(safe-area-inset-bottom));
+  padding: 0.55rem 1rem max(0.55rem, env(safe-area-inset-bottom));
 }
 
 .mobile-action-bar a.m-action-btn {
@@ -1733,23 +1865,81 @@ button {
   justify-content: center;
   gap: 3px;
   padding: 0.4rem 0.5rem;
-  border-radius: var(--radius-sm);
-  color: var(--c-accent-forest);
+  border-radius: var(--radius-xs);
+  color: var(--c-forest);
   font-size: 0.75rem;
   font-weight: 600;
   transition: background-color var(--transition-fast);
 }
 
 .mobile-action-bar a.m-action-btn--wa {
-  color: #128C7E;
+  color: var(--c-forest);
 }
 
 .mobile-action-bar a.m-action-btn:active {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--c-paper-dark);
 }
 
 /* ==========================================================================
-   16. RESPONSIVE BREAKPOINTS
+   12. LIGHTBOX OVERLAY (Botanical Specimen Zoom)
+   ========================================================================== */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 26, 21, 0.95);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.lightbox-overlay.is-open {
+  display: flex;
+}
+
+.lightbox-overlay img {
+  max-width: 88vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(250, 248, 243, 0.2);
+  box-shadow: var(--shadow-dark);
+  animation: lb-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(250, 248, 243, 0.12);
+  border: 1px solid rgba(250, 248, 243, 0.25);
+  color: #FAF8F3;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.125rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast);
+  z-index: 10001;
+}
+
+.lightbox-close:hover {
+  background-color: rgba(250, 248, 243, 0.24);
+}
+
+/* ==========================================================================
+   13. RESPONSIVE ARCHITECTURE
    ========================================================================== */
 @media (max-width: 1200px) {
   .hero-archival__layout {
@@ -1770,7 +1960,7 @@ button {
   }
 
   .apothecary-item {
-    grid-template-columns: 180px 1fr 240px;
+    grid-template-columns: 160px 1fr 200px;
     gap: 2rem;
   }
 }
@@ -1789,7 +1979,7 @@ button {
   }
 
   .facade-plate {
-    height: 520px;
+    height: 480px;
   }
 
   .partners-grid {
@@ -1803,7 +1993,7 @@ button {
   .daily-rhythm {
     border-left: none;
     border-top: 1px solid var(--c-border-subtle);
-    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+    padding: 2.25rem 0 0 0;
   }
 
   .rhythm-step::before {
@@ -1842,7 +2032,7 @@ button {
   }
 
   body {
-    padding-bottom: 60px; /* Room for mobile action bar */
+    padding-bottom: 60px; /* Clearance for floating action bar */
   }
 
   .mobile-action-bar {
@@ -1867,7 +2057,6 @@ button {
 
   .strip-col:last-child {
     border-bottom: none;
-    padding-bottom: 0;
   }
 
   .archive-curation {
@@ -1897,7 +2086,7 @@ button {
 
   .practice-columns {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2.25rem;
   }
 
   .apothecary-item {
@@ -1909,14 +2098,15 @@ button {
   .item-meta {
     border-right: none;
     border-bottom: 1px solid var(--c-border-subtle);
-    padding: 1.25rem 1.5rem;
+    padding-right: 0;
+    padding-bottom: 1rem;
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
   }
 
   .item-visual {
-    height: 200px;
+    height: 180px;
     order: -1;
   }
 
@@ -1941,12 +2131,16 @@ button {
   }
 
   .asym-item .img-frame {
-    height: 260px;
+    height: 240px;
+  }
+
+  .visit-map-embed iframe {
+    height: 280px;
   }
 
   .footer__top {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2.25rem;
   }
 
   .footer__col--brand {
@@ -1960,7 +2154,7 @@ button {
 }
 
 /* ==========================================================================
-   17. REDUCED MOTION PREFERENCES
+   14. REDUCED MOTION PREFERENCES
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1973,149 +2167,4 @@ button {
   .archive-pin__pulse {
     animation: none !important;
   }
-}
-
-/* ==========================================================================
-   IMPROVEMENTS BATCH 2 — Scroll Progress, Nav Spy, Map, Instagram, UI Polish
-   ========================================================================== */
-
-/* #15: Scroll Progress Bar */
-.scroll-progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 3px;
-  background: linear-gradient(90deg, #B8924C, #D4A855);
-  z-index: 9999;
-  border-radius: 0 2px 2px 0;
-  pointer-events: none;
-  will-change: width;
-}
-
-/* #10: Nav Scroll-Spy Active Link */
-.nav__link.is-active {
-  color: #B8924C;
-}
-.nav__link.is-active .nav__link-num {
-  color: #B8924C;
-}
-
-/* #1: Google Maps Embed */
-.visit-map-embed {
-  border-radius: var(--radius-lg, 20px);
-  overflow: hidden;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 24px rgba(26, 44, 34, 0.12);
-  border: 1px solid rgba(26, 44, 34, 0.08);
-}
-.visit-map-embed iframe {
-  display: block;
-  width: 100%;
-  height: 420px;
-  border: 0;
-}
-@media (max-width: 768px) {
-  .visit-map-embed iframe { height: 260px; }
-}
-
-/* #14: Instagram CTA near Gallery */
-.gallery-instagram-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: #B8924C;
-  text-decoration: none;
-  border: 1px solid rgba(184, 146, 76, 0.35);
-  border-radius: 100px;
-  padding: 0.45rem 1rem;
-  transition: background 0.2s, border-color 0.2s;
-}
-.gallery-instagram-cta:hover {
-  background: rgba(184, 146, 76, 0.1);
-  border-color: #B8924C;
-}
-
-/* #9: Warmer Consultation Card */
-.consultation-box {
-  background: linear-gradient(135deg, #FDFAF5 0%, #F5EFE4 100%);
-  border: 1px solid rgba(184, 146, 76, 0.2);
-  border-radius: var(--radius-lg, 20px);
-}
-.consultation-box__header {
-  background: rgba(184, 146, 76, 0.07);
-  border-bottom: 1px solid rgba(184, 146, 76, 0.15);
-  border-radius: var(--radius-lg, 20px) var(--radius-lg, 20px) 0 0;
-}
-
-/* #8: Larger product images with zoom hint */
-.item-visual {
-  min-width: 150px;
-  max-width: 190px;
-}
-.item-visual img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  cursor: zoom-in;
-  transition: transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s;
-}
-.item-visual img:hover {
-  transform: scale(1.06);
-  box-shadow: 0 12px 40px rgba(26, 44, 34, 0.2);
-}
-
-/* Lightbox overlay */
-.lightbox-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 10, 9, 0.93);
-  z-index: 10000;
-  justify-content: center;
-  align-items: center;
-  cursor: zoom-out;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.lightbox-overlay.is-open {
-  display: flex;
-}
-.lightbox-overlay img {
-  max-width: 88vw;
-  max-height: 88vh;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
-  animation: lb-in 0.3s cubic-bezier(.16,1,.3,1);
-}
-@keyframes lb-in {
-  from { opacity: 0; transform: scale(0.93); }
-  to   { opacity: 1; transform: scale(1); }
-}
-.lightbox-close {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.25rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-  z-index: 10001;
-}
-.lightbox-close:hover {
-  background: rgba(255,255,255,0.22);
 }
