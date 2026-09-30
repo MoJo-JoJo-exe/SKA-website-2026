@@ -1,0 +1,17 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+
+# Build scripts (not needed on GitHub)
+bundle.cjs
+
+# Temp
+*.log
