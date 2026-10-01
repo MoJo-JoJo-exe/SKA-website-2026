@@ -172,6 +172,126 @@ button {
   background-color: var(--c-accent-ochre-light);
 }
 
+/* ==========================================================================
+   ARCHIVAL METADATA BARS (UNIFIED EDITORIAL HEADERS)
+   ========================================================================== */
+.archival-meta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 0.875rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.75rem);
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+.archival-meta-bar--dark {
+  border-bottom-color: var(--c-border-dark);
+  color: var(--c-text-light-muted);
+}
+
+.archival-meta-bar__doc {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.archival-meta-bar__doc .meta-sep {
+  color: var(--c-border-strong);
+  font-weight: 300;
+}
+
+.archival-meta-bar--dark .archival-meta-bar__doc .meta-sep {
+  color: var(--c-border-dark);
+}
+
+.archival-meta-bar__index {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+  letter-spacing: 0.06em;
+  font-size: 0.6875rem;
+}
+
+/* ==========================================================================
+   GHOST WATERMARKS (MATERIAL DEPTH WITHOUT CLUTTER)
+   Faint, monumental Devanagari typography at whisper opacity (2.4%–3.5%).
+   ========================================================================== */
+.ghost-watermark {
+  position: absolute;
+  font-family: var(--font-dev);
+  font-weight: 700;
+  line-height: 0.85;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+.ghost-watermark--practice {
+  right: -2vw;
+  bottom: 6%;
+  font-size: clamp(8rem, 20vw, 18rem);
+  color: var(--c-accent-forest);
+  opacity: 0.024;
+}
+
+.ghost-watermark--partners {
+  right: -2vw;
+  top: 12%;
+  font-size: clamp(8rem, 22vw, 20rem);
+  color: #FFFFFF;
+  opacity: 0.035;
+}
+
+/* Architectural Plate Index Labels in Visual Archive */
+.asym-plate {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--c-accent-ochre);
+  margin-right: 0.45rem;
+}
+
+.visit-photo-caption {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+  margin-top: 0.75rem;
+}
+
+.visit-photo-caption .v-idx {
+  font-weight: 700;
+  color: var(--c-accent-ochre);
+  margin-right: 0.45rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
+.practice-visual__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+}
+
+.practice-visual__caption .pv-idx {
+  font-weight: 700;
+  color: var(--c-accent-ochre);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
 /* Pill Buttons */
 .btn {
   display: inline-flex;
@@ -1075,6 +1195,8 @@ button {
   padding: clamp(5rem, 7vw, 7.5rem) 0;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
+  position: relative;
+  overflow: hidden;
 }
 
 .editorial-practice__inner {
@@ -1144,12 +1266,7 @@ button {
   gap: 1rem;
 }
 
-.practice-visual__caption {
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--c-text-muted);
-  text-align: right;
-}
+
 
 /* ==========================================================================
    05. THE APOTHECARY: MATERIA MEDICA & FORMULARY CATALOGUE
@@ -1687,6 +1804,8 @@ button {
   background-color: var(--c-bg-dark);
   color: var(--c-text-light);
   border-top: 1px solid var(--c-border-dark);
+  position: relative;
+  overflow: hidden;
 }
 
 .partners-section__inner {

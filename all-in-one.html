@@ -92,13 +92,13 @@
 
       <!-- Conceptual Archive Navigation -->
       <nav class="nav__menu" id="navMenu" aria-label="Archive Directory">
-        <a href="#institution" class="nav__link"><span class="nav__link-num">01</span> Institution</a>
-        <a href="#archive-1968" class="nav__link"><span class="nav__link-num">02</span> The 1968 Archive</a>
-        <a href="#practice" class="nav__link"><span class="nav__link-num">03</span> Practice</a>
-        <a href="#apothecary" class="nav__link"><span class="nav__link-num">04</span> Apothecary</a>
-        <a href="#consultation" class="nav__link"><span class="nav__link-num">05</span> Consultation</a>
-        <a href="#partners" class="nav__link"><span class="nav__link-num">06</span> Partners</a>
-        <a href="#visit" class="nav__link"><span class="nav__link-num">07</span> Visit</a>
+        <a href="#institution" class="nav__link"><span class="nav__link-num">02</span> Institution</a>
+        <a href="#archive-1968" class="nav__link"><span class="nav__link-num">03</span> The 1968 Archive</a>
+        <a href="#practice" class="nav__link"><span class="nav__link-num">04</span> Practice</a>
+        <a href="#apothecary" class="nav__link"><span class="nav__link-num">05</span> Apothecary</a>
+        <a href="#consultation" class="nav__link"><span class="nav__link-num">06</span> Consultation</a>
+        <a href="#partners" class="nav__link"><span class="nav__link-num">07</span> Partners</a>
+        <a href="#visit" class="nav__link"><span class="nav__link-num">09</span> Visit</a>
       </nav>
 
       <div class="nav__actions">
@@ -211,9 +211,17 @@
          ====================================================================== -->
     <section class="institution-strip" id="institution">
       <div class="institution-strip__inner">
+        <header class="archival-meta-bar" data-animate="fade-up">
+          <div class="archival-meta-bar__doc">
+            <span>SECTION 02</span>
+            <span class="meta-sep">/</span>
+            <span>INSTITUTIONAL DIVISIONS</span>
+          </div>
+          <span class="archival-meta-bar__index">REF. SKA-DIV-02</span>
+        </header>
+
         <div class="strip-header" data-animate="fade-up">
-          <span class="strip-kicker">THE INSTITUTION</span>
-          <h2 class="strip-title">A family Ayurvedic institution in the heart of Kathmandu</h2>
+          <h2 class="strip-title" data-animate="split-lines">A family Ayurvedic institution in the heart of Kathmandu</h2>
         </div>
 
         <div class="strip-grid">
@@ -339,13 +347,19 @@
          04. OUR PRACTICE: EDITORIAL ESSAY ("A PLACE OF PRACTICE")
          ====================================================================== -->
     <section class="editorial-practice" id="practice">
+      <div class="ghost-watermark ghost-watermark--practice" aria-hidden="true">परम्परा</div>
       <div class="editorial-practice__inner">
 
-        <div class="practice-lead" data-animate="fade-up">
-          <div class="meta-tag">
-            <span class="meta-tag__dot"></span>
-            <span>A PLACE OF PRACTICE</span>
+        <header class="archival-meta-bar" data-animate="fade-up">
+          <div class="archival-meta-bar__doc">
+            <span>SECTION 04</span>
+            <span class="meta-sep">/</span>
+            <span>CLINICAL STEWARDSHIP</span>
           </div>
+          <span class="archival-meta-bar__index">REF. SKA-PRAC-04</span>
+        </header>
+
+        <div class="practice-lead" data-animate="fade-up">
           <h2 class="practice-lead__statement" data-animate="split-lines">
             Ayurveda is not simply what we sell.<br>
             It is the practice we inherited.
@@ -383,14 +397,15 @@
         </div>
 
         <!-- Panoramic Dispensary Interior Visual -->
-        <div class="practice-visual" data-animate="fade-up">
+        <figure class="practice-visual" data-animate="fade-up">
           <div class="img-frame">
             <img src="assets/images/dispensary-interior.jpg" alt="Interior of Shree Krishna Aushadhalaya traditional dispensary counter in Bagbazar showing wooden shelving and amber apothecary bottles" width="1024" height="473" loading="lazy">
           </div>
-          <div class="practice-visual__caption">
-            <span>Working Dispensary Counter · Bagbazar</span>
-          </div>
-        </div>
+          <figcaption class="practice-visual__caption">
+            <span class="pv-idx">FIG. 04-A</span>
+            <span class="pv-label">Working Dispensary Counter · Timber Shelving &amp; Medicine Archive · Bagbazar</span>
+          </figcaption>
+        </figure>
 
       </div>
     </section>
@@ -620,11 +635,16 @@
     <section class="practice-consultation" id="consultation">
       <div class="practice-consultation__inner">
 
-        <div class="consultation-mast" data-animate="fade-up">
-          <div class="meta-tag">
-            <span class="meta-tag__dot"></span>
-            <span>CLINICAL CONSULTATION</span>
+        <header class="archival-meta-bar" data-animate="fade-up">
+          <div class="archival-meta-bar__doc">
+            <span>SECTION 06</span>
+            <span class="meta-sep">/</span>
+            <span>CLINICAL HOURS &amp; PATIENT CARE</span>
           </div>
+          <span class="archival-meta-bar__index">REF. SKA-CONS-06</span>
+        </header>
+
+        <div class="consultation-mast" data-animate="fade-up">
           <h2 class="consultation-title" data-animate="split-lines">Consultation at Bagbazar</h2>
           <p class="consultation-sub">
             In-person pulse diagnosis, constitutional care, and continuous dispensary counseling in Bagbazar under registered Ayurvedic practitioner stewardship.
@@ -715,15 +735,20 @@
          07. FORMULATION PARTNERS (REFINED INTERNATIONAL COMPOUNDING)
          ====================================================================== -->
     <section class="partners-section" id="partners">
+      <div class="ghost-watermark ghost-watermark--partners" aria-hidden="true">औषध</div>
       <div class="partners-section__inner">
+
+        <header class="archival-meta-bar archival-meta-bar--dark" data-animate="fade-up">
+          <div class="archival-meta-bar__doc">
+            <span>SECTION 07</span>
+            <span class="meta-sep">/</span>
+            <span>FORMULATION PARTNERS</span>
+          </div>
+          <span class="archival-meta-bar__index">REF. SKA-PART-07</span>
+        </header>
 
         <div class="partners-grid" data-animate="fade-up">
           <div class="partners-content">
-            <div class="meta-tag meta-tag--light">
-              <span class="meta-tag__dot meta-tag__dot--light"></span>
-              <span>FORMULATION PARTNERS</span>
-            </div>
-
             <h2 class="partners-title" data-animate="split-lines">
               From Bagbazar to international partners.
             </h2>
@@ -761,12 +786,14 @@
             </div>
           </div>
 
-          <div class="partners-visual">
+          <figure class="partners-visual">
             <div class="img-frame img-frame--dark">
               <img src="assets/images/facade-timber-eaves.jpg" alt="Building facade showing authentic wooden eaves and Shree Krishna Aushadhalaya premises in Bagbazar" width="1024" height="683" loading="lazy">
             </div>
-            <span class="partners-visual__caption">Compounding Facilities · Bagbazar</span>
-          </div>
+            <figcaption class="partners-visual__caption">
+              <span class="asym-plate">FIG. 07-A</span> Timber Eaves &amp; Compounding Premises · Bagbazar
+            </figcaption>
+          </figure>
         </div>
 
       </div>
@@ -779,58 +806,61 @@
       <div class="visual-archive__inner">
 
         <div class="visual-archive__header" data-animate="fade-up">
-          <div class="meta-tag">
-            <span class="meta-tag__dot"></span>
-            <span>THE VISUAL ARCHIVE</span>
-          </div>
+          <header class="archival-meta-bar">
+            <div class="archival-meta-bar__doc">
+              <span>SECTION 08</span>
+              <span class="meta-sep">/</span>
+              <span>PHOTOGRAPHIC RECORD</span>
+            </div>
+            <a href="https://www.instagram.com/into_the_ayurveda/?hl=en" target="_blank" rel="noopener noreferrer" class="gallery-instagram-cta" style="text-transform:none; letter-spacing: 0.02em;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              @into_the_ayurveda ↗
+            </a>
+          </header>
           <h2 class="section-title" data-animate="split-lines">Bagbazar Through the Lens</h2>
-          <p class="section-lead">Authentic glimpses of our landmark premises, signage, dispensary interior, and historic neighborhood.</p>
-          <a href="https://www.instagram.com/into_the_ayurveda/?hl=en" target="_blank" rel="noopener noreferrer" class="gallery-instagram-cta" data-animate="fade-up">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            <span>Follow @into_the_ayurveda for more</span>
-          </a>
+          <p class="section-lead">Authentic glimpses of our landmark premises, signage, dispensary interior, and historic neighbourhood.</p>
         </div>
 
         <div class="asymmetric-gallery">
-          <!-- Plate A: Signboard Detail -->
-          <div class="asym-item asym-item--wide" data-animate="fade-up">
+          <!-- Plate 08-A: Signboard Detail -->
+          <figure class="asym-item asym-item--wide" data-animate="fade-up">
             <div class="img-frame">
               <img src="assets/images/signboard-detail.jpg" alt="Hand-painted registered signboard of Shree Krishna Aushadhalaya in Bagbazar" width="1024" height="473" loading="lazy">
             </div>
-            <span class="asym-caption">Registered Clinic Signboard · Bagbazar</span>
-          </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-A</span> Registered Clinic Signboard · Bagbazar</figcaption>
+          </figure>
 
-          <!-- Plate B: Street Entrance Perspective (Tall) -->
-          <div class="asym-item asym-item--tall" data-animate="fade-up" data-delay="0.1">
+          <!-- Plate 08-B: Street Entrance Perspective (Tall) -->
+          <figure class="asym-item asym-item--tall" data-animate="fade-up" data-delay="0.1">
             <div class="img-frame">
               <img src="assets/images/street-entrance-perspective.jpg" alt="Street-level view looking up at entrance door #509 of Shree Krishna Aushadhalaya" width="473" height="1024" loading="lazy">
             </div>
-            <span class="asym-caption">Doorway Entrance · Bagbazar Sidewalk</span>
-          </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-B</span> Doorway Entrance · Bagbazar Sidewalk</figcaption>
+          </figure>
 
-          <!-- Plate C: Upper Facade Garlands -->
-          <div class="asym-item" data-animate="fade-up" data-delay="0.15">
+          <!-- Plate 08-C: Upper Facade Garlands -->
+          <figure class="asym-item" data-animate="fade-up" data-delay="0.15">
             <div class="img-frame">
               <img src="assets/images/century-heritage.jpg" alt="Upper facade of dispensary adorned with festive marigold garlands in Bagbazar" width="640" height="640" loading="lazy">
             </div>
-            <span class="asym-caption">Traditional Timber Eaves & Shutters</span>
-          </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-C</span> Traditional Timber Eaves &amp; Shutters</figcaption>
+          </figure>
 
-          <!-- Plate D: Indoor Signboard -->
-          <div class="asym-item asym-item--tall" data-animate="fade-up" data-delay="0.2">
+          <!-- Plate 08-D: Indoor Signboard -->
+          <figure class="asym-item asym-item--tall" data-animate="fade-up" data-delay="0.2">
             <div class="img-frame">
               <img src="assets/images/indoor-signboard.jpg" alt="Interior wooden sign announcing traditional Ayurvedic medicines" width="473" height="1024" loading="lazy">
             </div>
-            <span class="asym-caption">Dispensary Wooden Signage</span>
-          </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-D</span> Dispensary Wooden Signage · Interior</figcaption>
+          </figure>
 
-          <!-- Plate E: Street Context Approach -->
-          <div class="asym-item asym-item--wide" data-animate="fade-up" data-delay="0.25">
+          <!-- Plate 08-E: Street Context Approach -->
+          <figure class="asym-item asym-item--wide" data-animate="fade-up" data-delay="0.25">
             <div class="img-frame">
               <img src="assets/images/street-context.jpg" alt="Bagbazar street approach to the Shree Krishna Aushadhalaya building" width="1024" height="473" loading="lazy">
             </div>
-            <span class="asym-caption">Bagbazar Road Perspective · Kathmandu</span>
-          </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-E</span> Bagbazar Road Perspective · Kathmandu</figcaption>
+          </figure>
         </div>
 
       </div>
@@ -842,22 +872,30 @@
     <section class="visit-section" id="visit">
       <div class="visit-section__inner">
 
-        <div class="visit-mast" data-animate="fade-up">
-          <div class="meta-tag">
-            <span class="meta-tag__dot"></span>
-            <span>FIND US IN BAGBAZAR</span>
+        <header class="archival-meta-bar" data-animate="fade-up">
+          <div class="archival-meta-bar__doc">
+            <span>SECTION 09</span>
+            <span class="meta-sep">/</span>
+            <span>VISIT BAGBAZAR</span>
           </div>
+          <span class="archival-meta-bar__index">27°42'21.0"N 85°19'04.0"E</span>
+        </header>
+
+        <div class="visit-mast" data-animate="fade-up">
           <h2 class="section-title" data-animate="split-lines">Locating the Aushadhalaya</h2>
           <p class="section-lead">Located on Bagbazar road in central Kathmandu, welcoming patients and visitors daily.</p>
         </div>
 
         <div class="visit-editorial-layout">
           <!-- Street photo banner -->
-          <div class="visit-photo-plate" data-animate="fade-up">
+          <figure class="visit-photo-plate" data-animate="fade-up">
             <div class="img-frame">
               <img src="assets/images/street-context.jpg" alt="Approaching Shree Krishna Aushadhalaya on Bagbazar road, Kathmandu" width="1024" height="473" loading="lazy">
             </div>
-          </div>
+            <figcaption class="visit-photo-caption">
+              <span class="v-idx">FIG. 09-A</span> Bagbazar Road Approach · Shree Krishna Aushadhalaya visible on the left
+            </figcaption>
+          </figure>
 
           <!-- Embedded Google Map -->
           <div class="visit-map-embed" data-animate="fade-up">
