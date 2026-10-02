@@ -118,18 +118,15 @@
   });
 
   // 6. Apothecary Category Filters (Instant & Tactile)
-  const apothecaryFilterButtons = document.querySelectorAll('#apothecaryFilters .filter-btn');
+  const filterButtons = document.querySelectorAll('.filter-btn');
   const apothecaryItems = document.querySelectorAll('.apothecary-item');
 
-  if (apothecaryFilterButtons.length > 0 && apothecaryItems.length > 0) {
-    apothecaryFilterButtons.forEach(btn => {
+  if (filterButtons.length > 0 && apothecaryItems.length > 0) {
+    filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        apothecaryFilterButtons.forEach(b => {
-          b.classList.remove('is-active');
-          b.setAttribute('aria-selected', 'false');
-        });
+        // Toggle active state
+        filterButtons.forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
-        btn.setAttribute('aria-selected', 'true');
 
         const filterValue = btn.getAttribute('data-filter');
 
@@ -137,48 +134,6 @@
           const category = item.getAttribute('data-category') || '';
           if (filterValue === 'all' || category.includes(filterValue)) {
             item.style.display = 'grid';
-            if (hasGSAP && !prefersReducedMotion) {
-              gsap.fromTo(item, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' });
-            } else {
-              item.style.opacity = '1';
-            }
-          } else {
-            item.style.display = 'none';
-          }
-        });
-
-        if (hasGSAP && typeof ScrollTrigger !== 'undefined') {
-          ScrollTrigger.refresh();
-        }
-      });
-    });
-  }
-
-  // 6b. Institutional Archive Series Filters (Curated Historical Record)
-  const archiveFilterButtons = document.querySelectorAll('#archiveFilters .filter-btn');
-  const archiveEntries = document.querySelectorAll('.archive-entry');
-
-  if (archiveFilterButtons.length > 0 && archiveEntries.length > 0) {
-    archiveFilterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        archiveFilterButtons.forEach(b => {
-          b.classList.remove('is-active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('is-active');
-        btn.setAttribute('aria-selected', 'true');
-
-        const filterValue = btn.getAttribute('data-archive-filter');
-
-        archiveEntries.forEach(item => {
-          // If item is marked private, never expose publicly
-          if (item.getAttribute('data-access') === 'private') {
-            item.style.display = 'none';
-            return;
-          }
-          const series = item.getAttribute('data-series') || '';
-          if (filterValue === 'all' || series.includes(filterValue)) {
-            item.style.display = '';
             if (hasGSAP && !prefersReducedMotion) {
               gsap.fromTo(item, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out' });
             } else {
