@@ -319,13 +319,16 @@
     onScroll();
   }
 
-  // --- Product Image Lightbox ---
+  // --- Product Image Lightbox (also covers archival plates) ---
   const overlay   = document.getElementById('lightboxOverlay');
   const lbImg     = document.getElementById('lightboxImg');
   const lbClose   = document.getElementById('lightboxClose');
 
   if (overlay && lbImg && lbClose) {
-    const productImgs = document.querySelectorAll('.item-visual img');
+    // Collect both product images and archival plate images
+    const productImgs   = document.querySelectorAll('.item-visual img');
+    const archivalImgs  = document.querySelectorAll('[data-lightbox-trigger] img');
+    const allLbImgs = [...productImgs, ...archivalImgs];
 
     const openLightbox = (img) => {
       lbImg.src = img.src;
@@ -341,7 +344,8 @@
       lbImg.src = '';
     };
 
-    productImgs.forEach(img => {
+    allLbImgs.forEach(img => {
+      img.style.cursor = 'zoom-in';
       img.addEventListener('click', () => openLightbox(img));
     });
 
