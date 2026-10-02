@@ -272,7 +272,7 @@
     });
   });
 
-  // 11. Horizontal Archival Sequence for "The Working Apothecary" (Calibrated Physics & Pacing)
+  // 11. Horizontal Archival Sequence for "The Working Apothecary" (Editorial Rhythm & Calibrated Physics)
   const wapSection = document.getElementById('working-apothecary');
   const wapTrack   = document.getElementById('wapTrack');
 
@@ -287,40 +287,40 @@
         return Math.max(0, trackWidth - viewportWidth + 48);
       };
 
-      // Shorter, efficient vertical journey (reduced by ~28%)
+      // Uncompressed editorial reading distance: ensures comfortable viewing time per photographic plate
       const getScrollDistance = () => {
         const travel = calculateTravel();
-        return Math.max(750, Math.round(travel * 0.72));
+        return Math.max(900, Math.round(travel * 0.92));
       };
 
-      // Timeline configuration with physical inertia (scrub: 1.8) and weighted damping
+      // Timeline configuration: calibrated inertia (scrub: 1.35) balances tactile connection with velvet damping
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wapSection,
           start: 'top top',
           end: () => `+=${getScrollDistance()}`,
           pin: true,
-          scrub: 1.8, // Velvet damping: absorbs raw wheel velocity and prevents sudden photographic flings
+          scrub: 1.35, // Balanced damping: absorbs raw wheel spikes while maintaining precise direct control
           invalidateOnRefresh: true,
           anticipatePin: 1
         }
       });
 
-      // Phase 1: Calm Entry — Opening plate & title rest stably in view before movement starts
+      // Phase 1: Calm Entry (12%) — Opening plate & title rest stably in view; micro-drift creates gentle tactile pickup
       tl.to(wapTrack, {
-        x: () => -Math.min(28, calculateTravel() * 0.025),
-        duration: 0.10,
+        x: () => -Math.min(22, calculateTravel() * 0.02),
+        duration: 0.12,
         ease: 'power1.out'
       });
 
-      // Phase 2: Main Archival Sequence — smooth, deliberate horizontal traverse across 10 plates
+      // Phase 2: Main Archival Sequence (76%) — Smooth, deliberate horizontal traverse across 10 plates
       tl.to(wapTrack, {
         x: () => -calculateTravel(),
-        duration: 0.78,
+        duration: 0.76,
         ease: 'power1.inOut'
       });
 
-      // Phase 3: Calm Release — brief settled breath on final archival record before unpinning to Practice
+      // Phase 3: Calm Release (12%) — Settled breath on final archival record & colophon before releasing to Section 04
       tl.to({}, {
         duration: 0.12
       });

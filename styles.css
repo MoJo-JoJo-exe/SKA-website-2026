@@ -1308,10 +1308,10 @@ button {
 
 .wap-track {
   display: flex;
-  align-items: flex-end;
+  align-items: center; /* Optical museum horizon: plates align around center with curated vertical offsets */
   gap: clamp(1.75rem, 2.5vw, 2.75rem);
   padding-left: var(--container-padding);
-  padding-right: clamp(2.5rem, 4vw, 5rem);
+  padding-right: clamp(3rem, 5vw, 6rem);
   will-change: transform;
 }
 
@@ -1323,16 +1323,38 @@ button {
   scroll-snap-align: start;
 }
 
-/* Subtle Curated Rhythm Offsets on Desktop */
+/* ── Art-Directed Vertical Rhythm (Desktop) ───────────────────────────────
+   Curated vertical placement simulates an art director's hand-mounted exhibition.
+   Offsets are applied relative to the optical center baseline.
+   ───────────────────────────────────────────────────────────────────────── */
 @media (min-width: 1025px) {
-  .wap-item--offset-0 {
-    transform: translateY(0);
+  /* Plate 01: slightly lower anchor */
+  .wap-item--offset-0,
+  .wap-item--offset-lower       { transform: translateY(18px);  }
+  /* Plate 02: slightly higher */
+  .wap-item--offset-1,
+  .wap-item--offset-higher      { transform: translateY(-16px); }
+  /* Plate 04: slightly lower */
+  .wap-item--offset-2,
+  .wap-item--offset-subtle-low  { transform: translateY(22px);  }
+  /* Quiet / neutral moments (Plates 05, 07) */
+  .wap-item--offset-3,
+  .wap-item--offset-quiet       { transform: translateY(0);     }
+  /* Plate 08: slightly higher */
+  .wap-item--offset-4,
+  .wap-item--offset-raised      { transform: translateY(-12px); }
+}
+
+/* ── Visual Resting Moments: Breathing Gaps ───────────────────────────────
+   Extra whitespace before important photographs (Plates 06 & 09) gives the
+   visitor an intentional pause to transition attention.
+   ───────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1025px) {
+  .wap-item--spacer-before {
+    margin-left: clamp(2.5rem, 4.5vw, 5.5rem);
   }
-  .wap-item--offset-1 {
-    transform: translateY(-14px);
-  }
-  .wap-item--offset-2 {
-    transform: translateY(12px);
+  .wap-item--closing {
+    margin-right: clamp(2rem, 3.5vw, 4rem);
   }
 }
 
@@ -1358,8 +1380,9 @@ button {
   box-shadow: 0 8px 24px rgba(28, 27, 24, 0.08);
 }
 
+/* Standard archival image size: never cropped, full aspect preserved */
 .wap-item__frame img {
-  height: clamp(250px, 34vh, 320px);
+  height: clamp(255px, 34vh, 325px);
   width: auto;
   max-width: none;
   display: block;
@@ -1367,13 +1390,19 @@ button {
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.wap-item--hero .wap-item__frame img {
-  height: clamp(270px, 38vh, 355px);
+/* Major documentary authority plates (Plates 06 & 09, Plate 03) */
+.wap-item--major .wap-item__frame img {
+  height: clamp(295px, 42vh, 395px);
+}
+
+.wap-item--hero:not(.wap-item--major) .wap-item__frame img {
+  height: clamp(280px, 38vh, 365px);
 }
 
 @media (max-width: 1024px) {
   .wap-item__frame img,
-  .wap-item--hero .wap-item__frame img {
+  .wap-item--hero .wap-item__frame img,
+  .wap-item--major .wap-item__frame img {
     height: clamp(240px, 45vw, 320px);
   }
 }
@@ -1382,7 +1411,10 @@ button {
   transform: scale(1.02);
 }
 
-/* Plate Metadata */
+/* ── Museum Accession Metadata ───────────────────────────────────────────
+   Reads as an institutional accession catalogue entry rather than a web caption.
+   Tabular numbers and monospaced accession reference.
+   ───────────────────────────────────────────────────────────────────────── */
 .wap-item__meta {
   border-top: 1px solid var(--c-border-subtle);
   padding-top: 0.65rem;
@@ -1402,19 +1434,24 @@ button {
 }
 
 .wap-item__num {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   color: var(--c-accent-ochre);
   font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  text-transform: uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .wap-item__date {
-  font-size: 0.6875rem;
-  letter-spacing: 0.06em;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
   color: var(--c-text-muted);
-  opacity: 0.7;
+  opacity: 0.55;
   font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  text-transform: uppercase;
 }
 
 .wap-item__tag {
@@ -1429,7 +1466,7 @@ button {
 
 .wap-item__title {
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--c-text-primary);
   line-height: 1.25;
@@ -1437,19 +1474,20 @@ button {
 }
 
 .wap-item__desc {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: var(--c-text-muted);
   line-height: 1.5;
   margin: 0;
+  opacity: 0.85;
 }
 
 /* Archival Colophon / Register Conclusion */
 .wap-colophon {
   flex-shrink: 0;
-  width: clamp(250px, 22vw, 310px);
+  width: clamp(260px, 23vw, 320px);
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   scroll-snap-align: start;
 }
 
@@ -1465,11 +1503,12 @@ button {
 }
 
 .wap-colophon__kicker {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   color: var(--c-accent-ochre);
   text-transform: uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .wap-colophon__title {
@@ -1497,11 +1536,12 @@ button {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
   color: var(--c-accent-ochre);
   text-transform: uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 /* ==========================================================================

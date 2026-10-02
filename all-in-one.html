@@ -388,7 +388,7 @@
         <div class="wap-track" id="wapTrack" role="region" aria-label="Working Apothecary photographic archive">
 
           <!-- Plate 01: Compounding Station -->
-          <article class="wap-item wap-item--offset-0">
+          <article class="wap-item wap-item--offset-lower">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -409,7 +409,7 @@
           </article>
 
           <!-- Plate 02: Mechanical Press -->
-          <article class="wap-item wap-item--offset-1">
+          <article class="wap-item wap-item--offset-higher">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -429,8 +429,8 @@
             </div>
           </article>
 
-          <!-- Plate 03: The Dispensary Counter -->
-          <article class="wap-item wap-item--offset-0">
+          <!-- Plate 03: The Dispensary Counter (Large / Important Anchor) -->
+          <article class="wap-item wap-item--hero">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -451,7 +451,7 @@
           </article>
 
           <!-- Plate 04: Formulary Record -->
-          <article class="wap-item wap-item--offset-2">
+          <article class="wap-item wap-item--offset-subtle-low">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -472,7 +472,7 @@
           </article>
 
           <!-- Plate 05: Original Annotation: "अल्कोहल देखो" -->
-          <article class="wap-item wap-item--annotation wap-item--offset-0">
+          <article class="wap-item wap-item--annotation wap-item--offset-quiet">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -492,8 +492,8 @@
             </div>
           </article>
 
-          <!-- Plate 06: Ashokarishta Vessels -->
-          <article class="wap-item wap-item--hero wap-item--offset-1">
+          <!-- Plate 06: Ashokarishta Vessels (Documentary Authority Plate) -->
+          <article class="wap-item wap-item--major wap-item--spacer-before wap-item--offset-higher">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -514,7 +514,7 @@
           </article>
 
           <!-- Plate 07: Electric Milling Apparatus -->
-          <article class="wap-item wap-item--offset-0">
+          <article class="wap-item wap-item--offset-quiet">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -535,7 +535,7 @@
           </article>
 
           <!-- Plate 08: Lineage & Weighing -->
-          <article class="wap-item wap-item--offset-2">
+          <article class="wap-item wap-item--offset-raised">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -555,8 +555,8 @@
             </div>
           </article>
 
-          <!-- Plate 09: Shodhit Shilajit Signboard -->
-          <article class="wap-item wap-item--hero wap-item--offset-0">
+          <!-- Plate 09: Shodhit Shilajit Signboard (Documentary Authority Plate) -->
+          <article class="wap-item wap-item--major wap-item--spacer-before">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -576,8 +576,8 @@
             </div>
           </article>
 
-          <!-- Plate 10: Tablet Press Detail -->
-          <article class="wap-item wap-item--offset-1">
+          <!-- Plate 10: Tablet Press Detail (Closing Plate) -->
+          <article class="wap-item wap-item--closing wap-item--offset-higher">
             <div class="wap-item__plate" data-lightbox-trigger>
               <div class="wap-item__frame">
                 <img
@@ -1602,7 +1602,7 @@
     });
   });
 
-  // 11. Horizontal Archival Sequence for "The Working Apothecary" (Calibrated Physics & Pacing)
+  // 11. Horizontal Archival Sequence for "The Working Apothecary" (Editorial Rhythm & Calibrated Physics)
   const wapSection = document.getElementById('working-apothecary');
   const wapTrack   = document.getElementById('wapTrack');
 
@@ -1617,40 +1617,40 @@
         return Math.max(0, trackWidth - viewportWidth + 48);
       };
 
-      // Shorter, efficient vertical journey (reduced by ~28%)
+      // Uncompressed editorial reading distance: ensures comfortable viewing time per photographic plate
       const getScrollDistance = () => {
         const travel = calculateTravel();
-        return Math.max(750, Math.round(travel * 0.72));
+        return Math.max(900, Math.round(travel * 0.92));
       };
 
-      // Timeline configuration with physical inertia (scrub: 1.8) and weighted damping
+      // Timeline configuration: calibrated inertia (scrub: 1.35) balances tactile connection with velvet damping
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wapSection,
           start: 'top top',
           end: () => `+=${getScrollDistance()}`,
           pin: true,
-          scrub: 1.8, // Velvet damping: absorbs raw wheel velocity and prevents sudden photographic flings
+          scrub: 1.35, // Balanced damping: absorbs raw wheel spikes while maintaining precise direct control
           invalidateOnRefresh: true,
           anticipatePin: 1
         }
       });
 
-      // Phase 1: Calm Entry — Opening plate & title rest stably in view before movement starts
+      // Phase 1: Calm Entry (12%) — Opening plate & title rest stably in view; micro-drift creates gentle tactile pickup
       tl.to(wapTrack, {
-        x: () => -Math.min(28, calculateTravel() * 0.025),
-        duration: 0.10,
+        x: () => -Math.min(22, calculateTravel() * 0.02),
+        duration: 0.12,
         ease: 'power1.out'
       });
 
-      // Phase 2: Main Archival Sequence — smooth, deliberate horizontal traverse across 10 plates
+      // Phase 2: Main Archival Sequence (76%) — Smooth, deliberate horizontal traverse across 10 plates
       tl.to(wapTrack, {
         x: () => -calculateTravel(),
-        duration: 0.78,
+        duration: 0.76,
         ease: 'power1.inOut'
       });
 
-      // Phase 3: Calm Release — brief settled breath on final archival record before unpinning to Practice
+      // Phase 3: Calm Release (12%) — Settled breath on final archival record & colophon before releasing to Section 04
       tl.to({}, {
         duration: 0.12
       });
