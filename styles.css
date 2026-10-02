@@ -1279,27 +1279,6 @@ button {
   max-width: 520px;
 }
 
-.wap-scroll-indicator {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-top: 0.25rem;
-}
-
-.wap-indicator-line {
-  width: 28px;
-  height: 1px;
-  background-color: var(--c-accent-ochre);
-}
-
-.wap-indicator-label {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--c-accent-ochre);
-  text-transform: uppercase;
-}
-
 /* Track Viewport & Moving Register */
 .wap-track-viewport {
   width: 100%;
@@ -1311,7 +1290,7 @@ button {
     display: flex;
     align-items: center;
     overflow: hidden;
-    padding: clamp(0.75rem, 1.8vh, 1.75rem) 0 clamp(1.75rem, 3.2vh, 3.25rem);
+    padding: clamp(0.5rem, 1.5vh, 1.25rem) 0 clamp(1.5rem, 2.8vh, 2.75rem);
   }
 }
 
@@ -1330,9 +1309,9 @@ button {
 .wap-track {
   display: flex;
   align-items: flex-end;
-  gap: clamp(2.5rem, 4vw, 4.5rem);
+  gap: clamp(1.75rem, 2.5vw, 2.75rem);
   padding-left: var(--container-padding);
-  padding-right: clamp(4rem, 8vw, 10rem);
+  padding-right: clamp(2.5rem, 4vw, 5rem);
   will-change: transform;
 }
 
@@ -1350,10 +1329,10 @@ button {
     transform: translateY(0);
   }
   .wap-item--offset-1 {
-    transform: translateY(-16px);
+    transform: translateY(-14px);
   }
   .wap-item--offset-2 {
-    transform: translateY(14px);
+    transform: translateY(12px);
   }
 }
 
@@ -1380,7 +1359,7 @@ button {
 }
 
 .wap-item__frame img {
-  height: clamp(260px, 38vh, 370px);
+  height: clamp(250px, 34vh, 320px);
   width: auto;
   max-width: none;
   display: block;
@@ -1389,7 +1368,7 @@ button {
 }
 
 .wap-item--hero .wap-item__frame img {
-  height: clamp(280px, 42vh, 400px);
+  height: clamp(270px, 38vh, 355px);
 }
 
 @media (max-width: 1024px) {
@@ -1467,7 +1446,7 @@ button {
 /* Archival Colophon / Register Conclusion */
 .wap-colophon {
   flex-shrink: 0;
-  width: clamp(280px, 26vw, 360px);
+  width: clamp(250px, 22vw, 310px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

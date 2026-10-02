@@ -378,10 +378,6 @@
               <p class="wap-intro-text">
                 Preserved as un-retouched scans from the Baidya family archive, these photographs document the people, machinery, and compounding activity inside the institution. No dates were recorded on the original prints.
               </p>
-              <div class="wap-scroll-indicator" aria-hidden="true">
-                <span class="wap-indicator-line"></span>
-                <span class="wap-indicator-label">SCROLL TO ADVANCE ARCHIVE →</span>
-              </div>
             </div>
           </div>
         </div>
@@ -1606,7 +1602,7 @@
     });
   });
 
-  // 11. Horizontal Archival Sequence for "The Working Apothecary"
+  // 11. Horizontal Archival Sequence for "The Working Apothecary" (Calibrated Physics & Pacing)
   const wapSection = document.getElementById('working-apothecary');
   const wapTrack   = document.getElementById('wapTrack');
 
@@ -1614,28 +1610,54 @@
     const mm = gsap.matchMedia();
 
     mm.add('(min-width: 1025px)', () => {
-      const getScrollAmount = () => {
+      // Dynamic horizontal travel: smoothly reveal all plates and colophon with clean edge breathing room
+      const calculateTravel = () => {
         const trackWidth = wapTrack.scrollWidth;
         const viewportWidth = window.innerWidth;
-        return -(trackWidth - viewportWidth + 80);
+        return Math.max(0, trackWidth - viewportWidth + 48);
       };
 
-      const tween = gsap.to(wapTrack, {
-        x: getScrollAmount,
-        ease: 'none',
+      // Shorter, efficient vertical journey (reduced by ~28%)
+      const getScrollDistance = () => {
+        const travel = calculateTravel();
+        return Math.max(750, Math.round(travel * 0.72));
+      };
+
+      // Timeline configuration with physical inertia (scrub: 1.8) and weighted damping
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wapSection,
           start: 'top top',
-          end: () => `+=${Math.max(wapTrack.scrollWidth - window.innerWidth + 80, 1100)}`,
+          end: () => `+=${getScrollDistance()}`,
           pin: true,
-          scrub: 0.9,
+          scrub: 1.8, // Velvet damping: absorbs raw wheel velocity and prevents sudden photographic flings
           invalidateOnRefresh: true,
           anticipatePin: 1
         }
       });
 
+      // Phase 1: Calm Entry — Opening plate & title rest stably in view before movement starts
+      tl.to(wapTrack, {
+        x: () => -Math.min(28, calculateTravel() * 0.025),
+        duration: 0.10,
+        ease: 'power1.out'
+      });
+
+      // Phase 2: Main Archival Sequence — smooth, deliberate horizontal traverse across 10 plates
+      tl.to(wapTrack, {
+        x: () => -calculateTravel(),
+        duration: 0.78,
+        ease: 'power1.inOut'
+      });
+
+      // Phase 3: Calm Release — brief settled breath on final archival record before unpinning to Practice
+      tl.to({}, {
+        duration: 0.12
+      });
+
       return () => {
-        tween.kill();
+        tl.kill();
+        gsap.set(wapTrack, { clearProps: 'transform' });
       };
     });
   }
