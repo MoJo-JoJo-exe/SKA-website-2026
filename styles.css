@@ -1386,30 +1386,28 @@ button {
   font-variant-numeric: tabular-nums;
 }
 
-/* Formulary Grid: Individual Specimen Folio Plates (Archival Ledger) */
+/* Formulary Grid: Individual Specimen Folio Plates */
 .apothecary-grid {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: clamp(3rem, 6vw, 5rem);
-  border-top: 1px solid var(--c-border-subtle);
 }
 
 .apothecary-item {
   display: grid;
   grid-template-columns: 1fr;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid var(--c-border-subtle);
-  border-radius: 0;
-  padding: clamp(2.5rem, 5vw, 4rem) 0;
-  box-shadow: none;
-  transition: border-color var(--transition-normal);
+  background-color: var(--c-bg-secondary);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 4px;
+  padding: clamp(2rem, 4vw, 3.25rem);
+  box-shadow: 0 10px 30px -10px rgba(28, 27, 24, 0.05);
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
 }
 
 .apothecary-item:hover {
   border-color: rgba(28, 27, 24, 0.28);
-  box-shadow: none;
+  box-shadow: 0 18px 48px -12px rgba(28, 27, 24, 0.1);
 }
 
 /* Plate Masthead inside each Specimen */
