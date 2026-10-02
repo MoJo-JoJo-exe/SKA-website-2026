@@ -1182,90 +1182,247 @@ button {
 
 
 /* ==========================================================================
-   03-B. THE WORKING APOTHECARY: PHOTOGRAPHIC RECORD OF PRACTICE
+   03-B. THE WORKING APOTHECARY: HORIZONTAL ARCHIVAL REGISTER
    ========================================================================== */
 .working-apothecary {
-  padding: clamp(5rem, 7vw, 7.5rem) 0;
+  position: relative;
   background-color: var(--c-bg-primary);
   border-top: 1px solid var(--c-border-subtle);
+  overflow: hidden;
 }
 
-.wap-inner {
+@media (min-width: 1025px) {
+  .working-apothecary {
+    height: 100vh;
+    min-height: 620px;
+    max-height: 1080px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1024px) {
+  .working-apothecary {
+    padding: clamp(3.5rem, 6vw, 5rem) 0;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+}
+
+/* Header & Intro Row */
+.wap-header {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.wap-header__inner {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--container-padding);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(3rem, 5vw, 4.5rem);
+  padding: clamp(1.75rem, 3.2vh, 3rem) var(--container-padding) 0;
 }
 
-/* Section title block */
+.wap-register-count {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-accent-ochre);
+  text-transform: uppercase;
+}
+
+.wap-intro-row {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: flex-end;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .wap-intro-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
 .wap-title-block {
   max-width: 680px;
 }
 
 .wap-title {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
   color: var(--c-text-primary);
-  line-height: 1.06;
+  line-height: 1.05;
   letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .wap-subtitle {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--c-text-muted);
   letter-spacing: 0.04em;
   font-weight: 500;
 }
 
-/* Shared plate frame — Archival Mount (Preserves Complete Photograph) */
-.wap-plate__frame {
+.wap-intro-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wap-intro-text {
+  font-size: 0.9375rem;
+  color: var(--c-text-muted);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+.wap-scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.wap-indicator-line {
+  width: 28px;
+  height: 1px;
+  background-color: var(--c-accent-ochre);
+}
+
+.wap-indicator-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-accent-ochre);
+  text-transform: uppercase;
+}
+
+/* Track Viewport & Moving Register */
+.wap-track-viewport {
+  width: 100%;
+}
+
+@media (min-width: 1025px) {
+  .wap-track-viewport {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(0.75rem, 1.8vh, 1.75rem) 0 clamp(1.75rem, 3.2vh, 3.25rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .wap-track-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 1.5rem var(--container-padding) 2.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-accent-ochre) var(--c-bg-surface-tint);
+  }
+}
+
+.wap-track {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(2.5rem, 4vw, 4.5rem);
+  padding-left: var(--container-padding);
+  padding-right: clamp(4rem, 8vw, 10rem);
+  will-change: transform;
+}
+
+/* Individual Archival Plate Item */
+.wap-item {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+
+/* Subtle Curated Rhythm Offsets on Desktop */
+@media (min-width: 1025px) {
+  .wap-item--offset-0 {
+    transform: translateY(0);
+  }
+  .wap-item--offset-1 {
+    transform: translateY(-16px);
+  }
+  .wap-item--offset-2 {
+    transform: translateY(14px);
+  }
+}
+
+.wap-item__plate {
+  display: block;
+  cursor: zoom-in;
+}
+
+.wap-item__frame {
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--c-border-subtle);
   background-color: var(--c-bg-surface-tint);
-  display: block;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(28, 27, 24, 0.04);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.wap-plate__frame img {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
+.wap-item__frame:hover {
+  border-color: rgba(135, 89, 26, 0.4);
+  box-shadow: 0 8px 24px rgba(28, 27, 24, 0.08);
+}
+
+.wap-item__frame img {
+  height: clamp(260px, 38vh, 370px);
+  width: auto;
+  max-width: none;
   display: block;
   object-fit: contain;
-  transition: transform 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.wap-plate__frame:hover img {
-  transform: scale(1.012);
+.wap-item--hero .wap-item__frame img {
+  height: clamp(280px, 42vh, 400px);
 }
 
-/* Shared caption row */
-.wap-plate__caption {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
+@media (max-width: 1024px) {
+  .wap-item__frame img,
+  .wap-item--hero .wap-item__frame img {
+    height: clamp(240px, 45vw, 320px);
+  }
+}
+
+.wap-item__frame:hover img {
+  transform: scale(1.02);
+}
+
+/* Plate Metadata */
+.wap-item__meta {
   border-top: 1px solid var(--c-border-subtle);
   padding-top: 0.65rem;
   margin-top: 0.85rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 320px;
 }
 
-.wap-plate__meta-left {
-  display: inline-flex;
+.wap-item__meta-top {
+  display: flex;
+  justify-content: space-between;
   align-items: baseline;
   gap: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
-.wap-plate__meta-right {
-  flex-shrink: 0;
-}
-
-.wap-plate-num {
+.wap-item__num {
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1273,351 +1430,105 @@ button {
   font-variant-numeric: tabular-nums;
 }
 
-.wap-cat {
+.wap-item__date {
   font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  color: var(--c-text-muted);
-  text-transform: uppercase;
-}
-
-.wap-sep {
-  color: var(--c-border-strong);
-  font-size: 0.6875rem;
-}
-
-.wap-date {
-  font-size: 0.6875rem;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.06em;
   color: var(--c-text-muted);
   opacity: 0.7;
   font-variant-numeric: tabular-nums;
 }
 
-/* Opening large plate — Centered Architectural Presentation (Full square fidelity) */
-.wap-plate--opening {
-  max-width: 820px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.wap-plate--opening .wap-plate__frame {
-  height: auto;
-}
-
-.wap-plate--opening .wap-plate__frame img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Editorial introduction */
-.wap-intro {
-  display: grid;
-  grid-template-columns: 1fr minmax(100px, 220px);
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: flex-start;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--c-border-subtle);
-}
-
-.wap-intro__text {
-  font-size: 1.0625rem;
-  color: var(--c-text-muted);
-  line-height: 1.75;
-  max-width: 620px;
-}
-
-.wap-intro__note {
-  font-size: 0.75rem;
+.wap-item__tag {
+  font-family: var(--font-dev);
+  font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.07em;
-  color: var(--c-accent-ochre);
-  text-transform: uppercase;
-  padding-top: 0.25rem;
-  text-align: right;
-}
-
-/* Asymmetric spread: mechanical press left + stacked dispensary right */
-.wap-spread {
-  display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
-  gap: clamp(2rem, 4vw, 3.5rem);
-  align-items: flex-start;
-}
-
-.wap-spread__primary {
-  display: flex;
-  flex-direction: column;
-}
-
-.wap-spread__primary .wap-plate__frame {
-  height: auto;
-}
-
-.wap-spread__primary .wap-plate__frame img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.wap-spread__secondary {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-.wap-spread__sec-top,
-.wap-spread__sec-bottom {
-  display: flex;
-  flex-direction: column;
-}
-
-.wap-spread__sec-top .wap-plate__frame,
-.wap-spread__sec-bottom .wap-plate__frame {
-  height: auto;
-}
-
-.wap-spread__sec-top .wap-plate__frame img,
-.wap-spread__sec-bottom .wap-plate__frame img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* "अल्कोहल देखो" annotation plate */
-.wap-plate--annotation {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem, 5vw, 5rem);
-  align-items: center;
-}
-
-.wap-annotation-header {
-  grid-column: 1 / -1;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--c-border-subtle);
-  margin-bottom: 0.25rem;
-}
-
-.wap-annotation-label {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--c-accent-ochre);
-  text-transform: uppercase;
-}
-
-.wap-plate--annotation .wap-plate__frame {
-  height: auto;
-}
-
-.wap-plate--annotation .wap-plate__frame img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.wap-annotation-caption {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  padding-top: 0.5rem;
-}
-
-.wap-annotation-devanagari {
-  font-family: var(--font-dev);
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
   color: var(--c-accent-forest);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  background: rgba(135, 89, 26, 0.08);
+  padding: 0.1rem 0.45rem;
+  border-radius: 2px;
 }
 
-.wap-annotation-translation {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  color: var(--c-text-muted);
-  font-style: italic;
-}
-
-.wap-annotation-body {
-  font-size: 0.9375rem;
-  color: var(--c-text-muted);
-  line-height: 1.72;
-}
-
-/* Archival rule divider */
-.wap-rule {
-  height: 1px;
-  background: var(--c-border-subtle);
-  width: 100%;
-}
-
-/* ASHOKARISHTA hero block */
-.wap-hero-block {
-  display: grid;
-  grid-template-columns: minmax(220px, 320px) 1fr;
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items: flex-start;
-}
-
-.wap-hero-label-block {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-top: 0.25rem;
-}
-
-.wap-hero-kicker {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--c-accent-ochre);
-  text-transform: uppercase;
-  display: block;
-}
-
-.wap-hero-title {
-  font-family: var(--font-dev);
-  font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--c-accent-forest);
-  line-height: 1.15;
-  font-weight: 400;
-  margin: 0;
-}
-
-.wap-hero-title-roman {
-  font-family: var(--font-serif);
-  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
-  color: var(--c-text-muted);
-  letter-spacing: 0.05em;
-  font-style: italic;
-  margin: 0;
-}
-
-.wap-plate--hero {
-  width: 100%;
-}
-
-.wap-plate--hero .wap-plate__frame {
-  height: auto;
-}
-
-.wap-plate--hero .wap-plate__frame img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.wap-hero-desc {
-  grid-column: 1;
-  font-size: 0.9375rem;
-  color: var(--c-text-muted);
-  line-height: 1.7;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--c-border-subtle);
-  margin-top: 1.5rem;
-}
-
-/* Supporting pair: two equal plates */
-.wap-support-pair {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.75rem, 3.5vw, 3rem);
-  align-items: flex-start;
-}
-
-.wap-support-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.wap-support-item .wap-plate__frame {
-  height: auto;
-}
-
-.wap-support-item .wap-plate__frame img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* SHODHIT SHILAJIT closing plate */
-.wap-plate--shilajit {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(2.5rem, 5vw, 5rem);
-  align-items: center;
-}
-
-.wap-shilajit-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.wap-shilajit-titles {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.wap-shilajit-devanagari {
-  font-family: var(--font-dev);
-  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
-  color: var(--c-accent-forest);
-  line-height: 1.3;
-}
-
-.wap-shilajit-roman {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  color: var(--c-text-primary);
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-}
-
-.wap-plate--shilajit .wap-plate__frame {
-  height: auto;
-}
-
-.wap-plate--shilajit .wap-plate__frame img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Closing archival note */
-.wap-closing {
-  padding-top: 1.5rem;
-}
-
-.wap-closing__rule {
-  height: 1px;
-  background: var(--c-border-subtle);
-  margin-bottom: 2rem;
-}
-
-.wap-closing__text {
+.wap-item__title {
+  font-family: var(--font-sans);
   font-size: 0.875rem;
-  color: var(--c-text-muted);
-  line-height: 1.7;
-  max-width: 640px;
-  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--c-text-primary);
+  line-height: 1.25;
+  margin: 0;
 }
 
-.wap-closing__ref {
+.wap-item__desc {
+  font-size: 0.75rem;
+  color: var(--c-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Archival Colophon / Register Conclusion */
+.wap-colophon {
+  flex-shrink: 0;
+  width: clamp(280px, 26vw, 360px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  scroll-snap-align: start;
+}
+
+.wap-colophon__inner {
+  background: var(--c-bg-surface-tint);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 4px;
+  padding: clamp(1.5rem, 3vh, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  box-shadow: 0 4px 16px rgba(28, 27, 24, 0.04);
+}
+
+.wap-colophon__kicker {
   font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--c-accent-ochre);
   text-transform: uppercase;
-  display: block;
+}
+
+.wap-colophon__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  color: var(--c-accent-forest);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.wap-colophon__text {
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.wap-colophon__rule {
+  height: 1px;
+  background: var(--c-border-subtle);
+  width: 100%;
+}
+
+.wap-colophon__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-accent-ochre);
+  text-transform: uppercase;
 }
 
 /* ==========================================================================
    04. OUR PRACTICE: EDITORIAL ESSAY ("A PLACE OF PRACTICE")
    ========================================================================== */
+
 
 .editorial-practice {
   padding: clamp(5rem, 7vw, 7.5rem) 0;
@@ -3117,54 +3028,6 @@ button {
     gap: 0.5rem;
     flex-wrap: wrap;
   }
-  /* Working Apothecary — mobile single column */
-  .wap-intro {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .wap-intro__note {
-    text-align: left;
-  }
-
-  .wap-spread {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .wap-spread__secondary {
-    gap: 2.5rem;
-  }
-
-  .wap-plate--annotation {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .wap-hero-block {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .wap-plate--hero {
-    grid-column: 1;
-  }
-
-  .wap-hero-desc {
-    grid-column: 1;
-    margin-top: 1rem;
-    padding-top: 1rem;
-  }
-
-  .wap-support-pair {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
-
-  .wap-plate--shilajit {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
 }
 
 /* ==========================================================================
@@ -3179,7 +3042,20 @@ button {
     scroll-behavior: auto !important;
   }
 
-  /* archive pin pulse removed in editorial redesign */
+  .working-apothecary {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: clamp(3.5rem, 6vw, 5rem) 0 !important;
+  }
+
+  .wap-track-viewport {
+    overflow-x: auto !important;
+  }
+
+  .wap-item {
+    transform: none !important;
+  }
 }
 
 /* ==========================================================================

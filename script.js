@@ -272,6 +272,40 @@
     });
   });
 
+  // 11. Horizontal Archival Sequence for "The Working Apothecary"
+  const wapSection = document.getElementById('working-apothecary');
+  const wapTrack   = document.getElementById('wapTrack');
+
+  if (wapSection && wapTrack && hasGSAP && !prefersReducedMotion) {
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 1025px)', () => {
+      const getScrollAmount = () => {
+        const trackWidth = wapTrack.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        return -(trackWidth - viewportWidth + 80);
+      };
+
+      const tween = gsap.to(wapTrack, {
+        x: getScrollAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: wapSection,
+          start: 'top top',
+          end: () => `+=${Math.max(wapTrack.scrollWidth - window.innerWidth + 80, 1100)}`,
+          pin: true,
+          scrub: 0.9,
+          invalidateOnRefresh: true,
+          anticipatePin: 1
+        }
+      });
+
+      return () => {
+        tween.kill();
+      };
+    });
+  }
+
   // Recalculate ScrollTrigger positions on full page load
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
