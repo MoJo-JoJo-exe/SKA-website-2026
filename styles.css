@@ -1215,20 +1215,22 @@ button {
   font-weight: 500;
 }
 
-/* Shared plate frame */
+/* Shared plate frame — Archival Mount (Preserves Complete Photograph) */
 .wap-plate__frame {
   border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--c-border-subtle);
   background-color: var(--c-bg-surface-tint);
   display: block;
+  width: 100%;
 }
 
 .wap-plate__frame img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  max-width: 100%;
   display: block;
+  object-fit: contain;
   transition: transform 0.6s ease;
 }
 
@@ -1287,9 +1289,21 @@ button {
   font-variant-numeric: tabular-nums;
 }
 
-/* Opening large plate */
+/* Opening large plate — Centered Architectural Presentation (Full square fidelity) */
+.wap-plate--opening {
+  max-width: 820px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .wap-plate--opening .wap-plate__frame {
-  height: clamp(440px, 60vh, 680px);
+  height: auto;
+}
+
+.wap-plate--opening .wap-plate__frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Editorial introduction */
@@ -1319,12 +1333,12 @@ button {
   text-align: right;
 }
 
-/* Asymmetric spread: tall left + stacked right */
+/* Asymmetric spread: mechanical press left + stacked dispensary right */
 .wap-spread {
   display: grid;
-  grid-template-columns: 1fr 0.85fr;
-  gap: 2rem;
-  align-items: stretch;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: flex-start;
 }
 
 .wap-spread__primary {
@@ -1333,35 +1347,45 @@ button {
 }
 
 .wap-spread__primary .wap-plate__frame {
-  flex: 1;
-  min-height: clamp(360px, 50vh, 560px);
+  height: auto;
+}
+
+.wap-spread__primary .wap-plate__frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .wap-spread__secondary {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .wap-spread__sec-top,
 .wap-spread__sec-bottom {
-  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .wap-spread__sec-top .wap-plate__frame,
 .wap-spread__sec-bottom .wap-plate__frame {
-  flex: 1;
-  min-height: clamp(180px, 22vh, 260px);
+  height: auto;
+}
+
+.wap-spread__sec-top .wap-plate__frame img,
+.wap-spread__sec-bottom .wap-plate__frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* "अल्कोहल देखो" annotation plate */
 .wap-plate--annotation {
   display: grid;
-  grid-template-columns: 0.9fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: clamp(2.5rem, 5vw, 5rem);
-  align-items: flex-start;
+  align-items: center;
 }
 
 .wap-annotation-header {
@@ -1380,7 +1404,13 @@ button {
 }
 
 .wap-plate--annotation .wap-plate__frame {
-  height: clamp(360px, 48vh, 520px);
+  height: auto;
+}
+
+.wap-plate--annotation .wap-plate__frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .wap-annotation-caption {
@@ -1421,9 +1451,9 @@ button {
 /* ASHOKARISHTA hero block */
 .wap-hero-block {
   display: grid;
-  grid-template-columns: minmax(200px, 280px) 1fr;
-  grid-template-rows: auto 1fr auto;
-  gap: 0 clamp(2.5rem, 5vw, 5rem);
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: flex-start;
 }
 
 .wap-hero-label-block {
@@ -1461,12 +1491,17 @@ button {
 }
 
 .wap-plate--hero {
-  grid-column: 2;
-  grid-row: 1 / 4;
+  width: 100%;
 }
 
 .wap-plate--hero .wap-plate__frame {
-  height: clamp(480px, 62vh, 720px);
+  height: auto;
+}
+
+.wap-plate--hero .wap-plate__frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .wap-hero-desc {
@@ -1476,14 +1511,15 @@ button {
   line-height: 1.7;
   padding-top: 1.5rem;
   border-top: 1px solid var(--c-border-subtle);
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 /* Supporting pair: two equal plates */
 .wap-support-pair {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: clamp(1.75rem, 3.5vw, 3rem);
+  align-items: flex-start;
 }
 
 .wap-support-item {
@@ -1492,16 +1528,21 @@ button {
 }
 
 .wap-support-item .wap-plate__frame {
-  height: clamp(280px, 35vh, 400px);
-  flex: 1;
+  height: auto;
+}
+
+.wap-support-item .wap-plate__frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* SHODHIT SHILAJIT closing plate */
 .wap-plate--shilajit {
   display: grid;
-  grid-template-columns: 1fr 0.8fr;
+  grid-template-columns: 0.9fr 1.1fr;
   gap: clamp(2.5rem, 5vw, 5rem);
-  align-items: flex-start;
+  align-items: center;
 }
 
 .wap-shilajit-header {
@@ -1532,7 +1573,13 @@ button {
 }
 
 .wap-plate--shilajit .wap-plate__frame {
-  height: clamp(400px, 52vh, 580px);
+  height: auto;
+}
+
+.wap-plate--shilajit .wap-plate__frame img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Closing archival note */
@@ -2657,6 +2704,21 @@ button {
 /* ==========================================================================
    16. RESPONSIVE BREAKPOINTS
    ========================================================================== */
+/* Navigation collapse at intermediate laptop widths before links get cramped */
+@media (max-width: 1240px) {
+  .nav__menu {
+    display: none;
+  }
+
+  .nav__actions .btn--nav {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+}
+
 @media (max-width: 1200px) {
   .hero-archival__layout {
     gap: 3rem;
@@ -2692,6 +2754,10 @@ button {
 
 @media (max-width: 1024px) {
   .nav__menu {
+    display: none;
+  }
+
+  .nav__actions .btn--nav {
     display: none;
   }
 
@@ -3065,40 +3131,24 @@ button {
     gap: 2.5rem;
   }
 
-  .wap-spread__primary .wap-plate__frame {
-    min-height: 280px;
-  }
-
-  .wap-spread__sec-top .wap-plate__frame,
-  .wap-spread__sec-bottom .wap-plate__frame {
-    min-height: 240px;
-  }
-
   .wap-plate--annotation {
     grid-template-columns: 1fr;
-  }
-
-  .wap-plate--annotation .wap-plate__frame {
-    height: clamp(280px, 50vw, 380px);
+    gap: 1.5rem;
   }
 
   .wap-hero-block {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .wap-plate--hero {
     grid-column: 1;
-    grid-row: auto;
-  }
-
-  .wap-plate--hero .wap-plate__frame {
-    height: clamp(320px, 55vw, 480px);
   }
 
   .wap-hero-desc {
     grid-column: 1;
+    margin-top: 1rem;
+    padding-top: 1rem;
   }
 
   .wap-support-pair {
@@ -3106,21 +3156,9 @@ button {
     gap: 2.5rem;
   }
 
-  .wap-support-item .wap-plate__frame {
-    height: clamp(260px, 50vw, 360px);
-  }
-
   .wap-plate--shilajit {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .wap-plate--shilajit .wap-plate__frame {
-    height: clamp(300px, 55vw, 420px);
-  }
-
-  .wap-plate--opening .wap-plate__frame {
-    height: clamp(320px, 55vw, 480px);
+    gap: 1.5rem;
   }
 }
 
