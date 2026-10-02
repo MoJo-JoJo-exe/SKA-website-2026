@@ -218,6 +218,22 @@ button {
   font-size: 0.6875rem;
 }
 
+.archival-meta-bar__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.archival-meta-bar .gallery-instagram-cta {
+  margin-top: 0;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  border-color: rgba(135, 89, 26, 0.25);
+  font-weight: 500;
+}
+
 /* ==========================================================================
    GHOST WATERMARKS (MATERIAL DEPTH WITHOUT CLUTTER)
    Faint, monumental Devanagari typography at whisper opacity (2.4%–3.5%).
@@ -2523,6 +2539,31 @@ button {
   .footer__giant {
     font-size: clamp(2.75rem, 12vw, 4.5rem);
     margin: 0.5rem 0 2rem;
+  }
+
+  .archival-meta-bar {
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .archival-meta-bar__right {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .ghost-watermark--practice {
+    font-size: 7rem;
+    right: -10vw;
+    opacity: 0.016;
+  }
+
+  .ghost-watermark--partners {
+    font-size: 7rem;
+    right: -10vw;
+    opacity: 0.022;
   }
 }
 
