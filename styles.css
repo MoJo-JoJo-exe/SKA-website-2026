@@ -423,12 +423,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .nav__brand {
   display: flex;
   flex-direction: column;
   gap: 1px;
+  flex-shrink: 0;
 }
 
 .nav__brand-dev {
@@ -450,11 +452,12 @@ button {
 .nav__menu {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: clamp(0.75rem, 1.2vw, 1.4rem);
+  flex-shrink: 1;
 }
 
 .nav__link {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   color: var(--c-text-muted);
   display: inline-flex;
@@ -462,6 +465,7 @@ button {
   gap: 0.35rem;
   transition: color var(--transition-fast);
   position: relative;
+  white-space: nowrap;
 }
 
 .nav__link-num {
@@ -478,6 +482,7 @@ button {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
 .nav__toggle {
@@ -2705,7 +2710,7 @@ button {
    16. RESPONSIVE BREAKPOINTS
    ========================================================================== */
 /* Navigation collapse at intermediate laptop widths before links get cramped */
-@media (max-width: 1240px) {
+@media (max-width: 1380px) {
   .nav__menu {
     display: none;
   }
