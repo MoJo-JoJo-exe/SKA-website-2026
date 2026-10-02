@@ -109,3 +109,27 @@ Live Site: https://mojo-jojo-exe.github.io/SKA-website-2026/
 2. Respect the established "Apothecary Archive" visual identity.
 3. Keep all interactions understated, authentic, and dignified.
 ```
+
+---
+
+## 5. Integrating Future Archival Materials (Curator's Guide)
+
+When the family provides newly digitized historical photographs or documentation, follow these rules:
+
+### Accepted Archival Materials:
+- 1960s–1980s photographs of the dispensary counter and working staff
+- Photographs of traditional herbal compounding, powder milling, and machinery
+- Historical medical service certificates and physician correspondence
+- Photographs of medicine presentations and exhibitions involving historic figures or former royal family members
+- Portraits and documentation relating to previous generations of the Baidya lineage
+
+### How to Mount New Materials (Editorial Archetypes):
+1. **Diptych (`.archive-diptych`)**: For pairing a historical plate with its contemporary continuity (e.g. vintage compounding equipment next to active compounding workstation).
+2. **Monograph Plate (`.archive-plate-entry`)**: For high-significance individual photographs with a two-column footer (factual description left, technical metadata right).
+3. **Vignette Pair (`.archive-vignette-grid`)**: For architectural fragments, hand-painted signs, or tool details.
+4. **Document Frame (`.archive-document`)**: For scanned certificates, diplomas, or royal correspondence mounted with corner registration ticks (`+`).
+
+### Archival Sensitivity & Privacy Standards:
+- **Internal Privacy Flag**: Use `data-access="private"` on any `<article class="archive-entry">` that should remain in internal archives without being publicly exposed.
+- **Never Boast**: Present royal exhibition photos or certificates with dry, dignified, documentary precision (date, location, historical occasion). Never use marketing buzzwords like "famous healer", "legendary", or "renowned".
+- **Zero Fake Filters**: Do not apply fake vintage textures, sepia washes, or artificial paper tears. Let authentic historical images speak for themselves.
