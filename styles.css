@@ -234,36 +234,6 @@ button {
   font-weight: 500;
 }
 
-/* ==========================================================================
-   GHOST WATERMARKS (MATERIAL DEPTH WITHOUT CLUTTER)
-   Faint, monumental Devanagari typography at whisper opacity (2.4%–3.5%).
-   ========================================================================== */
-.ghost-watermark {
-  position: absolute;
-  font-family: var(--font-dev);
-  font-weight: 700;
-  line-height: 0.85;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-  white-space: nowrap;
-}
-
-.ghost-watermark--practice {
-  right: -2vw;
-  bottom: 6%;
-  font-size: clamp(8rem, 20vw, 18rem);
-  color: var(--c-accent-forest);
-  opacity: 0.024;
-}
-
-.ghost-watermark--partners {
-  right: -2vw;
-  top: 12%;
-  font-size: clamp(8rem, 22vw, 20rem);
-  color: #FFFFFF;
-  opacity: 0.035;
-}
 
 /* Architectural Plate Index Labels in Visual Archive */
 .asym-plate {
@@ -2552,18 +2522,6 @@ button {
   .archival-meta-bar__right {
     gap: 0.5rem;
     flex-wrap: wrap;
-  }
-
-  .ghost-watermark--practice {
-    font-size: 7rem;
-    right: -10vw;
-    opacity: 0.016;
-  }
-
-  .ghost-watermark--partners {
-    font-size: 7rem;
-    right: -10vw;
-    opacity: 0.022;
   }
 }
 
