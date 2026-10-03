@@ -1077,10 +1077,10 @@
          08. THE VISUAL ARCHIVE: ASYMMETRIC ARCHITECTURAL GALLERY
          ====================================================================== -->
     <section class="visual-archive" id="visual-archive">
-      <div class="visual-archive__inner">
-
-        <div class="visual-archive__header" data-animate="fade-up">
-          <header class="archival-meta-bar">
+      <!-- Section meta bar — sits above pinned viewport -->
+      <div class="archive-seq-header">
+        <div class="archive-seq-header__inner">
+          <header class="archival-meta-bar" data-animate="fade-up">
             <div class="archival-meta-bar__doc">
               <span>SECTION 08</span>
               <span class="meta-sep">/</span>
@@ -1094,59 +1094,158 @@
               </a>
             </div>
           </header>
-          <h2 class="section-title" data-animate="split-lines">Bagbazar Through the Lens</h2>
-          <p class="section-lead">Authentic glimpses of our landmark premises, signage, dispensary interior, and historic neighbourhood.</p>
-        </div>
-
-        <div class="asymmetric-gallery">
-          <!-- Architectural Pair: Road Approach & Doorway Threshold -->
-          <div class="asym-row asym-row--primary">
-            <!-- Plate 08-A: Street Context Approach -->
-            <figure class="asym-item" data-animate="fade-up">
-              <div class="img-frame">
-                <img src="assets/images/street-context.jpg" alt="Bagbazar street approach to the Shree Krishna Aushadhalaya building" width="1024" height="473" loading="lazy">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-A</span> Bagbazar Road Perspective · Kathmandu</figcaption>
-            </figure>
-
-            <!-- Plate 08-B: Street Entrance Perspective -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.1">
-              <div class="img-frame">
-                <img src="assets/images/street-entrance-perspective.jpg" alt="Street-level view looking up at entrance door #509 of Shree Krishna Aushadhalaya" width="473" height="1024" loading="lazy">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-B</span> Doorway Entrance · Bagbazar Sidewalk</figcaption>
-            </figure>
-          </div>
-
-          <!-- Architectural Triptych: Timber Eaves, Clinic Signboard, Interior Signage -->
-          <div class="asym-row asym-row--secondary">
-            <!-- Plate 08-C: Upper Facade Garlands -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.15">
-              <div class="img-frame">
-                <img src="assets/images/century-heritage.jpg" alt="Upper facade of dispensary adorned with festive marigold garlands in Bagbazar" width="640" height="640" loading="lazy">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-C</span> Traditional Timber Eaves &amp; Shutters</figcaption>
-            </figure>
-
-            <!-- Plate 08-D: Signboard Detail -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.2">
-              <div class="img-frame">
-                <img src="assets/images/signboard-detail.jpg" alt="Hand-painted registered signboard of Shree Krishna Aushadhalaya in Bagbazar" width="1024" height="473" loading="lazy">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-D</span> Registered Clinic Signboard · Bagbazar</figcaption>
-            </figure>
-
-            <!-- Plate 08-E: Indoor Signboard -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.25">
-              <div class="img-frame">
-                <img src="assets/images/indoor-signboard.jpg" alt="Interior wooden sign announcing traditional Ayurvedic medicines" width="473" height="1024" loading="lazy">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-E</span> Dispensary Wooden Signage · Interior</figcaption>
-            </figure>
+          <div class="archive-seq-heading" data-animate="fade-up">
+            <h2 class="section-title" data-animate="split-lines">Bagbazar Through the Lens</h2>
+            <p class="section-lead">Authentic glimpses of our landmark premises, signage, dispensary interior, and historic neighbourhood.</p>
           </div>
         </div>
-
       </div>
+
+      <!-- Scroll-driven archive sequence viewport -->
+      <div class="archive-seq-stage" id="archiveStage" aria-label="Photographic archive sequence">
+
+        <!-- Plate 08-A: Street Context -->
+        <article class="archive-plate" id="archPlate1" aria-label="Plate 08-A: Bagbazar Road Perspective">
+          <div class="archive-plate__photo">
+            <div class="archive-plate__frame">
+              <img
+                src="assets/images/street-context.jpg"
+                alt="Bagbazar street approach to the Shree Krishna Aushadhalaya building"
+                width="1024" height="473"
+                loading="lazy"
+              >
+            </div>
+          </div>
+          <aside class="archive-plate__meta">
+            <span class="archive-plate__num">08—A</span>
+            <div class="archive-plate__rule"></div>
+            <div class="archive-plate__context">
+              <p class="archive-plate__location">Bagbazar · Kathmandu</p>
+              <p class="archive-plate__label">Road Perspective</p>
+              <p class="archive-plate__desc">Looking along the Bagbazar road towards the Shree Krishna Aushadhalaya corner building.</p>
+            </div>
+            <div class="archive-plate__count">
+              <span class="archive-plate__count-cur">01</span>
+              <span class="archive-plate__count-sep"> / </span>
+              <span class="archive-plate__count-tot">05</span>
+            </div>
+          </aside>
+        </article>
+
+        <!-- Plate 08-B: Doorway Threshold -->
+        <article class="archive-plate" id="archPlate2" aria-label="Plate 08-B: Doorway Entrance">
+          <div class="archive-plate__photo">
+            <div class="archive-plate__frame">
+              <img
+                src="assets/images/street-entrance-perspective.jpg"
+                alt="Street-level view looking up at entrance door #509 of Shree Krishna Aushadhalaya"
+                width="473" height="1024"
+                loading="lazy"
+              >
+            </div>
+          </div>
+          <aside class="archive-plate__meta">
+            <span class="archive-plate__num">08—B</span>
+            <div class="archive-plate__rule"></div>
+            <div class="archive-plate__context">
+              <p class="archive-plate__location">Bagbazar Sidewalk</p>
+              <p class="archive-plate__label">Doorway Entrance</p>
+              <p class="archive-plate__desc">Street-level threshold. Entrance door no. 509 of the dispensary building.</p>
+            </div>
+            <div class="archive-plate__count">
+              <span class="archive-plate__count-cur">02</span>
+              <span class="archive-plate__count-sep"> / </span>
+              <span class="archive-plate__count-tot">05</span>
+            </div>
+          </aside>
+        </article>
+
+        <!-- Plate 08-C: Timber Eaves & Garlands -->
+        <article class="archive-plate" id="archPlate3" aria-label="Plate 08-C: Traditional Timber Eaves">
+          <div class="archive-plate__photo">
+            <div class="archive-plate__frame">
+              <img
+                src="assets/images/century-heritage.jpg"
+                alt="Upper facade of dispensary adorned with festive marigold garlands in Bagbazar"
+                width="640" height="640"
+                loading="lazy"
+              >
+            </div>
+          </div>
+          <aside class="archive-plate__meta">
+            <span class="archive-plate__num">08—C</span>
+            <div class="archive-plate__rule"></div>
+            <div class="archive-plate__context">
+              <p class="archive-plate__location">Upper Facade · Bagbazar</p>
+              <p class="archive-plate__label">Traditional Timber Eaves</p>
+              <p class="archive-plate__desc">The upper facade adorned with marigold garlands during a festive occasion.</p>
+            </div>
+            <div class="archive-plate__count">
+              <span class="archive-plate__count-cur">03</span>
+              <span class="archive-plate__count-sep"> / </span>
+              <span class="archive-plate__count-tot">05</span>
+            </div>
+          </aside>
+        </article>
+
+        <!-- Plate 08-D: Registered Signboard -->
+        <article class="archive-plate" id="archPlate4" aria-label="Plate 08-D: Clinic Signboard">
+          <div class="archive-plate__photo">
+            <div class="archive-plate__frame">
+              <img
+                src="assets/images/signboard-detail.jpg"
+                alt="Hand-painted registered signboard of Shree Krishna Aushadhalaya in Bagbazar"
+                width="1024" height="473"
+                loading="lazy"
+              >
+            </div>
+          </div>
+          <aside class="archive-plate__meta">
+            <span class="archive-plate__num">08—D</span>
+            <div class="archive-plate__rule"></div>
+            <div class="archive-plate__context">
+              <p class="archive-plate__location">Bagbazar Façade</p>
+              <p class="archive-plate__label">Registered Clinic Signboard</p>
+              <p class="archive-plate__desc">The hand-painted registered signboard bearing the full name of the institution.</p>
+            </div>
+            <div class="archive-plate__count">
+              <span class="archive-plate__count-cur">04</span>
+              <span class="archive-plate__count-sep"> / </span>
+              <span class="archive-plate__count-tot">05</span>
+            </div>
+          </aside>
+        </article>
+
+        <!-- Plate 08-E: Interior Wooden Signage -->
+        <article class="archive-plate" id="archPlate5" aria-label="Plate 08-E: Dispensary Interior Signage">
+          <div class="archive-plate__photo">
+            <div class="archive-plate__frame">
+              <img
+                src="assets/images/indoor-signboard.jpg"
+                alt="Interior wooden sign announcing traditional Ayurvedic medicines"
+                width="473" height="1024"
+                loading="lazy"
+              >
+            </div>
+          </div>
+          <aside class="archive-plate__meta">
+            <span class="archive-plate__num">08—E</span>
+            <div class="archive-plate__rule"></div>
+            <div class="archive-plate__context">
+              <p class="archive-plate__location">Dispensary Interior</p>
+              <p class="archive-plate__label">Wooden Signage</p>
+              <p class="archive-plate__desc">The interior wooden sign cataloguing the traditional Ayurvedic preparations available within.</p>
+            </div>
+            <div class="archive-plate__count">
+              <span class="archive-plate__count-cur">05</span>
+              <span class="archive-plate__count-sep"> / </span>
+              <span class="archive-plate__count-tot">05</span>
+            </div>
+          </aside>
+        </article>
+
+      </div><!-- /.archive-seq-stage -->
+
     </section>
 
     <!-- ======================================================================

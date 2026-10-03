@@ -332,6 +332,82 @@
     });
   }
 
+  // 12. Editorial Archive Sequence — Section 08: "Bagbazar Through the Lens"
+  //
+  // Each of the 5 archive plates occupies the full pinned viewport in turn.
+  // Scrolling advances through the sequence. Plates transition with:
+  //   - outgoing: gentle opacity fade + subtle upward drift
+  //   - incoming: rise from below + fade in
+  // scrub: 1 gives controlled inertia without raw velocity transfer.
+  const archiveStage = document.getElementById('archiveStage');
+  const archivePlates = archiveStage ? archiveStage.querySelectorAll('.archive-plate') : [];
+
+  if (archiveStage && archivePlates.length > 0 && hasGSAP && !prefersReducedMotion) {
+    const archiveMM = gsap.matchMedia();
+
+    archiveMM.add('(min-width: 1025px)', () => {
+      const plateCount = archivePlates.length;
+      // Each plate gets one screen-height of scroll travel; plus an extra buffer at end
+      const scrollPerPlate = window.innerHeight * 0.85;
+      const totalScrollTravel = scrollPerPlate * (plateCount - 1) + window.innerHeight * 0.5;
+
+      // Build a timeline — each step transitions one plate out and the next one in
+      const seqTL = gsap.timeline({
+        scrollTrigger: {
+          trigger: archiveStage,
+          start: 'top top',
+          end: () => `+=${totalScrollTravel}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          anticipatePin: 1
+        }
+      });
+
+      // Position duration in timeline units (0–1)
+      const stepDur   = 1 / Math.max(1, plateCount - 1);  // time per transition
+      const overlapFrac = 0.20; // how much the outgoing/incoming overlap
+
+      for (let i = 0; i < plateCount - 1; i++) {
+        const outPlate = archivePlates[i];
+        const inPlate  = archivePlates[i + 1];
+        const t        = i * stepDur; // start time of this transition
+
+        // Outgoing plate: fade and drift upward
+        seqTL.to(outPlate, {
+          opacity: 0,
+          y: -32,
+          pointerEvents: 'none',
+          duration: stepDur * (1 - overlapFrac),
+          ease: 'power1.inOut'
+        }, t);
+
+        // Incoming plate: rise from below, fade in; starts slightly before outgoing finishes
+        seqTL.fromTo(inPlate,
+          { opacity: 0, y: 40, pointerEvents: 'none' },
+          {
+            opacity: 1,
+            y: 0,
+            pointerEvents: 'auto',
+            duration: stepDur * (1 - overlapFrac),
+            ease: 'power1.out'
+          },
+          t + stepDur * overlapFrac  // slight delay creates visual overlap
+        );
+      }
+
+      // Ensure last plate ends with full opacity/position
+      seqTL.set(archivePlates[plateCount - 1], { opacity: 1, y: 0, pointerEvents: 'auto' }, '>');
+
+      return () => {
+        seqTL.kill();
+        archivePlates.forEach(plate => {
+          gsap.set(plate, { clearProps: 'opacity,transform,pointer-events' });
+        });
+      };
+    });
+  }
+
   // Recalculate ScrollTrigger positions on full page load
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
