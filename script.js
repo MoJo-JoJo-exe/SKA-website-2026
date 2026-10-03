@@ -272,7 +272,7 @@
     });
   });
 
-  // 11. Editorial Monograph Sequence for "The Working Apothecary" (Museum Direction)
+  // 11. Horizontal Archival Sequence for "The Working Apothecary" (Editorial Rhythm & Calibrated Physics)
   const wapSection = document.getElementById('working-apothecary');
   const wapTrack   = document.getElementById('wapTrack');
 
@@ -280,110 +280,54 @@
     const mm = gsap.matchMedia();
 
     mm.add('(min-width: 1025px)', () => {
-      const plates = Array.from(wapTrack.querySelectorAll('.wap-plate'));
-      const activeIndicator = document.getElementById('wapActiveIndicator');
-      const counterEl = document.getElementById('wapCounter');
-      const progressBar = document.getElementById('wapProgressBar');
-
-      // Dynamic horizontal travel: ensure last plate and colophon have generous breathing room
+      // Dynamic horizontal travel: smoothly reveal all plates and colophon with clean edge breathing room
       const calculateTravel = () => {
         const trackWidth = wapTrack.scrollWidth;
         const viewportWidth = window.innerWidth;
-        return Math.max(0, trackWidth - viewportWidth + 60);
+        return Math.max(0, trackWidth - viewportWidth + 48);
       };
 
-      // Uncompressed vertical reading distance for museum monograph pace
+      // Uncompressed editorial reading distance: ensures comfortable viewing time per photographic plate
       const getScrollDistance = () => {
         const travel = calculateTravel();
-        return Math.max(1100, Math.round(travel * 0.95));
+        return Math.max(900, Math.round(travel * 0.92));
       };
 
-      // Update focal plate state & accession indicators
-      let lastActiveIdx = -1;
-      const updateFocalPlate = () => {
-        const focalX = window.innerWidth * 0.38; // Prime editorial viewing axis
-        let closestIdx = 0;
-        let minDiff = Infinity;
-
-        plates.forEach((plate, i) => {
-          const rect = plate.getBoundingClientRect();
-          const plateCenter = rect.left + rect.width * 0.5;
-          const diff = Math.abs(plateCenter - focalX);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestIdx = i;
-          }
-        });
-
-        if (closestIdx !== lastActiveIdx) {
-          lastActiveIdx = closestIdx;
-
-          plates.forEach((plate, i) => {
-            if (i === closestIdx) {
-              plate.classList.add('is-current');
-              plate.classList.remove('is-past');
-            } else if (i < closestIdx) {
-              plate.classList.remove('is-current');
-              plate.classList.add('is-past');
-            } else {
-              plate.classList.remove('is-current', 'is-past');
-            }
-          });
-
-          // Update accession text and progress
-          if (closestIdx < 10) {
-            const numStr = String(closestIdx + 1).padStart(2, '0');
-            if (activeIndicator) activeIndicator.textContent = `PLATE ${numStr} / 10`;
-            if (counterEl) counterEl.textContent = `${numStr} / 10`;
-            if (progressBar) progressBar.style.width = `${((closestIdx + 1) / 11) * 100}%`;
-          } else {
-            if (activeIndicator) activeIndicator.textContent = 'ARCHIVAL COLOPHON';
-            if (counterEl) counterEl.textContent = '10 / 10';
-            if (progressBar) progressBar.style.width = '100%';
-          }
-        }
-      };
-
-      // Timeline configuration with tactile scrub damping
+      // Timeline configuration: calibrated inertia (scrub: 1.35) balances tactile connection with velvet damping
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wapSection,
           start: 'top top',
           end: () => `+=${getScrollDistance()}`,
           pin: true,
-          scrub: 1.25, // Responsive yet silky damping
+          scrub: 1.35, // Balanced damping: absorbs raw wheel spikes while maintaining precise direct control
           invalidateOnRefresh: true,
-          anticipatePin: 1,
-          onUpdate: updateFocalPlate
+          anticipatePin: 1
         }
       });
 
-      // Phase 1: Calm Entry (10%) — Opening plate & title rest stably in view; gentle micro-drift
+      // Phase 1: Calm Entry (12%) — Opening plate & title rest stably in view; micro-drift creates gentle tactile pickup
       tl.to(wapTrack, {
-        x: () => -Math.min(20, calculateTravel() * 0.018),
-        duration: 0.10,
+        x: () => -Math.min(22, calculateTravel() * 0.02),
+        duration: 0.12,
         ease: 'power1.out'
       });
 
-      // Phase 2: Main Archival Sequence (78%) — Deliberate horizontal sequence advancing through all 10 monograph plates
+      // Phase 2: Main Archival Sequence (76%) — Smooth, deliberate horizontal traverse across 10 plates
       tl.to(wapTrack, {
         x: () => -calculateTravel(),
-        duration: 0.78,
+        duration: 0.76,
         ease: 'power1.inOut'
       });
 
-      // Phase 3: Calm Release (12%) — Settled contemplation on final colophon before unpinning to Section 04
+      // Phase 3: Calm Release (12%) — Settled breath on final archival record & colophon before releasing to Section 04
       tl.to({}, {
         duration: 0.12
       });
 
-      // Initial focal state setup
-      updateFocalPlate();
-
       return () => {
         tl.kill();
         gsap.set(wapTrack, { clearProps: 'transform' });
-        plates.forEach(p => p.classList.remove('is-current', 'is-past'));
       };
     });
   }
