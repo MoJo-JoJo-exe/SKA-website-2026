@@ -75,7 +75,3211 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=6.0">
+  <style>
+/* ==========================================================================
+   SHREE KRISHNA AUSHADHALAYA (श्री कृष्ण औषधालय)
+   Design System: Archival Publication & Editorial Apothecary
+   Bagbazar, Ward No. 28, Kathmandu, Nepal
+   ========================================================================== */
+
+/* ==========================================================================
+   1. DESIGN TOKENS & SYSTEM VARIABLES
+   ========================================================================== */
+:root {
+  /* Canvas & Background Colors */
+  --c-bg-primary: #FDFBF7;         /* Warm archival paper ground */
+  --c-bg-secondary: #FFFFFF;       /* Crisp white editorial surface */
+  --c-bg-surface-tint: #F5EFE6;    /* Subtle warm parchment tint */
+  --c-bg-archive: #E8E8E2;         /* Faded mineral / photographic archive field */
+  --c-bg-botanical: #E5E9E2;       /* Muted botanical / medicinal sage field */
+  --c-bg-clay: #EEE5D8;            /* Warm clay / medicinal paper field */
+  --c-bg-exhibition: #F2EEE6;      /* Subtle exhibition parchment / gallery field */
+  --c-bg-dark: #16241C;            /* Deep botanical forest green */
+  --c-bg-dark-surface: #1E3328;   /* Slightly lighter dark green for inner cards */
+  --c-bg-footer: #0A0F0C;          /* Deepest near-black forest */
+
+  /* Text & Ink Colors */
+  --c-text-primary: #1C1B18;       /* Primary dark ink */
+  --c-text-muted: #5E5852;         /* Secondary editorial body text */
+  --c-text-light: #FDFBF7;         /* Light cream text for dark themes */
+  --c-text-light-muted: #B3AAA0;   /* Muted light text */
+
+  /* Accents & Archival Metals */
+  --c-accent-forest: #16241C;      /* Deep primary forest */
+  --c-accent-hover: #263D30;       /* Interactive button hover */
+  --c-accent-ochre: #87591A;       /* Archival brass/ochre (5.85:1 contrast, WCAG AA) */
+  --c-accent-ochre-light: #D4A574; /* Warm ochre highlight for dark backgrounds */
+  --c-accent-warm: #E8D5B7;        /* Soft amber tint */
+  --c-tint-pill: rgba(135, 89, 26, 0.08);
+
+  /* Borders & Dividers */
+  --c-border-subtle: rgba(28, 27, 24, 0.12);
+  --c-border-strong: rgba(28, 27, 24, 0.28);
+  --c-border-dark: rgba(255, 255, 255, 0.14);
+
+  /* Typography Stack */
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-dev: 'Noto Serif Devanagari', 'Mangal', serif;
+
+  /* Label System */
+  --label-size: 0.75rem;
+  --label-tracking: 0.08em;
+
+  /* Typography Scale */
+  --text-hero: clamp(2.75rem, 8.5vw, 7.5rem);
+  --text-giant: clamp(4.5rem, 13vw, 12rem);
+  --text-section: clamp(2.25rem, 5vw, 4.25rem);
+  --text-headline: clamp(1.75rem, 3.5vw, 2.75rem);
+  --text-sub: clamp(1.125rem, 2vw, 1.4rem);
+  --text-body: 1.0625rem;
+  --text-small: 0.875rem;
+  --text-meta: 0.75rem;
+
+  /* Layout & Geometry */
+  --container-width: 1360px;
+  --container-padding: clamp(1.25rem, 4vw, 3.5rem);
+  --header-height: 80px;
+  --radius-pill: 100px;
+
+  /* Shadows */
+  --shadow-warm: 0 16px 40px -12px rgba(40, 32, 20, 0.08);
+  --shadow-warm-hover: 0 24px 50px -12px rgba(40, 32, 20, 0.15);
+  --shadow-dark: 0 20px 48px rgba(0, 0, 0, 0.35);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-normal: 0.4s var(--ease-out);
+  --transition-slow: 0.8s var(--ease-out);
+}
+
+/* ==========================================================================
+   2. RESET & DOCUMENT DEFAULTS
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--c-bg-primary);
+  color: var(--c-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--c-text-primary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+[lang="ne"], .dev-text {
+  font-family: var(--font-dev);
+}
+
+/* Accessible focus states — keyboard only, not mouse */
+:focus-visible {
+  outline: 2px solid var(--c-accent-ochre);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Suppress focus ring for elements with custom styles */
+.btn:focus-visible,
+.nav__link:focus-visible {
+  outline: 2px solid var(--c-accent-ochre);
+  outline-offset: 3px;
+}
+
+
+/* ==========================================================================
+   3. REUSABLE EDITORIAL ATOMS
+   ========================================================================== */
+/* Metadata Tag */
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-meta);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-accent-ochre);
+}
+
+.meta-tag__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--c-accent-ochre);
+}
+
+.meta-tag--light {
+  color: var(--c-accent-ochre-light);
+}
+
+.meta-tag__dot--light {
+  background-color: var(--c-accent-ochre-light);
+}
+
+/* ==========================================================================
+   ARCHIVAL METADATA BARS (UNIFIED EDITORIAL HEADERS)
+   ========================================================================== */
+.archival-meta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 0.875rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.75rem);
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+.archival-meta-bar--dark {
+  border-bottom-color: var(--c-border-dark);
+  color: var(--c-text-light-muted);
+}
+
+.archival-meta-bar__doc {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.archival-meta-bar__doc .meta-sep {
+  color: var(--c-border-strong);
+  font-weight: 300;
+}
+
+.archival-meta-bar--dark .archival-meta-bar__doc .meta-sep {
+  color: var(--c-border-dark);
+}
+
+.archival-meta-bar__index {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+  letter-spacing: 0.06em;
+  font-size: 0.6875rem;
+}
+
+.archival-meta-bar__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.archival-meta-bar .gallery-instagram-cta {
+  margin-top: 0;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  border-color: rgba(135, 89, 26, 0.25);
+  font-weight: 500;
+}
+
+
+/* Architectural Plate Index Labels in Visual Archive */
+.asym-plate {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--c-accent-ochre);
+  margin-right: 0.45rem;
+}
+
+.visit-photo-caption {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+  margin-top: 0.75rem;
+}
+
+.visit-photo-caption .v-idx {
+  font-weight: 700;
+  color: var(--c-accent-ochre);
+  margin-right: 0.45rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
+.practice-visual__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+}
+
+.practice-visual__caption .pv-idx {
+  font-weight: 700;
+  color: var(--c-accent-ochre);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
+/* Rectangular Buttons — archival, not pill-shaped */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 2px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn--primary {
+  background-color: var(--c-accent-forest);
+  color: #FFFFFF;
+  border: 1px solid var(--c-accent-forest);
+}
+
+.btn--primary:hover {
+  background-color: var(--c-accent-hover);
+  border-color: var(--c-accent-hover);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--c-accent-forest);
+  border: 1px solid var(--c-accent-forest);
+}
+
+.btn--outline:hover {
+  background-color: var(--c-accent-forest);
+  color: #FFFFFF;
+}
+
+.btn--light {
+  background-color: transparent;
+  color: var(--c-text-light);
+  border: 1px solid rgba(253, 251, 247, 0.5);
+  font-weight: 500;
+}
+
+.btn--light:hover {
+  border-color: var(--c-text-light);
+}
+
+.btn--nav {
+  padding: 0.55rem 1.25rem;
+  font-size: 0.8125rem;
+  background-color: var(--c-accent-forest);
+  color: #FFFFFF;
+  border-radius: 2px;
+  border: 1px solid var(--c-accent-forest);
+}
+
+.btn--nav:hover {
+  background-color: var(--c-accent-hover);
+  border-color: var(--c-accent-hover);
+}
+
+.btn--lg {
+  padding: 1.125rem 2.25rem;
+  font-size: 1rem;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* Image Frames */
+.img-frame {
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px -8px rgba(40, 32, 20, 0.1);
+  position: relative;
+  background-color: var(--c-bg-surface-tint);
+}
+
+.img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out);
+}
+
+.img-frame:hover img {
+  transform: scale(1.03);
+}
+
+.img-frame--dark {
+  border: 1px solid var(--c-border-dark);
+}
+
+/* Section Title Typography */
+.section-title {
+  font-size: var(--text-section);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0.75rem 0 1rem;
+}
+
+.section-lead {
+  font-size: var(--text-sub);
+  color: var(--c-text-muted);
+  max-width: 720px;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   4. SMART NAVIGATION & ARCHIVE DIRECTORY
+   ========================================================================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal), backdrop-filter var(--transition-normal);
+}
+
+.nav.is-scrolled,
+.nav.nav--scrolled {
+  background-color: rgba(253, 251, 247, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px rgba(28, 27, 24, 0.06);
+  border-bottom: 1px solid rgba(28, 27, 24, 0.08);
+}
+
+.nav__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.nav__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex-shrink: 0;
+}
+
+.nav__brand-dev {
+  font-family: var(--font-dev);
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--c-accent-forest);
+  line-height: 1.1;
+}
+
+.nav__brand-sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-accent-ochre);
+  font-weight: 600;
+}
+
+.nav__menu {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.2vw, 1.4rem);
+  flex-shrink: 1;
+}
+
+.nav__link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--c-text-muted);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  transition: color var(--transition-fast);
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav__link-num {
+  font-size: 0.75rem;
+  color: var(--c-accent-ochre);
+  font-weight: 600;
+}
+
+.nav__link:hover {
+  color: var(--c-text-primary);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.nav__toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6px;
+  padding: 10px;
+}
+
+.nav__toggle-bar {
+  display: block;
+  height: 2px;
+  background-color: var(--c-text-primary);
+  transition: transform var(--transition-fast);
+}
+
+.nav__toggle-bar:nth-child(1) { width: 24px; }
+.nav__toggle-bar:nth-child(2) { width: 18px; }
+
+.nav__toggle.nav__toggle--active .nav__toggle-bar:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.nav__toggle.nav__toggle--active .nav__toggle-bar:nth-child(2) {
+  transform: translateY(-4px) rotate(-45deg) scaleX(1.33);
+}
+
+/* ==========================================================================
+   5. ARCHIVAL MOBILE MENU OVERLAY
+   ========================================================================== */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--c-bg-primary);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+  overflow-y: auto;
+  padding: 100px var(--container-padding) 6rem;
+}
+
+.mobile-menu[aria-hidden="false"],
+.mobile-menu.mobile-menu--open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu__inner {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.mobile-menu__header {
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mobile-menu__label {
+  font-size: var(--text-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--c-accent-ochre);
+}
+
+.mobile-menu__dev {
+  font-family: var(--font-dev);
+  font-size: 2rem;
+  color: var(--c-accent-forest);
+}
+
+.mobile-menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.m-link {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(28, 27, 24, 0.06);
+}
+
+.m-num {
+  font-size: 0.8125rem;
+  font-family: var(--font-serif);
+  color: var(--c-accent-ochre);
+}
+
+.m-title {
+  font-family: var(--font-serif);
+  font-size: 1.625rem;
+  color: var(--c-text-primary);
+}
+
+.mobile-menu__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.m-contact-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.m-hours, .m-addr {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
+}
+
+/* ==========================================================================
+   01. ARCHIVAL PUBLICATION HERO COMPOSITION
+   ========================================================================== */
+
+/* Hero section outer container */
+.hero-archival {
+  padding-top: calc(var(--header-height) + 3.5rem);
+  padding-bottom: 6rem;
+  position: relative;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Top metadata bar — archival, not marketing */
+.hero-archival__top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 0.875rem;
+  margin-bottom: 4rem;
+  font-size: var(--text-meta);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: var(--font-sans);
+}
+
+.hero-meta-item {
+  color: var(--c-text-muted);
+}
+
+.hero-meta-item--coords {
+  color: var(--c-text-muted);
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* Two-column layout: text left, image right — image carries more visual weight */
+.hero-archival__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: flex-start;
+}
+
+.hero-archival__text {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.25rem;
+}
+
+/* Institution name — dominant typographic element */
+.hero-archival__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--c-accent-forest);
+  margin-bottom: 2rem;
+}
+
+.hero-title-line {
+  display: block;
+}
+
+/* Devanagari identity — quieter, secondary to Latin title */
+.hero-archival__devanagari {
+  margin-bottom: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 2px solid var(--c-border-subtle);
+  padding-left: 1rem;
+}
+
+.dev-line {
+  font-family: var(--font-dev);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--c-accent-ochre);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.dev-line--sub {
+  font-size: clamp(0.8125rem, 1.3vw, 1rem);
+  color: var(--c-text-muted);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Standfirst — one clear editorial sentence */
+.hero-archival__standfirst {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  color: var(--c-text-muted);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 2.75rem;
+}
+
+/* CTA group — strong primary, quiet secondary */
+.hero-archival__ctas {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.75rem;
+}
+
+/* Secondary link — plain text, not a button */
+.hero-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--c-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.hero-secondary-link:hover {
+  color: var(--c-accent-forest);
+}
+
+.hero-secondary-link svg {
+  transition: transform var(--transition-fast);
+}
+
+.hero-secondary-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* Footnote — operational facts, quiet */
+.hero-archival__footnote {
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--c-text-muted);
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 1.25rem;
+  max-width: 460px;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
+/* Image column */
+.hero-archival__visual {
+  position: relative;
+  width: 100%;
+}
+
+/* Facade plate — editorial, not rounded-card */
+.facade-plate {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow-warm-hover);
+  background-color: var(--c-bg-surface-tint);
+  height: clamp(540px, 80vh, 900px);
+  margin: 0;
+}
+
+.facade-plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Caption overlay */
+.facade-plate__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(22, 36, 28, 0.88) 0%, rgba(22, 36, 28, 0) 100%);
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.f-num {
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  color: var(--c-accent-ochre-light);
+  font-style: italic;
+}
+
+.f-label {
+  color: rgba(253, 251, 247, 0.65);
+}
+
+
+/* ==========================================================================
+   02. "WHAT WE ARE" INSTITUTION INFORMATION STRIP
+   ========================================================================== */
+.institution-strip {
+  border-top: 1px solid var(--c-border-subtle);
+  border-bottom: 1px solid var(--c-border-subtle);
+  background-color: var(--c-bg-secondary);
+  padding: clamp(4.5rem, 6vw, 6rem) 0;
+}
+
+.institution-strip__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.strip-header {
+  margin-bottom: 3.5rem;
+  max-width: 820px;
+}
+
+.strip-kicker {
+  font-size: var(--text-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--c-accent-ochre);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.strip-title {
+  font-size: var(--text-headline);
+  color: var(--c-accent-forest);
+  line-height: 1.15;
+}
+
+.strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+
+.strip-col {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2rem;
+  border-right: 1px solid var(--c-border-subtle);
+}
+
+.strip-col:first-child {
+  padding-left: 0;
+}
+
+.strip-col:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.strip-col__meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.col-num {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  color: var(--c-accent-ochre);
+  line-height: 1;
+}
+
+.col-cat {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+}
+
+.strip-col__title {
+  font-family: var(--font-serif);
+  font-size: 1.625rem;
+  color: var(--c-text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.strip-col__desc {
+  font-size: 0.9375rem;
+  color: var(--c-text-muted);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.strip-col__schedule {
+  font-size: 0.8125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-top: 1px solid rgba(28, 27, 24, 0.08);
+  padding-top: 0.85rem;
+}
+
+.strip-col__schedule strong {
+  color: var(--c-accent-forest);
+  font-weight: 600;
+}
+
+.strip-col__schedule span {
+  color: var(--c-text-muted);
+}
+
+/* ==========================================================================
+   03. THE 1968 ARCHIVE: CURATED PHOTOGRAPHIC RECORD
+   ========================================================================== */
+.archive-exhibition {
+  padding: clamp(5rem, 8vw, 8.5rem) 0;
+  background-color: var(--c-bg-archive);
+  position: relative;
+}
+
+.archive-exhibition__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Archival Metadata Header */
+.archive-header {
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+.archive-header__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 0.875rem;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+.archive-meta-doc {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.archive-meta-doc .meta-sep {
+  color: var(--c-border-strong);
+  font-weight: 300;
+}
+
+.archive-meta-index {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+  letter-spacing: 0.06em;
+  font-size: 0.6875rem;
+}
+
+/* Headline Composition: Monumental Year + Context */
+.archive-headline-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(2rem, 5vw, 5rem);
+  flex-wrap: wrap;
+}
+
+.archive-giant-year {
+  font-family: var(--font-serif);
+  font-size: var(--text-giant);
+  line-height: 0.85;
+  color: var(--c-accent-forest);
+  letter-spacing: -0.045em;
+  font-weight: 400;
+}
+
+.archive-headline-context {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.archive-place {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  line-height: 1.05;
+  color: var(--c-text-primary);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+}
+
+.archive-date-nep {
+  font-family: var(--font-dev);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: var(--c-accent-ochre);
+  font-weight: 500;
+}
+
+/* Photographic Exhibition Plate (Authentic, Crisp Frame, Not an App Card) */
+.archive-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  border: 1px solid rgba(28, 27, 24, 0.12);
+  box-shadow: 0 16px 44px -12px rgba(28, 27, 24, 0.09);
+  background-color: var(--c-bg-surface-tint);
+}
+
+.archive-frame img {
+  width: 100%;
+  height: auto;
+  max-height: 860px;
+  object-fit: cover;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: auto;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Museum Catalogue Annotation (Minimal, hairline indicator, zero coverage of building) */
+.archive-annotation {
+  position: absolute;
+  top: clamp(1rem, 3.5vw, 2.5rem);
+  right: clamp(1rem, 3vw, 2.5rem);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.archive-annotation__tag {
+  background: rgba(22, 36, 28, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(253, 251, 247, 0.16);
+  border-radius: 3px;
+  padding: 0.65rem 0.95rem;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  max-width: 270px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  text-align: right;
+}
+
+.ann-index {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-accent-ochre-light);
+  text-transform: uppercase;
+}
+
+.ann-subject {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #FFFFFF;
+}
+
+.ann-detail {
+  font-size: 0.6875rem;
+  color: rgba(253, 251, 247, 0.72);
+  line-height: 1.35;
+}
+
+.archive-annotation__lead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1.5rem;
+}
+
+.ann-line {
+  width: 1px;
+  height: 20px;
+  background: rgba(253, 251, 247, 0.55);
+}
+
+.ann-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #D4A574;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Editorial Curatorial Caption */
+.archive-curation {
+  display: grid;
+  grid-template-columns: minmax(200px, 240px) 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 2rem;
+  align-items: flex-start;
+}
+
+.archive-curation__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.curation-kicker {
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--c-accent-ochre);
+}
+
+.curation-dates {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  color: var(--c-text-primary);
+  display: flex;
+  gap: 0.35rem;
+  align-items: baseline;
+  line-height: 1.3;
+}
+
+.curation-slash {
+  color: var(--c-text-muted);
+  opacity: 0.45;
+  font-size: 0.875rem;
+}
+
+.curation-location {
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.archive-curation__body {
+  max-width: 640px;
+}
+
+.curation-desc {
+  font-size: 1.0625rem;
+  color: var(--c-text-muted);
+  line-height: 1.75;
+}
+
+
+
+
+/* ==========================================================================
+   03-B. THE WORKING APOTHECARY: HORIZONTAL ARCHIVAL REGISTER
+   ========================================================================== */
+.working-apothecary {
+  position: relative;
+  background-color: var(--c-bg-primary);
+  border-top: 1px solid var(--c-border-subtle);
+  overflow: hidden;
+}
+
+@media (min-width: 1025px) {
+  .working-apothecary {
+    height: 100vh;
+    min-height: 620px;
+    max-height: 1080px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1024px) {
+  .working-apothecary {
+    padding: clamp(3.5rem, 6vw, 5rem) 0;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+}
+
+/* Header & Intro Row */
+.wap-header {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.wap-header__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: clamp(1.75rem, 3.2vh, 3rem) var(--container-padding) 0;
+}
+
+.wap-register-count {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--c-accent-ochre);
+  text-transform: uppercase;
+}
+
+.wap-intro-row {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: flex-end;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .wap-intro-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.wap-title-block {
+  max-width: 680px;
+}
+
+.wap-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 4.2vw, 3.5rem);
+  color: var(--c-text-primary);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.wap-subtitle {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.wap-intro-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wap-intro-text {
+  font-size: 0.9375rem;
+  color: var(--c-text-muted);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* Track Viewport & Moving Register */
+.wap-track-viewport {
+  width: 100%;
+}
+
+@media (min-width: 1025px) {
+  .wap-track-viewport {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(0.5rem, 1.5vh, 1.25rem) 0 clamp(1.5rem, 2.8vh, 2.75rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .wap-track-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 1.5rem var(--container-padding) 2.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-accent-ochre) var(--c-bg-surface-tint);
+  }
+}
+
+.wap-track {
+  display: flex;
+  align-items: center; /* Optical museum horizon: plates align around center with curated vertical offsets */
+  gap: clamp(1.75rem, 2.5vw, 2.75rem);
+  padding-left: var(--container-padding);
+  padding-right: clamp(3rem, 5vw, 6rem);
+  will-change: transform;
+}
+
+/* Individual Archival Plate Item */
+.wap-item {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+}
+
+/* ── Art-Directed Vertical Rhythm (Desktop) ───────────────────────────────
+   Curated vertical placement simulates an art director's hand-mounted exhibition.
+   Offsets are applied relative to the optical center baseline.
+   ───────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1025px) {
+  /* Plate 01: slightly lower anchor */
+  .wap-item--offset-0,
+  .wap-item--offset-lower       { transform: translateY(18px);  }
+  /* Plate 02: slightly higher */
+  .wap-item--offset-1,
+  .wap-item--offset-higher      { transform: translateY(-16px); }
+  /* Plate 04: slightly lower */
+  .wap-item--offset-2,
+  .wap-item--offset-subtle-low  { transform: translateY(22px);  }
+  /* Quiet / neutral moments (Plates 05, 07) */
+  .wap-item--offset-3,
+  .wap-item--offset-quiet       { transform: translateY(0);     }
+  /* Plate 08: slightly higher */
+  .wap-item--offset-4,
+  .wap-item--offset-raised      { transform: translateY(-12px); }
+}
+
+/* ── Visual Resting Moments: Breathing Gaps ───────────────────────────────
+   Extra whitespace before important photographs (Plates 06 & 09) gives the
+   visitor an intentional pause to transition attention.
+   ───────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1025px) {
+  .wap-item--spacer-before {
+    margin-left: clamp(2.5rem, 4.5vw, 5.5rem);
+  }
+  .wap-item--closing {
+    margin-right: clamp(2rem, 3.5vw, 4rem);
+  }
+}
+
+.wap-item__plate {
+  display: block;
+  cursor: zoom-in;
+}
+
+.wap-item__frame {
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--c-border-subtle);
+  background-color: var(--c-bg-surface-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(28, 27, 24, 0.04);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.wap-item__frame:hover {
+  border-color: rgba(135, 89, 26, 0.4);
+  box-shadow: 0 8px 24px rgba(28, 27, 24, 0.08);
+}
+
+/* Standard archival image size: never cropped, full aspect preserved */
+.wap-item__frame img {
+  height: clamp(255px, 34vh, 325px);
+  width: auto;
+  max-width: none;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Major documentary authority plates (Plates 06 & 09, Plate 03) */
+.wap-item--major .wap-item__frame img {
+  height: clamp(295px, 42vh, 395px);
+}
+
+.wap-item--hero:not(.wap-item--major) .wap-item__frame img {
+  height: clamp(280px, 38vh, 365px);
+}
+
+@media (max-width: 1024px) {
+  .wap-item__frame img,
+  .wap-item--hero .wap-item__frame img,
+  .wap-item--major .wap-item__frame img {
+    height: clamp(240px, 45vw, 320px);
+  }
+}
+
+.wap-item__frame:hover img {
+  transform: scale(1.02);
+}
+
+/* ── Museum Accession Metadata ───────────────────────────────────────────
+   Reads as an institutional accession catalogue entry rather than a web caption.
+   Tabular numbers and monospaced accession reference.
+   ───────────────────────────────────────────────────────────────────────── */
+.wap-item__meta {
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 0.65rem;
+  margin-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 320px;
+}
+
+.wap-item__meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.wap-item__num {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--c-accent-ochre);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  text-transform: uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.wap-item__date {
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: var(--c-text-muted);
+  opacity: 0.55;
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  text-transform: uppercase;
+}
+
+.wap-item__tag {
+  font-family: var(--font-dev);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--c-accent-forest);
+  background: rgba(135, 89, 26, 0.08);
+  padding: 0.1rem 0.45rem;
+  border-radius: 2px;
+}
+
+.wap-item__title {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--c-text-primary);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.wap-item__desc {
+  font-size: 0.6875rem;
+  color: var(--c-text-muted);
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Archival Colophon / Register Conclusion */
+.wap-colophon {
+  flex-shrink: 0;
+  width: clamp(260px, 23vw, 320px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+}
+
+.wap-colophon__inner {
+  background: var(--c-bg-surface-tint);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 4px;
+  padding: clamp(1.5rem, 3vh, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  box-shadow: 0 4px 16px rgba(28, 27, 24, 0.04);
+}
+
+.wap-colophon__kicker {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--c-accent-ochre);
+  text-transform: uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.wap-colophon__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  color: var(--c-accent-forest);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.wap-colophon__text {
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.wap-colophon__rule {
+  height: 1px;
+  background: var(--c-border-subtle);
+  width: 100%;
+}
+
+.wap-colophon__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-accent-ochre);
+  text-transform: uppercase;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* ==========================================================================
+   04. OUR PRACTICE: EDITORIAL ESSAY ("A PLACE OF PRACTICE")
+   ========================================================================== */
+
+
+.editorial-practice {
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
+  background-color: var(--c-bg-botanical);
+  border-top: 1px solid var(--c-border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+
+.editorial-practice__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.practice-lead {
+  margin-bottom: 4rem;
+  max-width: 900px;
+}
+
+.practice-lead__statement {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.12;
+  color: var(--c-accent-forest);
+  margin-top: 1.25rem;
+}
+
+.practice-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-bottom: 4.5rem;
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 3rem;
+}
+
+.p-col {
+  display: flex;
+  flex-direction: column;
+  padding: 0 2.5rem;
+  border-right: 1px solid var(--c-border-subtle);
+}
+
+.p-col:first-child {
+  padding-left: 0;
+}
+
+.p-col:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+.p-col__num {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--c-accent-ochre);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+}
+
+.p-col__title {
+  font-size: 1.375rem;
+  color: var(--c-text-primary);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.04em;
+}
+
+.p-col__sub {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--c-accent-ochre);
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+.p-col__text {
+  font-size: 0.9375rem;
+  color: var(--c-text-muted);
+  line-height: 1.7;
+}
+
+.practice-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.practice-visual .img-frame {
+  height: clamp(380px, 50vh, 560px);
+}
+
+.practice-visual .img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+
+
+/* ==========================================================================
+   05. THE APOTHECARY: MATERIA MEDICA & FORMULARY CATALOGUE
+   ========================================================================== */
+.apothecary-archive {
+  padding: clamp(5rem, 8vw, 8.5rem) 0;
+  background-color: var(--c-bg-primary);
+  border-top: 1px solid var(--c-border-subtle);
+  position: relative;
+}
+
+.apothecary-archive__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.apothecary-header {
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+/* Archival Metadata Top Bar */
+.apothecary-meta-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 0.875rem;
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+.apothecary-meta-label {
+  font-weight: 500;
+}
+
+.apothecary-meta-count {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+  letter-spacing: 0.06em;
+  font-size: 0.6875rem;
+}
+
+/* Archival Classification Index Nav */
+.apothecary-index-nav {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: clamp(2rem, 3.5vw, 3rem);
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 1rem;
+}
+
+.index-nav__caption {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--c-accent-ochre);
+  white-space: nowrap;
+}
+
+.index-nav__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  font-family: var(--font-sans);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+}
+
+.filter-btn:hover {
+  color: var(--c-accent-forest);
+}
+
+.filter-btn.is-active {
+  color: var(--c-accent-forest);
+  font-weight: 600;
+  border-bottom-color: var(--c-accent-forest);
+  background: transparent;
+}
+
+.btn-idx {
+  color: var(--c-accent-ochre);
+  font-weight: 600;
+  font-size: 0.6875rem;
+  margin-right: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Formulary Grid: Individual Specimen Folio Plates */
+.apothecary-grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.apothecary-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: var(--c-bg-secondary);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 4px;
+  padding: clamp(2rem, 4vw, 3.25rem);
+  box-shadow: 0 10px 30px -10px rgba(28, 27, 24, 0.05);
+  transition: box-shadow var(--transition-normal), border-color var(--transition-normal);
+}
+
+.apothecary-item:hover {
+  border-color: rgba(28, 27, 24, 0.28);
+  box-shadow: 0 18px 48px -12px rgba(28, 27, 24, 0.1);
+}
+
+/* Plate Masthead inside each Specimen */
+.plate-mast {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 1rem;
+  margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.plate-mast__ref {
+  display: flex;
+  gap: 1.25rem;
+  align-items: baseline;
+}
+
+.plate-number {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--c-accent-forest);
+  font-weight: 400;
+}
+
+.plate-code {
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.75;
+}
+
+.plate-class {
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--c-accent-ochre);
+}
+
+/* Plate Body Composition: Visual + Archival Content */
+.plate-body {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: center;
+}
+
+/* Editorial Folio Alternation: Even plates flip image/content */
+.apothecary-item:nth-child(even) .plate-body {
+  grid-template-columns: 1fr minmax(280px, 360px);
+}
+
+.apothecary-item:nth-child(even) .item-visual {
+  order: 2;
+}
+
+.apothecary-item:nth-child(even) .item-content {
+  order: 1;
+}
+
+/* Specimen Photography Mount */
+.item-visual {
+  background: var(--c-bg-primary);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 3px;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+  aspect-ratio: 4 / 5;
+  max-height: 460px;
+  width: 100%;
+}
+
+.item-visual img {
+  max-height: 92%;
+  max-width: 90%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(28, 27, 24, 0.12));
+  transition: transform 0.6s var(--ease-out);
+}
+
+.item-visual:hover img {
+  transform: scale(1.035);
+}
+
+.specimen-inspect-hint {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 0.85rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+  pointer-events: none;
+}
+
+.item-visual:hover .specimen-inspect-hint {
+  opacity: 1;
+  color: var(--c-accent-forest);
+}
+
+/* Specimen Archival Content & Ledger */
+.item-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  margin-bottom: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.item-name {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.85rem);
+  color: var(--c-accent-forest);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+
+.item-nep {
+  font-family: var(--font-dev);
+  font-size: clamp(1.125rem, 1.6vw, 1.35rem);
+  color: var(--c-accent-ochre);
+  font-weight: 500;
+}
+
+.item-desc {
+  font-size: 1.0625rem;
+  color: var(--c-text-muted);
+  line-height: 1.72;
+  margin-bottom: 2rem;
+  max-width: 620px;
+}
+
+/* Formulation Specification Ledger */
+.item-ledger {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 1.25rem;
+  gap: 0.85rem;
+}
+
+.ledger-row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1.25rem;
+  align-items: baseline;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.ledger-row dt {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-muted);
+  opacity: 0.85;
+}
+
+.ledger-row dd {
+  color: var(--c-text-primary);
+  margin: 0;
+}
+
+/* Compendium Colophon Footer */
+.catalogue-footer {
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 2.75rem;
+}
+
+.catalogue-footer__inner {
+  display: flex;
+  align-items: baseline;
+  gap: 2.5rem;
+  border-left: 2px solid var(--c-accent-ochre);
+  padding: 1.25rem 0 1.25rem 1.75rem;
+  background: transparent;
+}
+
+.cat-pill {
+  font-size: var(--text-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--c-accent-ochre);
+  white-space: nowrap;
+}
+
+.catalogue-footer__inner p {
+  font-size: 0.9375rem;
+  color: var(--c-text-muted);
+  line-height: 1.7;
+  max-width: 820px;
+}
+
+
+/* ==========================================================================
+   06. CONSULTATION: DISTINCT IDENTITY & RHYTHM OF THE PRACTICE
+   ========================================================================== */
+.practice-consultation {
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
+  background-color: var(--c-bg-clay);
+  border-top: 1px solid var(--c-border-subtle);
+}
+
+.practice-consultation__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.consultation-mast {
+  margin-bottom: 3.5rem;
+  max-width: 800px;
+}
+
+.consultation-title {
+  font-size: var(--text-section);
+  color: var(--c-accent-forest);
+  margin: 0.75rem 0 1rem;
+}
+
+.consultation-sub {
+  font-size: var(--text-sub);
+  color: var(--c-text-muted);
+  line-height: 1.6;
+}
+
+.consultation-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(3rem, 5vw, 5.5rem);
+  align-items: flex-start;
+}
+
+/* Consultation Hours Box — Architectural Folio */
+.consultation-box {
+  background-color: var(--c-bg-primary);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 4px;
+  padding: clamp(2rem, 3.5vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  box-shadow: 0 8px 30px -10px rgba(28, 27, 24, 0.06);
+}
+
+.consultation-box__header {
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 1.5rem;
+}
+
+.c-badge {
+  font-size: var(--text-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--c-accent-ochre);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.c-hours-huge {
+  font-family: var(--font-serif);
+  font-size: clamp(4rem, 7.5vw, 6rem);
+  color: var(--c-accent-forest);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.c-days {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--c-text-primary);
+}
+
+.c-notice {
+  font-size: 0.875rem;
+  color: var(--c-accent-ochre);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.consultation-box__body p {
+  font-size: 0.9375rem;
+  color: var(--c-text-muted);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.consultation-box__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.consultation-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--c-accent-forest);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--c-border-subtle);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.consultation-secondary-link:hover {
+  color: var(--c-accent-ochre);
+  border-color: var(--c-accent-ochre);
+}
+
+.consultation-box__footer {
+  font-size: 0.8125rem;
+  color: var(--c-text-muted);
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 1.25rem;
+}
+
+/* "A Day at the Aushadhalaya" Rhythm Timeline */
+.daily-rhythm {
+  border-left: 2px solid var(--c-border-subtle);
+  padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.rhythm-title {
+  font-size: var(--text-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--c-accent-ochre);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.rhythm-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.rhythm-step {
+  position: relative;
+}
+
+.rhythm-step::before {
+  content: '';
+  position: absolute;
+  left: calc(-2.5rem - 6px);
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--c-bg-clay);
+  border: 2px solid var(--c-accent-forest);
+}
+
+.rhythm-step--highlight::before {
+  background-color: var(--c-accent-ochre);
+  border-color: var(--c-accent-ochre);
+  box-shadow: 0 0 0 4px rgba(135, 89, 26, 0.2);
+}
+
+.rhythm-time {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--c-accent-forest);
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.rhythm-desc strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--c-text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.rhythm-desc span {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
+  line-height: 1.5;
+  display: block;
+}
+
+/* ==========================================================================
+   07. FORMULATION PARTNERS (REFINED INTERNATIONAL SECTION)
+   ========================================================================== */
+.partners-section {
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
+  background-color: var(--c-bg-dark);
+  color: var(--c-text-light);
+  border-top: 1px solid var(--c-border-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.partners-section__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.partners-title {
+  font-size: var(--text-section);
+  color: var(--c-text-light);
+  margin: 1rem 0 1.5rem;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.partners-intro {
+  font-size: 1.0625rem;
+  color: var(--c-text-light-muted);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+}
+
+.partners-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  border-top: 1px solid var(--c-border-dark);
+  padding-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.p-pillar h3 {
+  font-size: 1.125rem;
+  color: var(--c-accent-ochre-light);
+  margin-bottom: 0.35rem;
+}
+
+.p-pillar p {
+  font-size: 0.875rem;
+  color: var(--c-text-light-muted);
+  line-height: 1.5;
+}
+
+.partners-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.partners-visual__caption {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--c-text-light-muted);
+  text-align: right;
+}
+
+/* ==========================================================================
+   08. THE VISUAL ARCHIVE: ASYMMETRIC ARCHITECTURAL GALLERY
+   ========================================================================== */
+.visual-archive {
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
+  background-color: var(--c-bg-exhibition);
+  border-top: 1px solid var(--c-border-subtle);
+}
+
+.visual-archive__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.visual-archive__header {
+  margin-bottom: 3.5rem;
+}
+
+.asymmetric-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.asym-row {
+  display: grid;
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.asym-row--primary {
+  grid-template-columns: 1.35fr 1fr;
+}
+
+.asym-row--primary .img-frame {
+  height: clamp(340px, 44vh, 440px);
+}
+
+.asym-row--secondary {
+  grid-template-columns: 1fr 1.35fr 0.85fr;
+}
+
+.asym-row--secondary .img-frame {
+  height: clamp(280px, 35vh, 340px);
+}
+
+.asym-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.asym-item .img-frame {
+  width: 100%;
+}
+
+.asym-item .img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.asym-caption {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--c-text-muted);
+  display: flex;
+  align-items: baseline;
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 0.5rem;
+}
+
+/* ==========================================================================
+   09. FIND US IN BAGBAZAR (VISIT SECTION)
+   ========================================================================== */
+.visit-section {
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
+  background-color: var(--c-bg-primary);
+  border-top: 1px solid var(--c-border-subtle);
+}
+
+.visit-section__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.visit-mast {
+  margin-bottom: 3rem;
+}
+
+.visit-editorial-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.visit-photo-plate {
+  height: clamp(420px, 55vh, 560px);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.visit-photo-plate .img-frame {
+  height: 100%;
+}
+
+.visit-details-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.5rem;
+  border-top: 1px solid var(--c-border-subtle);
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding: 3rem 0;
+}
+
+.v-detail-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.v-label {
+  font-size: var(--text-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--c-accent-ochre);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.v-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--c-text-primary);
+  line-height: 1.2;
+}
+
+.v-line {
+  font-size: 0.9375rem;
+  color: var(--c-text-muted);
+}
+
+.v-coords {
+  font-size: 0.75rem;
+  color: var(--c-accent-ochre);
+  margin-top: 0.35rem;
+}
+
+.v-timing-block {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.v-timing-block strong {
+  font-size: 0.9375rem;
+  color: var(--c-accent-forest);
+}
+
+.v-timing-block span {
+  font-size: 0.875rem;
+  color: var(--c-text-muted);
+}
+
+.v-subnote {
+  font-size: 0.75rem;
+  color: var(--c-accent-ochre);
+}
+
+.v-contact-link {
+  font-size: 0.9375rem;
+  color: var(--c-text-primary);
+  transition: color var(--transition-fast);
+}
+
+.v-contact-link:hover {
+  color: var(--c-accent-ochre);
+}
+
+.visit-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.visit-secondary-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.visit-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--c-accent-forest);
+  text-decoration: none;
+  border-bottom: 1px solid var(--c-border-subtle);
+  padding-bottom: 2px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.visit-text-link:hover {
+  color: var(--c-accent-ochre);
+  border-color: var(--c-accent-ochre);
+}
+
+.v-link-sep {
+  color: var(--c-border-strong);
+  font-weight: 300;
+}
+
+/* ==========================================================================
+   10. FOOTER & ARCHIVAL COLOPHON
+   ========================================================================== */
+.footer {
+  background-color: var(--c-bg-footer);
+  color: var(--c-text-light);
+  padding: 6rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer__inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 4rem;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 5rem;
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer__dev {
+  font-family: var(--font-dev);
+  font-size: 2.25rem;
+  color: var(--c-accent-ochre-light);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.footer__en {
+  font-family: var(--font-serif);
+  font-size: 1.625rem;
+  color: #FFFFFF;
+  margin-bottom: 0.75rem;
+}
+
+.footer__addr, .footer__services {
+  font-size: 0.875rem;
+  color: var(--c-text-light-muted);
+  line-height: 1.6;
+}
+
+.footer__hours-brief {
+  font-size: 0.8125rem;
+  color: var(--c-accent-ochre-light);
+  margin-top: 0.5rem;
+}
+
+.footer__col-title {
+  font-size: var(--text-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--c-text-light-muted);
+  margin-bottom: 0.75rem;
+}
+
+.footer__col a {
+  color: var(--c-text-light);
+  font-size: 0.9375rem;
+  transition: color var(--transition-fast);
+}
+
+.footer__col a:hover {
+  color: var(--c-accent-ochre-light);
+}
+
+/* Giant Archival Seal */
+.footer__giant {
+  font-family: var(--font-dev);
+  font-size: clamp(4.5rem, 16vw, 13rem);
+  line-height: 1;
+  color: #FFFFFF;
+  opacity: 0.11;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  margin: 1rem 0 3rem;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--c-border-dark);
+  padding-top: 2rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--c-text-light-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   15. FLOATING MOBILE ACTION BAR (CALL · WHATSAPP · DIRECTIONS)
+   ========================================================================== */
+.mobile-action-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(253, 251, 247, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--c-border-subtle);
+  z-index: 95;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  padding: 0.6rem 1rem max(0.6rem, env(safe-area-inset-bottom));
+}
+
+.mobile-action-bar a.m-action-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 0.4rem 0.5rem;
+  border-radius: 2px;
+  color: var(--c-accent-forest);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: background-color var(--transition-fast);
+}
+
+.mobile-action-bar a.m-action-btn--wa {
+  color: #128C7E;
+}
+
+.mobile-action-bar a.m-action-btn:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   16. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+/* Navigation collapse at intermediate laptop widths before links get cramped */
+@media (max-width: 1380px) {
+  .nav__menu {
+    display: none;
+  }
+
+  .nav__actions .btn--nav {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-archival__layout {
+    gap: 3rem;
+  }
+  .hero-archival {
+    padding-top: calc(var(--header-height) + 2.75rem);
+  }
+  
+  .strip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .strip-col:nth-child(1), .strip-col:nth-child(3) {
+    padding-left: 0;
+    padding-right: 2rem;
+    border-right: 1px solid var(--c-border-subtle);
+  }
+
+  .strip-col:nth-child(2), .strip-col:nth-child(4) {
+    padding-left: 2rem;
+    padding-right: 0;
+    border-right: none;
+  }
+
+  .strip-col:nth-child(3), .strip-col:nth-child(4) {
+    border-top: 1px solid var(--c-border-subtle);
+    padding-top: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  /* apothecary-item uses fluid responsive grid */
+}
+
+@media (max-width: 1024px) {
+  .nav__menu {
+    display: none;
+  }
+
+  .nav__actions .btn--nav {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+
+  .hero-archival__layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  /* On tablet/mobile: image appears ABOVE text */
+  .hero-archival__text {
+    order: 2;
+  }
+
+  .hero-archival__visual {
+    order: 1;
+  }
+
+  .facade-plate {
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 cinematic crop on tablet */
+    border-radius: 4px;
+  }
+
+  .facade-plate img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+
+  .hero-archival__standfirst {
+    max-width: 100%;
+  }
+
+  .hero-archival__footnote {
+    max-width: 100%;
+  }
+
+  .plate-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .apothecary-item:nth-child(even) .plate-body {
+    grid-template-columns: 1fr;
+  }
+
+  .apothecary-item:nth-child(even) .item-visual {
+    order: 0;
+  }
+
+  .apothecary-item:nth-child(even) .item-content {
+    order: 0;
+  }
+
+  .item-visual {
+    max-height: 380px;
+  }
+
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .consultation-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .daily-rhythm {
+    border-left: none;
+    border-top: 1px solid var(--c-border-subtle);
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .rhythm-step::before {
+    display: none;
+  }
+
+  .asymmetric-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .asym-item--wide {
+    grid-column: span 2;
+  }
+
+  .asym-item--tall {
+    grid-row: span 1;
+  }
+
+  .visit-details-strip {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__col--brand {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 68px;
+  }
+
+  body {
+    padding-bottom: 60px; /* Room for mobile action bar */
+  }
+
+  .mobile-action-bar {
+    display: flex;
+  }
+
+  .hero-archival {
+    padding-top: calc(var(--header-height) + 1.75rem);
+    padding-bottom: 4rem;
+  }
+
+  .hero-archival__top-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-archival__title {
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-archival__devanagari {
+    margin-bottom: 1.75rem;
+  }
+
+  .facade-plate {
+    padding-bottom: 100%; /* square crop on small phones */
+  }
+
+  .facade-plate img {
+    object-position: center 15%;
+  }
+
+  .hero-archival__ctas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-archival__ctas .btn--primary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .strip-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .strip-col {
+    border-right: none;
+    border-bottom: 1px solid var(--c-border-subtle);
+    padding: 1.75rem 0;
+  }
+
+  .strip-col:first-child {
+    padding-top: 0;
+  }
+
+  .strip-col:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .archive-headline-wrap {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .archive-giant-year {
+    font-size: clamp(3.5rem, 15vw, 6rem);
+    line-height: 0.9;
+  }
+
+  .archive-annotation {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .archive-annotation__tag {
+    max-width: 200px;
+    padding: 0.45rem 0.65rem;
+  }
+
+  .ann-subject {
+    font-size: 0.8125rem;
+  }
+
+  .ann-detail {
+    display: none;
+  }
+
+  .ann-line {
+    height: 14px;
+  }
+
+  .archive-curation {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .curation-desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .practice-columns {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .plate-mast {
+    flex-direction: column;
+    gap: 0.35rem;
+    align-items: flex-start;
+  }
+
+  .apothecary-index-nav {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .index-nav__group {
+    gap: 0.5rem 1rem;
+  }
+
+  .filter-btn {
+    font-size: 0.6875rem;
+  }
+
+  .ledger-row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+
+  .item-visual {
+    max-height: 300px;
+  }
+
+  .item-desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .catalogue-footer__inner {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-left: 1.25rem;
+  }
+
+  .practice-columns {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding-top: 2rem;
+  }
+
+  .p-col {
+    padding: 0 0 2rem 0;
+    border-right: none;
+    border-bottom: 1px solid var(--c-border-subtle);
+  }
+
+  .p-col:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .partners-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .asymmetric-gallery {
+    gap: 2rem;
+  }
+
+  .asym-row--primary,
+  .asym-row--secondary {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .asym-row--primary .img-frame,
+  .asym-row--secondary .img-frame {
+    height: 260px;
+  }
+
+  .visit-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .visit-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .visit-secondary-actions {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer__col--brand {
+    grid-column: span 1;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__giant {
+    font-size: clamp(2.75rem, 12vw, 4.5rem);
+    margin: 0.5rem 0 2rem;
+  }
+
+  .archival-meta-bar {
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .archival-meta-bar__right {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+/* ==========================================================================
+   17. REDUCED MOTION PREFERENCES
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .working-apothecary {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: clamp(3.5rem, 6vw, 5rem) 0 !important;
+  }
+
+  .wap-track-viewport {
+    overflow-x: auto !important;
+  }
+
+  .wap-item {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   IMPROVEMENTS BATCH 2 — Scroll Progress, Nav Spy, Map, Instagram, UI Polish
+   ========================================================================== */
+
+/* #15: Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--c-accent-ochre);
+  z-index: 9999;
+  border-radius: 0 1px 1px 0;
+  pointer-events: none;
+  will-change: width;
+}
+
+/* #10: Nav Scroll-Spy Active Link */
+.nav__link.is-active {
+  color: var(--c-accent-forest);
+  font-weight: 600;
+}
+.nav__link.is-active .nav__link-num {
+  color: var(--c-accent-ochre);
+}
+
+/* #1: Google Maps Embed Plate */
+.visit-map-embed {
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px -8px rgba(40, 32, 20, 0.1);
+  border: 1px solid var(--c-border-subtle);
+  background-color: var(--c-bg-surface-tint);
+}
+.visit-map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 0;
+}
+@media (max-width: 768px) {
+  .visit-map-embed iframe { height: 260px; }
+}
+
+/* #14: Instagram CTA near Gallery */
+.gallery-instagram-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--c-accent-ochre);
+  text-decoration: none;
+  border: 1px solid rgba(135, 89, 26, 0.35);
+  border-radius: 100px;
+  padding: 0.45rem 1rem;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+.gallery-instagram-cta:hover {
+  background-color: var(--c-tint-pill);
+  border-color: var(--c-accent-ochre);
+}
+
+/* Specimen Inspection Lightbox Overlay */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 12, 0.95);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2rem;
+}
+.lightbox-overlay.is-open {
+  display: flex;
+}
+.lightbox-overlay img {
+  max-width: 86vw;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 3px;
+  border: 1px solid rgba(253, 251, 247, 0.16);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.75);
+  animation: lb-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes lb-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.125rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  z-index: 10001;
+}
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+</style>
 </head>
 <body>
 

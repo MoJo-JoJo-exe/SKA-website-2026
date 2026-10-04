@@ -26,6 +26,10 @@ The site rejects generic wellness startup cliches (such as neon gradients, float
 --c-bg-primary: #FDFBF7;         /* Warm archival paper ground */
 --c-bg-secondary: #FFFFFF;       /* Crisp white editorial surface */
 --c-bg-surface-tint: #F5EFE6;    /* Subtle warm parchment tint */
+--c-bg-archive: #E8E8E2;         /* Faded mineral / photographic archive field */
+--c-bg-botanical: #E5E9E2;       /* Muted botanical / medicinal sage field */
+--c-bg-clay: #EEE5D8;            /* Warm clay / medicinal paper field */
+--c-bg-exhibition: #F2EEE6;      /* Subtle exhibition parchment / gallery wall */
 --c-bg-dark: #16241C;            /* Deep botanical forest green */
 --c-bg-dark-surface: #1E3328;   /* Slightly lighter dark green */
 --c-bg-footer: #0A0F0C;          /* Deepest near-black forest */
