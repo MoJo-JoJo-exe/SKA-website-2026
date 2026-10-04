@@ -40,6 +40,10 @@
   --font-sans: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-dev: 'Noto Serif Devanagari', 'Mangal', serif;
 
+  /* Label System */
+  --label-size: 0.75rem;
+  --label-tracking: 0.08em;
+
   /* Typography Scale */
   --text-hero: clamp(2.75rem, 8.5vw, 7.5rem);
   --text-giant: clamp(4.5rem, 13vw, 12rem);
@@ -54,9 +58,6 @@
   --container-width: 1360px;
   --container-padding: clamp(1.25rem, 4vw, 3.5rem);
   --header-height: 80px;
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
   --radius-pill: 100px;
 
   /* Shadows */
@@ -278,18 +279,18 @@ button {
   letter-spacing: 0.08em;
 }
 
-/* Pill Buttons */
+/* Rectangular Buttons — archival, not pill-shaped */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.625rem;
   padding: 0.875rem 1.75rem;
-  border-radius: var(--radius-pill);
+  border-radius: 2px;
   font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: 0.02em;
-  transition: transform var(--transition-normal), background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
+  transition: background-color var(--transition-normal), color var(--transition-normal), border-color var(--transition-normal);
   cursor: pointer;
   text-align: center;
 }
@@ -303,32 +304,28 @@ button {
 .btn--primary:hover {
   background-color: var(--c-accent-hover);
   border-color: var(--c-accent-hover);
-  transform: translateY(-2px);
 }
 
 .btn--outline {
   background-color: transparent;
-  color: var(--c-text-primary);
-  border: 1px solid var(--c-border-strong);
+  color: var(--c-accent-forest);
+  border: 1px solid var(--c-accent-forest);
 }
 
 .btn--outline:hover {
   background-color: var(--c-accent-forest);
   color: #FFFFFF;
-  border-color: var(--c-accent-forest);
-  transform: translateY(-2px);
 }
 
 .btn--light {
-  background-color: #FFFFFF;
-  color: var(--c-accent-forest);
-  border: 1px solid #FFFFFF;
-  font-weight: 600;
+  background-color: transparent;
+  color: var(--c-text-light);
+  border: 1px solid rgba(253, 251, 247, 0.5);
+  font-weight: 500;
 }
 
 .btn--light:hover {
-  background-color: var(--c-accent-warm);
-  transform: translateY(-2px);
+  border-color: var(--c-text-light);
 }
 
 .btn--nav {
@@ -336,11 +333,13 @@ button {
   font-size: 0.8125rem;
   background-color: var(--c-accent-forest);
   color: #FFFFFF;
-  border-radius: var(--radius-pill);
+  border-radius: 2px;
+  border: 1px solid var(--c-accent-forest);
 }
 
 .btn--nav:hover {
   background-color: var(--c-accent-hover);
+  border-color: var(--c-accent-hover);
 }
 
 .btn--lg {
@@ -2272,248 +2271,78 @@ button {
 }
 
 /* ==========================================================================
-   08. THE VISUAL ARCHIVE: EDITORIAL PHOTOGRAPHIC SEQUENCE
+   08. THE VISUAL ARCHIVE: ASYMMETRIC ARCHITECTURAL GALLERY
    ========================================================================== */
-
-/*
-  Architecture overview (desktop):
-  • .visual-archive          — full section wrapper
-  • .archive-seq-header      — static heading area above the pinned viewport
-  • .archive-seq-stage       — pinned 100vh viewport; GSAP stacks plates here
-  • .archive-plate           — one plate per photograph, absolutely positioned
-    ├─ .archive-plate__photo — dominant photograph area (~70vw)
-    └─ .archive-plate__meta  — quiet metadata sidebar
-*/
-
 .visual-archive {
+  padding: clamp(5rem, 7vw, 7.5rem) 0;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
 
-/* ── Section Header ──────────────────────────────────────────────────────── */
-.archive-seq-header {
-  padding: clamp(3.5rem, 5vw, 5.5rem) 0 clamp(2rem, 3vh, 3rem);
-  border-bottom: 1px solid var(--c-border-subtle);
-}
-
-.archive-seq-header__inner {
+.visual-archive__inner {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 var(--container-padding);
 }
 
-.archive-seq-heading {
-  margin-top: 1.5rem;
-  max-width: 760px;
+.visual-archive__header {
+  margin-bottom: 3.5rem;
 }
 
-/* ── Stage: Pinned Viewport ──────────────────────────────────────────────── */
-.archive-seq-stage {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-@media (min-width: 1025px) {
-  .archive-seq-stage {
-    /* Height is set to 100vh via JS matchMedia; plates are stacked absolutely */
-    height: 100vh;
-    min-height: 600px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .archive-seq-stage {
-    height: auto;
-  }
-}
-
-/* ── Individual Archive Plate ────────────────────────────────────────────── */
-@media (min-width: 1025px) {
-  .archive-plate {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    grid-template-columns: 1fr 260px;
-    gap: 0;
-    align-items: stretch;
-    /* Initial state: plates below / invisible — set by GSAP */
-    opacity: 0;
-    transform: translateY(40px);
-    pointer-events: none;
-  }
-
-  /* First plate starts visible */
-  .archive-plate:first-child {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-}
-
-@media (max-width: 1024px) {
-  .archive-plate {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid var(--c-border-subtle);
-    padding: clamp(2.5rem, 5vw, 4rem) 0;
-  }
-
-  .archive-plate:last-child {
-    border-bottom: none;
-  }
-}
-
-/* ── Photograph Area ─────────────────────────────────────────────────────── */
-.archive-plate__photo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-@media (min-width: 1025px) {
-  .archive-plate__photo {
-    padding: clamp(2.5rem, 4vh, 4rem) var(--container-padding) clamp(2.5rem, 4vh, 4rem) var(--container-padding);
-    background-color: var(--c-bg-secondary);
-  }
-}
-
-@media (max-width: 1024px) {
-  .archive-plate__photo {
-    padding: 0 var(--container-padding);
-  }
-}
-
-.archive-plate__frame {
-  border-radius: 4px;
-  overflow: hidden;
-  border: 1px solid var(--c-border-subtle);
-  box-shadow: 0 6px 24px rgba(28, 27, 24, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--c-bg-surface-tint);
-}
-
-@media (min-width: 1025px) {
-  .archive-plate__frame {
-    /* Natural image size; clamp height so it fits within the pinned viewport */
-    max-height: calc(100vh - 10rem);
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.archive-plate__frame img {
-  /* Preserve original proportions — never crop archival photographs */
-  width: 100%;
-  height: auto;
-  max-height: calc(100vh - 10rem);
-  object-fit: contain;
-  display: block;
-}
-
-@media (max-width: 1024px) {
-  .archive-plate__frame img {
-    max-height: 60vw;
-    min-height: 240px;
-  }
-}
-
-/* ── Metadata Sidebar ────────────────────────────────────────────────────── */
-.archive-plate__meta {
+.asymmetric-gallery {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  border-left: 1px solid var(--c-border-subtle);
-  padding: clamp(2.5rem, 4vh, 4rem) clamp(1.5rem, 2.5vw, 2.5rem);
-  background-color: var(--c-bg-primary);
-  justify-content: space-between;
+  gap: 2.25rem;
 }
 
-@media (max-width: 1024px) {
-  .archive-plate__meta {
-    border-left: none;
-    border-top: 1px solid var(--c-border-subtle);
-    padding: 1.25rem var(--container-padding) 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.75rem 1.5rem;
-  }
+.asym-row {
+  display: grid;
+  gap: 1.75rem;
+  align-items: stretch;
 }
 
-/* Plate reference number — monospaced accession style */
-.archive-plate__num {
-  display: block;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--c-accent-ochre);
-  text-transform: uppercase;
+.asym-row--primary {
+  grid-template-columns: 1.35fr 1fr;
 }
 
-.archive-plate__rule {
-  width: 2rem;
-  height: 1px;
-  background: var(--c-border-subtle);
-  flex-shrink: 0;
+.asym-row--primary .img-frame {
+  height: clamp(340px, 44vh, 440px);
 }
 
-@media (max-width: 1024px) {
-  .archive-plate__rule { display: none; }
+.asym-row--secondary {
+  grid-template-columns: 1fr 1.35fr 0.85fr;
 }
 
-/* Context block */
-.archive-plate__context {
+.asym-row--secondary .img-frame {
+  height: clamp(280px, 35vh, 340px);
+}
+
+.asym-item {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  flex: 1;
+  gap: 0.75rem;
 }
 
-.archive-plate__location {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
+.asym-item .img-frame {
+  width: 100%;
+}
+
+.asym-item .img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.asym-caption {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
   color: var(--c-text-muted);
-  text-transform: uppercase;
-  opacity: 0.7;
-  margin: 0;
+  display: flex;
+  align-items: baseline;
+  border-top: 1px solid var(--c-border-subtle);
+  padding-top: 0.5rem;
 }
-
-.archive-plate__label {
-  font-family: var(--font-sans);
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--c-text-primary);
-  margin: 0;
-  line-height: 1.2;
-}
-
-.archive-plate__desc {
-  font-size: 0.8125rem;
-  color: var(--c-text-muted);
-  line-height: 1.6;
-  margin: 0.5rem 0 0;
-}
-
-@media (max-width: 1024px) {
-  .archive-plate__desc { display: none; }
-}
-
-/* Plate counter */
-.archive-plate__count {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
-  color: var(--c-text-muted);
-  opacity: 0.5;
-  flex-shrink: 0;
-}
-
-.archive-plate__count-sep { opacity: 0.5; }
 
 /* ==========================================================================
    09. FIND US IN BAGBAZAR (VISIT SECTION)
@@ -2791,7 +2620,7 @@ button {
   justify-content: center;
   gap: 3px;
   padding: 0.4rem 0.5rem;
-  border-radius: var(--radius-sm);
+  border-radius: 2px;
   color: var(--c-accent-forest);
   font-size: 0.75rem;
   font-weight: 600;
@@ -2946,6 +2775,17 @@ button {
     display: none;
   }
 
+  .asymmetric-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .asym-item--wide {
+    grid-column: span 2;
+  }
+
+  .asym-item--tall {
+    grid-row: span 1;
+  }
 
   .visit-details-strip {
     grid-template-columns: 1fr;
@@ -3143,6 +2983,20 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .asymmetric-gallery {
+    gap: 2rem;
+  }
+
+  .asym-row--primary,
+  .asym-row--secondary {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .asym-row--primary .img-frame,
+  .asym-row--secondary .img-frame {
+    height: 260px;
+  }
 
   .visit-actions {
     flex-direction: column;
@@ -3219,33 +3073,6 @@ button {
 
   .wap-item {
     transform: none !important;
-  }
-
-  /* Archive Sequence: fall back to simple vertical stack */
-  .archive-seq-stage {
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  .archive-plate {
-    position: static !important;
-    opacity: 1 !important;
-    transform: none !important;
-    pointer-events: auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    border-bottom: 1px solid var(--c-border-subtle);
-    padding: clamp(2.5rem, 5vw, 4rem) 0;
-  }
-
-  .archive-plate:last-child {
-    border-bottom: none;
-  }
-
-  .archive-plate__meta {
-    border-left: none !important;
-    border-top: 1px solid var(--c-border-subtle) !important;
-    padding: 1.25rem var(--container-padding) 0 !important;
   }
 }
 
