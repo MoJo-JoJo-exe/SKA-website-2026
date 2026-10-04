@@ -12,10 +12,6 @@
   --c-bg-primary: #FDFBF7;         /* Warm archival paper ground */
   --c-bg-secondary: #FFFFFF;       /* Crisp white editorial surface */
   --c-bg-surface-tint: #F5EFE6;    /* Subtle warm parchment tint */
-  --c-bg-archive: #E8E8E2;         /* Faded mineral / photographic archive field */
-  --c-bg-botanical: #E5E9E2;       /* Muted botanical / medicinal sage field */
-  --c-bg-clay: #EEE5D8;            /* Warm clay / medicinal paper field */
-  --c-bg-exhibition: #F2EEE6;      /* Subtle exhibition parchment / gallery field */
   --c-bg-dark: #16241C;            /* Deep botanical forest green */
   --c-bg-dark-surface: #1E3328;   /* Slightly lighter dark green for inner cards */
   --c-bg-footer: #0A0F0C;          /* Deepest near-black forest */
@@ -941,7 +937,7 @@ button {
    ========================================================================== */
 .archive-exhibition {
   padding: clamp(5rem, 8vw, 8.5rem) 0;
-  background-color: var(--c-bg-archive);
+  background-color: var(--c-bg-primary);
   position: relative;
 }
 
@@ -1554,7 +1550,7 @@ button {
 
 .editorial-practice {
   padding: clamp(5rem, 7vw, 7.5rem) 0;
-  background-color: var(--c-bg-botanical);
+  background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
   position: relative;
   overflow: hidden;
@@ -2008,7 +2004,7 @@ button {
    ========================================================================== */
 .practice-consultation {
   padding: clamp(5rem, 7vw, 7.5rem) 0;
-  background-color: var(--c-bg-clay);
+  background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
 
@@ -2166,7 +2162,7 @@ button {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--c-bg-clay);
+  background-color: var(--c-bg-secondary);
   border: 2px solid var(--c-accent-forest);
 }
 
@@ -2279,7 +2275,7 @@ button {
    ========================================================================== */
 .visual-archive {
   padding: clamp(5rem, 7vw, 7.5rem) 0;
-  background-color: var(--c-bg-exhibition);
+  background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
 
