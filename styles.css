@@ -682,29 +682,28 @@ button {
   display: block;
 }
 
-/* Devanagari identity — quieter, secondary to Latin title */
+/* Devanagari identity — the institution's original name, same register as the English title */
 .hero-archival__devanagari {
   margin-bottom: 2.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  border-left: 2px solid var(--c-border-subtle);
-  padding-left: 1rem;
+  gap: 0.15rem;
 }
 
 .dev-line {
   font-family: var(--font-dev);
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
-  color: var(--c-accent-ochre);
-  font-weight: 500;
-  line-height: 1.4;
+  font-size: clamp(1.35rem, 2.4vw, 1.875rem);
+  color: var(--c-accent-forest);
+  font-weight: 600;
+  line-height: 1.35;
 }
 
 .dev-line--sub {
-  font-size: clamp(0.8125rem, 1.3vw, 1rem);
+  font-size: clamp(0.75rem, 1.1vw, 0.875rem);
   color: var(--c-text-muted);
   font-weight: 400;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  opacity: 0.7;
 }
 
 /* Standfirst — one clear editorial sentence */
@@ -2592,17 +2591,19 @@ button {
 
 .footer__dev {
   font-family: var(--font-dev);
-  font-size: 2.25rem;
-  color: var(--c-accent-ochre-light);
-  line-height: 1;
-  margin-bottom: 0.35rem;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin-bottom: 0.2rem;
+  font-weight: 600;
 }
 
 .footer__en {
   font-family: var(--font-serif);
-  font-size: 1.625rem;
-  color: #FFFFFF;
+  font-size: 1.0625rem;
+  color: var(--c-accent-ochre-light);
   margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
 }
 
 .footer__addr, .footer__services {
@@ -2636,13 +2637,13 @@ button {
   color: var(--c-accent-ochre-light);
 }
 
-/* Giant Archival Seal */
+/* Giant Archival Seal — institutional watermark, not decoration */
 .footer__giant {
   font-family: var(--font-dev);
   font-size: clamp(4.5rem, 16vw, 13rem);
   line-height: 1;
   color: #FFFFFF;
-  opacity: 0.11;
+  opacity: 0.14;
   text-align: center;
   white-space: nowrap;
   pointer-events: none;
