@@ -3267,6 +3267,16 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .working-apothecary {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .wap-track-viewport {
+    overflow-x: auto !important;
+  }
 }
 
 /* ==========================================================================
@@ -4931,22 +4941,72 @@ button {
     });
   });
 
-  // 11. Working Apothecary — Quiet Per-Plate Scroll Reveals
-  // No pinning. No horizontal forced movement. Plates reveal as the visitor scrolls naturally.
-  const wapItems = document.querySelectorAll('.wap-item');
-  if (wapItems.length > 0) {
-    wapItems.forEach(plate => {
-      gsap.from(plate, {
-        opacity: 0,
-        y: 22,
-        duration: 0.8,
-        ease: 'power2.out',
+  // 11. Working Apothecary — Calibrated Horizontal Camera-Pan (Desktop Archival Traverse)
+  // Restores horizontal museum wall traverse with deliberate, unhurried pacing.
+  // Uses linear progress (ease: 'none') to eliminate mid-track velocity spikes,
+  // generous vertical distance (~400px scroll per photo) so visitors can examine details,
+  // and tightly coupled damping to prevent mouse-wheel flicks from racing past images.
+  const wapSection = document.getElementById('working-apothecary');
+  const wapTrack   = document.getElementById('wapTrack');
+
+  if (wapSection && wapTrack && hasGSAP && !prefersReducedMotion) {
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 1025px)', () => {
+      // Dynamic horizontal travel: spans all 10 plates and colophon with clean edge breathing room
+      const calculateTravel = () => {
+        const trackWidth = wapTrack.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        return Math.max(0, trackWidth - viewportWidth + 60);
+      };
+
+      // Calibrated viewing distance: 1.45x travel provides ~380-420px of deliberate vertical
+      // wheel scroll per photographic plate. Ensures comfortable viewing without rushing.
+      const getScrollDistance = () => {
+        const travel = calculateTravel();
+        return Math.max(2600, Math.min(4800, Math.round(travel * 1.45)));
+      };
+
+      // Timeline configuration: scrub 0.95 coupled with Lenis physics absorbs raw wheel ticks
+      // while settling smoothly without skating uncontrollably.
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: plate,
-          start: 'top 90%',
-          once: true
+          trigger: wapSection,
+          start: 'top top',
+          end: () => `+=${getScrollDistance()}`,
+          pin: true,
+          scrub: 0.95,
+          invalidateOnRefresh: true,
+          anticipatePin: 1
         }
       });
+
+      // Phase 1: Calm Arrival (8%) — Section pins; Plate 01 and title rest stably in view
+      // to let the visitor orient before lateral movement begins.
+      tl.to(wapTrack, {
+        x: () => -Math.min(18, calculateTravel() * 0.015),
+        duration: 0.08,
+        ease: 'power1.out'
+      });
+
+      // Phase 2: Steady Camera Traverse (84%) — Linear ease guarantees uniform, predictable
+      // speed across all 10 plates. No acceleration or rushing through the middle photos.
+      tl.to(wapTrack, {
+        x: () => -calculateTravel(),
+        duration: 0.84,
+        ease: 'none'
+      });
+
+      // Phase 3: Departure Hold (8%) — Settled pause on Colophon & final archival record
+      // before unpinning cleanly into Section 04 (Our Practice).
+      tl.to({}, {
+        duration: 0.08
+      });
+
+      return () => {
+        tl.kill();
+        gsap.set(wapTrack, { clearProps: 'transform' });
+      };
     });
   }
 

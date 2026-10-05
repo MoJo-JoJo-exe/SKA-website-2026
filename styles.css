@@ -3187,6 +3187,16 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .working-apothecary {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .wap-track-viewport {
+    overflow-x: auto !important;
+  }
 }
 
 /* ==========================================================================
