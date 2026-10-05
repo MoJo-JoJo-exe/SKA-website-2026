@@ -856,9 +856,10 @@ button {
 }
 
 .strip-title {
-  font-size: var(--text-headline);
+  font-size: clamp(2rem, 4vw, 3.25rem);
   color: var(--c-accent-forest);
-  line-height: 1.15;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .strip-grid {
@@ -892,7 +893,7 @@ button {
 
 .col-num {
   font-family: var(--font-serif);
-  font-size: 1.75rem;
+  font-size: 3rem;
   color: var(--c-accent-ochre);
   line-height: 1;
 }
@@ -1690,15 +1691,15 @@ button {
 }
 
 .practice-visual .img-frame {
-  height: clamp(360px, 48vh, 540px);
+  height: auto;
   border: 1px solid var(--c-border-subtle);
 }
 
 .practice-visual .img-frame img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
-  object-position: center 30%;
 }
 
 
@@ -2438,13 +2439,18 @@ button {
 }
 
 .visit-photo-plate {
-  height: clamp(420px, 55vh, 560px);
   border-radius: 6px;
   overflow: hidden;
 }
 
 .visit-photo-plate .img-frame {
-  height: 100%;
+  height: auto;
+}
+
+.visit-photo-plate .img-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .visit-details-strip {
