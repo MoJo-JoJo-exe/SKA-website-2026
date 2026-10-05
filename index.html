@@ -75,7 +75,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=6.5">
+  <!-- LCP Preload: facade photograph is the primary identity element on every viewport -->
+  <link rel="preload" as="image" href="assets/images/facade-full.jpg" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=6.6">
 </head>
 <body>
 
@@ -99,6 +101,7 @@
         <a href="#apothecary" class="nav__link"><span class="nav__link-num">05</span> Apothecary</a>
         <a href="#consultation" class="nav__link"><span class="nav__link-num">06</span> Consultation</a>
         <a href="#partners" class="nav__link"><span class="nav__link-num">07</span> Partners</a>
+        <a href="#visual-archive" class="nav__link"><span class="nav__link-num">08</span> Visual Archive</a>
         <a href="#visit" class="nav__link"><span class="nav__link-num">09</span> Visit</a>
       </nav>
 

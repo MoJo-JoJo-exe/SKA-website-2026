@@ -75,6 +75,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
 
+  <!-- LCP Preload: facade photograph is the primary identity element on every viewport -->
+  <link rel="preload" as="image" href="assets/images/facade-full.jpg" fetchpriority="high">
   <style>
 /* ==========================================================================
    SHREE KRISHNA AUSHADHALAYA (श्री कृष्ण औषधालय)
@@ -742,6 +744,7 @@ button {
   display: flex;
   flex-direction: column;
   padding-top: 0.25rem;
+  max-width: 580px;
 }
 
 /* Institution name — dominant typographic element */
@@ -1271,7 +1274,7 @@ button {
    ========================================================================== */
 .working-apothecary {
   position: relative;
-  background-color: var(--c-bg-primary);
+  background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
   overflow: hidden;
 }
@@ -2383,23 +2386,25 @@ button {
 .asym-row {
   display: grid;
   gap: 1.75rem;
-  align-items: stretch;
+  align-items: start;
 }
 
 .asym-row--primary {
   grid-template-columns: 1.35fr 1fr;
 }
 
+/* Heights removed: images display at natural aspect ratio to preserve full photographic content */
 .asym-row--primary .img-frame {
-  height: clamp(340px, 44vh, 440px);
+  height: auto;
 }
 
 .asym-row--secondary {
   grid-template-columns: 1fr 1.35fr 0.85fr;
 }
 
+/* Heights removed: images display at natural aspect ratio to preserve full photographic content */
 .asym-row--secondary .img-frame {
-  height: clamp(280px, 35vh, 340px);
+  height: auto;
 }
 
 .asym-item {
@@ -2414,7 +2419,8 @@ button {
 
 .asym-item .img-frame img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
   transition: transform var(--transition-slow);
 }
@@ -2869,13 +2875,17 @@ button {
   }
 
   .daily-rhythm {
-    border-left: none;
-    border-top: 1px solid var(--c-border-subtle);
-    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+    border-left: 2px solid var(--c-border-subtle);
+    padding: 2.5rem 1.5rem 1.5rem 2.5rem;
   }
 
+  /* Restore simplified dot markers at tablet — timeline metaphor preserved */
   .rhythm-step::before {
-    display: none;
+    width: 8px;
+    height: 8px;
+    left: calc(-2.5rem - 5px);
+    top: 7px;
+    box-shadow: none;
   }
 
   .asymmetric-gallery {
@@ -3101,10 +3111,7 @@ button {
     gap: 2rem;
   }
 
-  .asym-row--primary .img-frame,
-  .asym-row--secondary .img-frame {
-    height: 260px;
-  }
+  /* Mobile: images remain at natural aspect ratios in single-column layout */
 
   .visit-actions {
     flex-direction: column;
@@ -3206,6 +3213,7 @@ button {
 .nav__link.is-active {
   color: var(--c-accent-forest);
   font-weight: 600;
+  box-shadow: 0 1.5px 0 0 var(--c-accent-ochre); /* Restrained ochre underline — no layout shift */
 }
 .nav__link.is-active .nav__link-num {
   color: var(--c-accent-ochre);
@@ -3329,6 +3337,7 @@ button {
         <a href="#apothecary" class="nav__link"><span class="nav__link-num">05</span> Apothecary</a>
         <a href="#consultation" class="nav__link"><span class="nav__link-num">06</span> Consultation</a>
         <a href="#partners" class="nav__link"><span class="nav__link-num">07</span> Partners</a>
+        <a href="#visual-archive" class="nav__link"><span class="nav__link-num">08</span> Visual Archive</a>
         <a href="#visit" class="nav__link"><span class="nav__link-num">09</span> Visit</a>
       </nav>
 
