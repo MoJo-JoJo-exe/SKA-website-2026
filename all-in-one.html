@@ -1073,12 +1073,11 @@ button {
   font-size: 0.6875rem;
 }
 
-/* Monumental Typographic Headline Composition */
+/* Headline Composition: Monumental Year + Context (Together) */
 .archive-headline-wrap {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: clamp(2rem, 5vw, 5rem);
+  align-items: baseline;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
   flex-wrap: wrap;
   border-bottom: 1px solid var(--c-border-subtle);
   padding-bottom: clamp(1.75rem, 3vw, 2.75rem);
@@ -1086,27 +1085,24 @@ button {
 
 .archive-giant-year {
   font-family: var(--font-serif);
-  font-size: clamp(5.25rem, 14vw, 12.5rem);
-  line-height: 0.82;
+  font-size: clamp(5rem, 13vw, 11.5rem);
+  line-height: 0.85;
   color: var(--c-accent-forest);
-  letter-spacing: -0.045em;
+  letter-spacing: -0.02em;
   font-weight: 400;
-  display: block;
+  display: inline-block;
+  padding-right: 0.12em; /* Prevents glyph right-edge clipping on numeral 8 */
+}
+
+.archive-giant-year .word-wrap {
+  overflow: visible !important; /* Ensures right serif of 8 is not clipped by GSAP word wrapper */
+  padding-right: 0.08em;
 }
 
 .archive-headline-context {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  padding-bottom: 0.25rem;
-}
-
-.archive-kicker {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--c-accent-ochre);
 }
 
 .archive-place {
@@ -3631,13 +3627,9 @@ button {
             <span class="archive-meta-index">PLATE · 1968-KTM-01 · ACCESSION RECORD</span>
           </div>
 
-          <!-- Monumental Typographic Date & Asymmetric Context -->
           <div class="archive-headline-wrap">
-            <div class="archive-year-col">
-              <span class="archive-giant-year" data-animate="split-lines">1968</span>
-            </div>
+            <span class="archive-giant-year" data-animate="split-lines">1968</span>
             <div class="archive-headline-context">
-              <span class="archive-kicker">PHYSICAL EVIDENCE OF PRACTICE</span>
               <h2 class="archive-place">Bagbazar, Kathmandu</h2>
               <span class="archive-date-nep" lang="ne">ऐतिहासिक अभिलेख — २०२५ वि.सं.</span>
             </div>
