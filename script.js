@@ -272,41 +272,63 @@
     });
   });
 
-  // 11. Archive Wall — Per-plate scroll reveals and subtle image parallax
-  //     Natural vertical scrolling. No pinning. No forced interaction.
-  //     The animation should be almost invisible — photographs before movement.
-  const wapWall = document.querySelector('.wap-wall');
+  // 11. Horizontal Archival Sequence for "The Working Apothecary" (Editorial Rhythm & Calibrated Physics)
+  const wapSection = document.getElementById('working-apothecary');
+  const wapTrack   = document.getElementById('wapTrack');
 
-  if (wapWall && hasGSAP && !prefersReducedMotion) {
-    // Subtle per-image parallax: each photograph breathes independently as the visitor scrolls
-    const wapImages = wapWall.querySelectorAll('.wap-item__frame img');
-    wapImages.forEach(img => {
-      gsap.to(img, {
-        y: -18,
-        ease: 'none',
+  if (wapSection && wapTrack && hasGSAP && !prefersReducedMotion) {
+    const mm = gsap.matchMedia();
+
+    mm.add('(min-width: 1025px)', () => {
+      // Dynamic horizontal travel: smoothly reveal all plates and colophon with clean edge breathing room
+      const calculateTravel = () => {
+        const trackWidth = wapTrack.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        return Math.max(0, trackWidth - viewportWidth + 48);
+      };
+
+      // Uncompressed editorial reading distance: ensures comfortable viewing time per photographic plate
+      const getScrollDistance = () => {
+        const travel = calculateTravel();
+        return Math.max(900, Math.round(travel * 0.92));
+      };
+
+      // Timeline configuration: calibrated inertia (scrub: 1.35) balances tactile connection with velvet damping
+      const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: img.closest('.wap-item') || img,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.8
+          trigger: wapSection,
+          start: 'top top',
+          end: () => `+=${getScrollDistance()}`,
+          pin: true,
+          scrub: 1.35, // Balanced damping: absorbs raw wheel spikes while maintaining precise direct control
+          invalidateOnRefresh: true,
+          anticipatePin: 1
         }
       });
-    });
 
-    // Quiet scroll-reveal for each plate: plates appear as they enter the viewport
-    const wapPlates = wapWall.querySelectorAll('.wap-item');
-    wapPlates.forEach(plate => {
-      gsap.from(plate, {
-        opacity: 0,
-        y: 28,
-        duration: 0.85,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: plate,
-          start: 'top 90%',
-          once: true
-        }
+      // Phase 1: Calm Entry (12%) — Opening plate & title rest stably in view; micro-drift creates gentle tactile pickup
+      tl.to(wapTrack, {
+        x: () => -Math.min(22, calculateTravel() * 0.02),
+        duration: 0.12,
+        ease: 'power1.out'
       });
+
+      // Phase 2: Main Archival Sequence (76%) — Smooth, deliberate horizontal traverse across 10 plates
+      tl.to(wapTrack, {
+        x: () => -calculateTravel(),
+        duration: 0.76,
+        ease: 'power1.inOut'
+      });
+
+      // Phase 3: Calm Release (12%) — Settled breath on final archival record & colophon before releasing to Section 04
+      tl.to({}, {
+        duration: 0.12
+      });
+
+      return () => {
+        tl.kill();
+        gsap.set(wapTrack, { clearProps: 'transform' });
+      };
     });
   }
 
