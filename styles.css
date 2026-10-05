@@ -2216,41 +2216,25 @@ button {
   max-width: 620px;
 }
 
-.partners-register {
+.partners-pillars {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem 2.5rem;
+  gap: 2rem;
   border-top: 1px solid var(--c-border-dark);
   padding-top: 2rem;
-  margin-bottom: 2.75rem;
+  margin-bottom: 2.5rem;
 }
 
-.p-register-entry {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.p-register-entry__num {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
+.p-pillar h3 {
+  font-size: 1.125rem;
   color: var(--c-accent-ochre-light);
-  line-height: 1;
+  margin-bottom: 0.35rem;
 }
 
-.p-register-entry__title {
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--c-text-light);
-  margin: 0.2rem 0;
-}
-
-.p-register-entry__desc {
-  font-size: 0.8125rem;
+.p-pillar p {
+  font-size: 0.875rem;
   color: var(--c-text-light-muted);
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .partners-visual {
@@ -3003,9 +2987,8 @@ button {
     line-height: 1.15;
   }
 
-  .partners-register {
+  .partners-pillars {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
   }
 
   .asymmetric-gallery {
