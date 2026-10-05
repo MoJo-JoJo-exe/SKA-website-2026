@@ -1115,16 +1115,18 @@ button {
 
 .ann-line {
   width: 1px;
-  height: 20px;
-  background: rgba(253, 251, 247, 0.55);
+  height: 28px;
+  background: rgba(212, 165, 116, 0.9);
+  box-shadow: 0 0 0 1px rgba(10, 15, 12, 0.25);
 }
 
 .ann-dot {
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #D4A574;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(253, 251, 247, 0.95);
+  box-shadow: 0 1px 6px rgba(10, 15, 12, 0.45);
 }
 
 /* Editorial Curatorial Caption */
@@ -1200,7 +1202,6 @@ button {
   .working-apothecary {
     height: 100vh;
     min-height: 620px;
-    max-height: 1080px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1387,7 +1388,7 @@ button {
 
 /* Standard archival image size: never cropped, full aspect preserved */
 .wap-item__frame img {
-  height: clamp(255px, 34vh, 325px);
+  height: clamp(270px, 37vh, 350px);
   width: auto;
   max-width: none;
   display: block;
@@ -1397,11 +1398,11 @@ button {
 
 /* Major documentary authority plates (Plates 06 & 09, Plate 03) */
 .wap-item--major .wap-item__frame img {
-  height: clamp(295px, 42vh, 395px);
+  height: clamp(310px, 44vh, 420px);
 }
 
 .wap-item--hero:not(.wap-item--major) .wap-item__frame img {
-  height: clamp(280px, 38vh, 365px);
+  height: clamp(295px, 40vh, 385px);
 }
 
 @media (max-width: 1024px) {
@@ -2010,7 +2011,7 @@ button {
    ========================================================================== */
 .practice-consultation {
   padding: clamp(5rem, 7vw, 7.5rem) 0;
-  background-color: var(--c-bg-secondary);
+  background-color: var(--c-bg-surface-tint);
   border-top: 1px solid var(--c-border-subtle);
 }
 
@@ -2644,13 +2645,25 @@ button {
 /* ==========================================================================
    16. RESPONSIVE BREAKPOINTS
    ========================================================================== */
-/* Navigation collapse at intermediate laptop widths before links get cramped */
+/* Intermediate laptop widths: keep the archive directory visible, tighten it,
+   and drop the call button before links get cramped */
 @media (max-width: 1380px) {
   .nav__menu {
-    display: none;
+    gap: clamp(0.6rem, 0.9vw, 1rem);
+  }
+
+  .nav__link {
+    font-size: 0.75rem;
   }
 
   .nav__actions .btn--nav {
+    display: none;
+  }
+}
+
+/* Collapse to the archival index overlay only when the directory truly no longer fits */
+@media (max-width: 1180px) {
+  .nav__menu {
     display: none;
   }
 
