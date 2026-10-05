@@ -2011,7 +2011,7 @@ button {
    ========================================================================== */
 .practice-consultation {
   padding: clamp(5rem, 7vw, 7.5rem) 0;
-  background-color: var(--c-bg-surface-tint);
+  background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
 }
 
