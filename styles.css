@@ -993,11 +993,12 @@ button {
   font-size: 0.6875rem;
 }
 
-/* Headline Composition: Monumental Year + Context (Together) */
+/* Monumental Typographic Headline Composition */
 .archive-headline-wrap {
   display: flex;
-  align-items: baseline;
-  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(2rem, 5vw, 5rem);
   flex-wrap: wrap;
   border-bottom: 1px solid var(--c-border-subtle);
   padding-bottom: clamp(1.75rem, 3vw, 2.75rem);
@@ -1005,24 +1006,27 @@ button {
 
 .archive-giant-year {
   font-family: var(--font-serif);
-  font-size: clamp(5rem, 13vw, 11.5rem);
-  line-height: 0.85;
+  font-size: clamp(5.25rem, 14vw, 12.5rem);
+  line-height: 0.82;
   color: var(--c-accent-forest);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.045em;
   font-weight: 400;
-  display: inline-block;
-  padding-right: 0.12em; /* Prevents glyph right-edge clipping on numeral 8 */
-}
-
-.archive-giant-year .word-wrap {
-  overflow: visible !important; /* Ensures right serif of 8 is not clipped by GSAP word wrapper */
-  padding-right: 0.08em;
+  display: block;
 }
 
 .archive-headline-context {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  padding-bottom: 0.25rem;
+}
+
+.archive-kicker {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-accent-ochre);
 }
 
 .archive-place {
@@ -1279,20 +1283,13 @@ button {
 
 @media (min-width: 1025px) {
   .working-apothecary {
-    height: 100vh;
-    min-height: 620px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: clamp(4rem, 6vw, 6.5rem) 0 clamp(5rem, 8vw, 8rem);
   }
 }
 
 @media (max-width: 1024px) {
   .working-apothecary {
-    padding: clamp(3.5rem, 6vw, 5rem) 0;
-    height: auto;
-    min-height: 0;
-    overflow: visible;
+    padding: clamp(3.5rem, 6vw, 5rem) 0 clamp(4rem, 7vw, 6rem);
   }
 }
 
@@ -1364,83 +1361,79 @@ button {
   max-width: 520px;
 }
 
-/* Track Viewport & Moving Register */
-.wap-track-viewport {
-  width: 100%;
-}
-
-@media (min-width: 1025px) {
-  .wap-track-viewport {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: clamp(0.5rem, 1.5vh, 1.25rem) 0 clamp(1.5rem, 2.8vh, 2.75rem);
-  }
-}
-
-@media (max-width: 1024px) {
-  .wap-track-viewport {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding: 1.5rem var(--container-padding) 2.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--c-accent-ochre) var(--c-bg-surface-tint);
-  }
-}
-
-.wap-track {
+/* ── Museum Archive Wall ──────────────────────────────────────────────────
+   Plates are laid out vertically with deliberate asymmetric positioning.
+   Natural scroll. No pinning. No forced interaction.
+   ──────────────────────────────────────────────────────────────────────── */
+.wap-wall {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: clamp(2rem, 3.5vw, 3.5rem) var(--container-padding) 0;
   display: flex;
-  align-items: center; /* Optical museum horizon: plates align around center with curated vertical offsets */
-  gap: clamp(1.75rem, 2.5vw, 2.75rem);
-  padding-left: var(--container-padding);
-  padding-right: clamp(3rem, 5vw, 6rem);
-  will-change: transform;
+  flex-direction: column;
+  gap: clamp(4rem, 7vw, 8rem);
 }
+
+/* ── Desktop: Asymmetric plate placement on the wall ─────────────────────
+   Each plate occupies a deliberate horizontal position creating the
+   rhythm of a curated exhibition wall — not a grid, not a slider.
+   ──────────────────────────────────────────────────────────────────────── */
+@media (min-width: 1025px) {
+  .wap-wall .wap-item:nth-child(1)  { width: 60%; align-self: flex-start; }         /* Compounding Station */
+  .wap-wall .wap-item:nth-child(2)  { width: 46%; align-self: flex-end; }           /* Mechanical Press */
+  .wap-wall .wap-item:nth-child(3)  { width: 74%; align-self: center; }             /* Dispensary Counter — anchor */
+  .wap-wall .wap-item:nth-child(4)  { width: 50%; margin-left: 8%; }               /* Formulary Ledger */
+  .wap-wall .wap-item:nth-child(5)  { width: 42%; align-self: flex-end; }           /* Measurement & Observation */
+  .wap-wall .wap-item:nth-child(6)  { width: 65%; align-self: flex-start; }         /* Ashokarishta — major */
+  .wap-wall .wap-item:nth-child(7)  { width: 44%; margin-left: auto; margin-right: 8%; } /* Electric Milling */
+  .wap-wall .wap-item:nth-child(8)  { width: 54%; margin-left: 16%; }              /* Dispensary Lineage */
+  .wap-wall .wap-item:nth-child(9)  { width: 68%; align-self: flex-start; }         /* Shodhit Shilajit — major */
+  .wap-wall .wap-item:nth-child(10) { width: 46%; align-self: flex-end; margin-right: 3%; } /* Press Detail */
+
+  /* Extra visual pause before documentary authority plates */
+  .wap-wall .wap-item--spacer-before {
+    margin-top: clamp(2rem, 4vw, 4.5rem);
+  }
+}
+
+/* ── Tablet: Two-column editorial pairs ──────────────────────────────── */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .wap-wall {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 3.5vw, 3.5rem);
+  }
+  /* Anchor plate spans full width */
+  .wap-wall .wap-item:nth-child(3) {
+    grid-column: span 2;
+  }
+  /* Major documentary authority plates span full width */
+  .wap-wall .wap-item--major {
+    grid-column: span 2;
+    max-width: 72%;
+    justify-self: center;
+  }
+}
+
+/* ── Mobile: Full-width vertical stack ───────────────────────────────── */
+@media (max-width: 640px) {
+  .wap-wall {
+    gap: clamp(3rem, 9vw, 4.5rem);
+  }
+  .wap-wall .wap-item {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    align-self: auto !important;
+  }
+}
+
+
 
 /* Individual Archival Plate Item */
 .wap-item {
-  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  scroll-snap-align: start;
-}
-
-/* ── Art-Directed Vertical Rhythm (Desktop) ───────────────────────────────
-   Curated vertical placement simulates an art director's hand-mounted exhibition.
-   Offsets are applied relative to the optical center baseline.
-   ───────────────────────────────────────────────────────────────────────── */
-@media (min-width: 1025px) {
-  /* Plate 01: slightly lower anchor */
-  .wap-item--offset-0,
-  .wap-item--offset-lower       { transform: translateY(18px);  }
-  /* Plate 02: slightly higher */
-  .wap-item--offset-1,
-  .wap-item--offset-higher      { transform: translateY(-16px); }
-  /* Plate 04: slightly lower */
-  .wap-item--offset-2,
-  .wap-item--offset-subtle-low  { transform: translateY(22px);  }
-  /* Quiet / neutral moments (Plates 05, 07) */
-  .wap-item--offset-3,
-  .wap-item--offset-quiet       { transform: translateY(0);     }
-  /* Plate 08: slightly higher */
-  .wap-item--offset-4,
-  .wap-item--offset-raised      { transform: translateY(-12px); }
-}
-
-/* ── Visual Resting Moments: Breathing Gaps ───────────────────────────────
-   Extra whitespace before important photographs (Plates 06 & 09) gives the
-   visitor an intentional pause to transition attention.
-   ───────────────────────────────────────────────────────────────────────── */
-@media (min-width: 1025px) {
-  .wap-item--spacer-before {
-    margin-left: clamp(2.5rem, 4.5vw, 5.5rem);
-  }
-  .wap-item--closing {
-    margin-right: clamp(2rem, 3.5vw, 4rem);
-  }
 }
 
 .wap-item__plate {
@@ -1453,9 +1446,6 @@ button {
   overflow: hidden;
   border: 1px solid var(--c-border-subtle);
   background-color: var(--c-bg-surface-tint);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   box-shadow: 0 4px 16px rgba(28, 27, 24, 0.04);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
@@ -1465,35 +1455,18 @@ button {
   box-shadow: 0 8px 24px rgba(28, 27, 24, 0.08);
 }
 
-/* Standard archival image size: never cropped, full aspect preserved */
+/* Natural aspect ratio — image fidelity over fixed height cropping
+   Each photograph renders at its full native proportion.
+   Width is controlled by the plate's position on the wall. */
 .wap-item__frame img {
-  height: clamp(270px, 37vh, 350px);
-  width: auto;
-  max-width: none;
+  width: 100%;
+  height: auto;
   display: block;
-  object-fit: contain;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Major documentary authority plates (Plates 06 & 09, Plate 03) */
-.wap-item--major .wap-item__frame img {
-  height: clamp(310px, 44vh, 420px);
-}
-
-.wap-item--hero:not(.wap-item--major) .wap-item__frame img {
-  height: clamp(295px, 40vh, 385px);
-}
-
-@media (max-width: 1024px) {
-  .wap-item__frame img,
-  .wap-item--hero .wap-item__frame img,
-  .wap-item--major .wap-item__frame img {
-    height: clamp(240px, 45vw, 320px);
-  }
-}
-
 .wap-item__frame:hover img {
-  transform: scale(1.02);
+  transform: scale(1.015);
 }
 
 /* ── Museum Accession Metadata ───────────────────────────────────────────
@@ -1566,25 +1539,22 @@ button {
   opacity: 0.85;
 }
 
-/* Archival Colophon / Register Conclusion */
-.wap-colophon {
-  flex-shrink: 0;
-  width: clamp(260px, 23vw, 320px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  scroll-snap-align: start;
+/* Archival Colophon — Standalone editorial block below the wall */
+.wap-colophon-section {
+  max-width: var(--container-width);
+  margin: clamp(3.5rem, 6vw, 6rem) auto 0;
+  padding: clamp(2.5rem, 4vw, 3.5rem) var(--container-padding);
+  border-top: 1px solid var(--c-border-subtle);
+}
+
+.wap-colophon-section .wap-colophon__inner {
+  max-width: 440px;
 }
 
 .wap-colophon__inner {
-  background: var(--c-bg-surface-tint);
-  border: 1px solid var(--c-border-subtle);
-  border-radius: 4px;
-  padding: clamp(1.5rem, 3vh, 2rem);
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  box-shadow: 0 4px 16px rgba(28, 27, 24, 0.04);
 }
 
 .wap-colophon__kicker {
