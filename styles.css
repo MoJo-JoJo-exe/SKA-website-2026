@@ -3187,21 +3187,6 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
-  .working-apothecary {
-    height: auto !important;
-    min-height: 0 !important;
-    overflow: visible !important;
-    padding: clamp(3.5rem, 6vw, 5rem) 0 !important;
-  }
-
-  .wap-track-viewport {
-    overflow-x: auto !important;
-  }
-
-  .wap-item {
-    transform: none !important;
-  }
 }
 
 /* ==========================================================================
@@ -3273,22 +3258,26 @@ button {
   border-color: var(--c-accent-ochre);
 }
 
-/* Specimen Inspection Lightbox Overlay */
+/* Specimen Inspection Lightbox Overlay — fades in/out, does not snap */
 .lightbox-overlay {
-  display: none;
   position: fixed;
   inset: 0;
   background: rgba(10, 15, 12, 0.95);
   z-index: 10000;
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: zoom-out;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease-out), visibility 0.3s var(--ease-out);
 }
 .lightbox-overlay.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
 }
 .lightbox-overlay img {
   max-width: 86vw;

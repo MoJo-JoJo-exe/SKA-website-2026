@@ -22,6 +22,9 @@
         smoothWheel: true
       });
 
+      // Expose for cross-IIFE access (lightbox scroll-lock coordination)
+      window.__SKA_lenis = lenis;
+
       if (hasGSAP) {
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
@@ -258,77 +261,38 @@
   });
 
   // 10. Subtle Parallax on Architectural Photographs
-  const parallaxImages = document.querySelectorAll('.img-frame img, .facade-plate img, .archive-frame img');
+  // Facade plate is excluded — it is the primary identity photograph and must remain stable.
+  // Displacement is small (-14px) so historical photographs feel grounded, not floating.
+  const parallaxImages = document.querySelectorAll('.img-frame img, .archive-frame img');
   parallaxImages.forEach(img => {
     gsap.to(img, {
-      y: -25,
+      y: -14,
       ease: 'none',
       scrollTrigger: {
         trigger: img.parentElement || img,
         start: 'top bottom',
         end: 'bottom top',
-        scrub: 1.2
+        scrub: 0.85
       }
     });
   });
 
-  // 11. Horizontal Archival Sequence for "The Working Apothecary" (Editorial Rhythm & Calibrated Physics)
-  const wapSection = document.getElementById('working-apothecary');
-  const wapTrack   = document.getElementById('wapTrack');
-
-  if (wapSection && wapTrack && hasGSAP && !prefersReducedMotion) {
-    const mm = gsap.matchMedia();
-
-    mm.add('(min-width: 1025px)', () => {
-      // Dynamic horizontal travel: smoothly reveal all plates and colophon with clean edge breathing room
-      const calculateTravel = () => {
-        const trackWidth = wapTrack.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        return Math.max(0, trackWidth - viewportWidth + 48);
-      };
-
-      // Uncompressed editorial reading distance: ensures comfortable viewing time per photographic plate
-      const getScrollDistance = () => {
-        const travel = calculateTravel();
-        return Math.max(900, Math.round(travel * 0.92));
-      };
-
-      // Timeline configuration: calibrated inertia (scrub: 1.35) balances tactile connection with velvet damping
-      const tl = gsap.timeline({
+  // 11. Working Apothecary — Quiet Per-Plate Scroll Reveals
+  // No pinning. No horizontal forced movement. Plates reveal as the visitor scrolls naturally.
+  const wapItems = document.querySelectorAll('.wap-item');
+  if (wapItems.length > 0) {
+    wapItems.forEach(plate => {
+      gsap.from(plate, {
+        opacity: 0,
+        y: 22,
+        duration: 0.8,
+        ease: 'power2.out',
         scrollTrigger: {
-          trigger: wapSection,
-          start: 'top top',
-          end: () => `+=${getScrollDistance()}`,
-          pin: true,
-          scrub: 1.35, // Balanced damping: absorbs raw wheel spikes while maintaining precise direct control
-          invalidateOnRefresh: true,
-          anticipatePin: 1
+          trigger: plate,
+          start: 'top 90%',
+          once: true
         }
       });
-
-      // Phase 1: Calm Entry (12%) — Opening plate & title rest stably in view; micro-drift creates gentle tactile pickup
-      tl.to(wapTrack, {
-        x: () => -Math.min(22, calculateTravel() * 0.02),
-        duration: 0.12,
-        ease: 'power1.out'
-      });
-
-      // Phase 2: Main Archival Sequence (76%) — Smooth, deliberate horizontal traverse across 10 plates
-      tl.to(wapTrack, {
-        x: () => -calculateTravel(),
-        duration: 0.76,
-        ease: 'power1.inOut'
-      });
-
-      // Phase 3: Calm Release (12%) — Settled breath on final archival record & colophon before releasing to Section 04
-      tl.to({}, {
-        duration: 0.12
-      });
-
-      return () => {
-        tl.kill();
-        gsap.set(wapTrack, { clearProps: 'transform' });
-      };
     });
   }
 
@@ -345,6 +309,8 @@
    ============================================================ */
 (function() {
   'use strict';
+
+  const hasLenisRef = typeof Lenis !== 'undefined';
 
   // --- Scroll Progress Bar ---
   const progressBar = document.getElementById('scrollProgressBar');
@@ -379,15 +345,18 @@
     onScroll();
   }
 
-  // --- Product Image Lightbox (also covers archival plates) ---
-  const overlay   = document.getElementById('lightboxOverlay');
-  const lbImg     = document.getElementById('lightboxImg');
-  const lbClose   = document.getElementById('lightboxClose');
+  // --- Archival Plate & Product Lightbox ---
+  // Fades in/out via CSS class. Coordinates Lenis scroll lock like the mobile menu.
+  const overlay  = document.getElementById('lightboxOverlay');
+  const lbImg    = document.getElementById('lightboxImg');
+  const lbClose  = document.getElementById('lightboxClose');
+
+  // Get lenis instance if available (created in IIFE above, stored on window for cross-IIFE access)
+  const getLenis = () => window.__SKA_lenis || null;
 
   if (overlay && lbImg && lbClose) {
-    // Collect both product images and archival plate images
-    const productImgs   = document.querySelectorAll('.item-visual img');
-    const archivalImgs  = document.querySelectorAll('[data-lightbox-trigger] img');
+    const productImgs  = document.querySelectorAll('.item-visual img');
+    const archivalImgs = document.querySelectorAll('[data-lightbox-trigger] img');
     const allLbImgs = [...productImgs, ...archivalImgs];
 
     const openLightbox = (img) => {
@@ -395,13 +364,16 @@
       lbImg.alt = img.alt;
       overlay.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+      const l = getLenis(); if (l) l.stop();
       lbClose.focus();
     };
 
     const closeLightbox = () => {
       overlay.classList.remove('is-open');
       document.body.style.overflow = '';
-      lbImg.src = '';
+      const l = getLenis(); if (l) l.start();
+      // Clear src after transition completes
+      setTimeout(() => { lbImg.src = ''; }, 350);
     };
 
     allLbImgs.forEach(img => {
@@ -417,5 +389,6 @@
       if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
     });
   }
+
 
 })();
