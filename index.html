@@ -77,7 +77,7 @@
 
   <!-- LCP Preload: facade photograph is the primary identity element on every viewport -->
   <link rel="preload" as="image" href="assets/images/facade-full.jpg" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=6.6">
+  <link rel="stylesheet" href="styles.css?v=6.7">
 </head>
 <body>
 
@@ -636,51 +636,32 @@
           <span class="archival-meta-bar__index">REF. SKA-PRAC-04</span>
         </header>
 
-        <div class="practice-lead" data-animate="fade-up">
-          <h2 class="practice-lead__statement" data-animate="split-lines">
-            Ayurveda is not simply what we sell.<br>
-            It is the practice we inherited.
-          </h2>
-        </div>
+        <div class="practice-editorial" data-animate="fade-up">
+          <div class="practice-editorial__lead">
+            <h2 class="practice-lead__statement" data-animate="split-lines">
+              Ayurveda is not simply what we sell.<br>
+              It is the practice we inherited.
+            </h2>
+          </div>
 
-        <!-- Three Editorial Columns with Rules -->
-        <div class="practice-columns">
-          <article class="p-col" data-animate="fade-up" data-delay="0">
-            <span class="p-col__num">01</span>
-            <h3 class="p-col__title">THE FAMILY</h3>
-            <span class="p-col__sub">Generational Baidya Stewardship</span>
-            <p class="p-col__text">
-              Transmitted across generations of practicing Baidyas, our clinic embodies diagnostic intuition, pulse reading mastery, and compounding standards developed through decades of capital practice.
+          <div class="practice-editorial__body">
+            <p class="practice-editorial__standfirst">
+              Transmitted across generations of practicing Baidyas, our clinic embodies diagnostic intuition, pulse reading mastery, and compounding standards maintained through decades of continuous practice at this address in Bagbazar.
             </p>
-          </article>
-
-          <article class="p-col" data-animate="fade-up" data-delay="0.1">
-            <span class="p-col__num">02</span>
-            <h3 class="p-col__title">THE PHARMACY</h3>
-            <span class="p-col__sub">Classical Medicines from Bagbazar</span>
-            <p class="p-col__text">
-              Our dispensary stocks authentic churnas, classical fermented asavas and arishtas, purified minerals, and potent botanical vatis prepared according to authoritative Ayurvedic pharmacopeias.
+            <p class="practice-editorial__note">
+              The formulations on our shelves are compounded according to authoritative pharmacopeias—not as museum specimens, but as daily clinical care prepared for the individual constitution of each patient who enters our dispensary.
             </p>
-          </article>
-
-          <article class="p-col" data-animate="fade-up" data-delay="0.2">
-            <span class="p-col__num">03</span>
-            <h3 class="p-col__title">THE PRACTICE</h3>
-            <span class="p-col__sub">Consultation & Patient Care</span>
-            <p class="p-col__text">
-              We treat the whole physiological constitution (Prakriti), identifying root imbalances (Vikriti) and restoring equilibrium through custom medicine regimens, seasonal dietetics, and lifestyle guidance.
-            </p>
-          </article>
+          </div>
         </div>
 
         <!-- Panoramic Dispensary Interior Visual -->
-        <figure class="practice-visual" data-animate="fade-up">
+        <figure class="practice-visual" data-animate="fade-up" data-delay="0.15">
           <div class="img-frame">
             <img src="assets/images/dispensary-interior.jpg" alt="Interior of Shree Krishna Aushadhalaya traditional dispensary counter in Bagbazar showing wooden shelving and amber apothecary bottles" width="1024" height="473" loading="lazy">
           </div>
           <figcaption class="practice-visual__caption">
             <span class="pv-idx">FIG. 04-A</span>
-            <span class="pv-label">Working Dispensary Counter · Timber Shelving &amp; Medicine Archive · Bagbazar</span>
+            <span class="pv-label">Working Dispensary Counter · Hand-Compounded Formulations &amp; Daily Consultation Workbench · Bagbazar</span>
           </figcaption>
         </figure>
 
@@ -1019,7 +1000,7 @@
           <div class="archival-meta-bar__doc">
             <span>SECTION 07</span>
             <span class="meta-sep">/</span>
-            <span>FORMULATION PARTNERS</span>
+            <span>INTERNATIONAL COMPOUNDING</span>
           </div>
           <span class="archival-meta-bar__index">REF. SKA-PART-07</span>
         </header>
@@ -1031,29 +1012,49 @@
             </h2>
 
             <p class="partners-intro">
-              Drawing upon generations of botanical expertise in the Himalayas, Shree Krishna Aushadhalaya compounds and supplies authentic Ayurvedic formulations for wellness partners across Europe and beyond.
+              Drawing upon generational Baidya knowledge and ethical Himalayan sourcing, Shree Krishna Aushadhalaya compounds and supplies classical Ayurvedic formulations for wellness partners across Europe and overseas.
             </p>
 
-            <div class="partners-pillars">
-              <div class="p-pillar">
-                <h3>Classical Formulation</h3>
-                <p>Authentic preparation according to canonical Ayurvedic texts.</p>
-              </div>
+            <div class="partners-register">
+              <article class="p-register-entry">
+                <span class="p-register-entry__num">01</span>
+                <div class="p-register-entry__content">
+                  <h3 class="p-register-entry__title">Canonical Pharmacopeia</h3>
+                  <p class="p-register-entry__desc">
+                    Preparation of classical churnas, compressed vatis, and fermented asavas and arishtas compounded strictly according to canonical Ayurvedic texts.
+                  </p>
+                </div>
+              </article>
 
-              <div class="p-pillar">
-                <h3>Custom Compounding</h3>
-                <p>Formulations tailored to partner-specific specifications and standards.</p>
-              </div>
+              <article class="p-register-entry">
+                <span class="p-register-entry__num">02</span>
+                <div class="p-register-entry__content">
+                  <h3 class="p-register-entry__title">Mineral Shodhana &amp; Purification</h3>
+                  <p class="p-register-entry__desc">
+                    Multi-stage traditional purification of high-altitude Himalayan minerals, including Shodhit Shilajit prepared with classical Triphala decoctions.
+                  </p>
+                </div>
+              </article>
 
-              <div class="p-pillar">
-                <h3>Licensed Manufacturing</h3>
-                <p>In-house processing adhering to traditional purification methodologies.</p>
-              </div>
+              <article class="p-register-entry">
+                <span class="p-register-entry__num">03</span>
+                <div class="p-register-entry__content">
+                  <h3 class="p-register-entry__title">Custom Partner Compounding</h3>
+                  <p class="p-register-entry__desc">
+                    Bespoke botanical formulations developed to partner specifications, stone-milled and batch-compounded at our licensed Bagbazar premises.
+                  </p>
+                </div>
+              </article>
 
-              <div class="p-pillar">
-                <h3>International Supply</h3>
-                <p>Reliable botanical supply to partner companies across Europe.</p>
-              </div>
+              <article class="p-register-entry">
+                <span class="p-register-entry__num">04</span>
+                <div class="p-register-entry__content">
+                  <h3 class="p-register-entry__title">European Supply &amp; Export</h3>
+                  <p class="p-register-entry__desc">
+                    Reliable formulation supply and direct institutional export fulfilling quality standards for wellness partner companies across Europe.
+                  </p>
+                </div>
+              </article>
             </div>
 
             <div class="partners-cta">
