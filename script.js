@@ -305,6 +305,8 @@
 
       // Timeline configuration: scrub 0.95 coupled with Lenis physics absorbs raw wheel ticks
       // while settling smoothly without skating uncontrollably.
+      // onLeave / onLeaveBack: absorbs accumulated virtual scroll momentum at the pin boundary
+      // so transitioning to vertical document flow is calm and seamless, preventing velocity spikes.
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wapSection,
@@ -313,7 +315,13 @@
           pin: true,
           scrub: 0.95,
           invalidateOnRefresh: true,
-          anticipatePin: 1
+          anticipatePin: 1,
+          onLeave: () => {
+            if (lenis) lenis.reset();
+          },
+          onLeaveBack: () => {
+            if (lenis) lenis.reset();
+          }
         }
       });
 
