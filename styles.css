@@ -142,6 +142,38 @@ button {
   outline-offset: 3px;
 }
 
+/* Accessible Skip Navigation Link */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 1.5rem;
+  background-color: var(--c-accent-forest);
+  color: var(--c-text-light);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 4px 4px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 100000;
+  transition: top var(--transition-fast);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.skip-link:focus-visible {
+  top: 0;
+  outline: 2px solid var(--c-accent-ochre);
+  outline-offset: 2px;
+}
+
+/* Lightbox triggers keyboard focus indicator */
+[data-lightbox-trigger]:focus-visible,
+.item-visual:focus-visible {
+  outline: 2px solid var(--c-accent-ochre);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 
 /* ==========================================================================
    3. REUSABLE EDITORIAL ATOMS

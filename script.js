@@ -76,6 +76,7 @@
       menuToggle.setAttribute('aria-expanded', 'false');
       menuToggle.classList.remove('nav__toggle--active');
       if (lenis) lenis.start();
+      menuToggle.focus();
     } else {
       isMenuOpen = true;
       mobileMenu.classList.add('mobile-menu--open');
@@ -83,6 +84,8 @@
       menuToggle.setAttribute('aria-expanded', 'true');
       menuToggle.classList.add('nav__toggle--active');
       if (lenis) lenis.stop();
+      const firstLink = mobileMenu.querySelector('.mobile-menu__nav a, .m-link');
+      if (firstLink) setTimeout(() => firstLink.focus(), 100);
     }
   }
 
@@ -97,6 +100,22 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && isMenuOpen) {
       toggleMenu(true);
+    }
+  });
+
+  // Focus trap for mobile menu
+  mobileMenu.addEventListener('keydown', (e) => {
+    if (!isMenuOpen || e.key !== 'Tab') return;
+    const focusable = mobileMenu.querySelectorAll('a, button');
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
     }
   });
 
@@ -127,9 +146,13 @@
   if (filterButtons.length > 0 && apothecaryItems.length > 0) {
     filterButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Toggle active state
-        filterButtons.forEach(b => b.classList.remove('is-active'));
+        // Toggle active state and update accessibility attributes
+        filterButtons.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
         btn.classList.add('is-active');
+        btn.setAttribute('aria-selected', 'true');
 
         const filterValue = btn.getAttribute('data-filter');
 
@@ -368,8 +391,6 @@
 (function() {
   'use strict';
 
-  const hasLenisRef = typeof Lenis !== 'undefined';
-
   // --- Scroll Progress Bar ---
   const progressBar = document.getElementById('scrollProgressBar');
   if (progressBar) {
@@ -404,7 +425,7 @@
   }
 
   // --- Archival Plate & Product Lightbox ---
-  // Fades in/out via CSS class. Coordinates Lenis scroll lock like the mobile menu.
+  // Fades in/out via CSS class. Coordinates Lenis scroll lock, keyboard focus trapping, and focus restoration.
   const overlay  = document.getElementById('lightboxOverlay');
   const lbImg    = document.getElementById('lightboxImg');
   const lbClose  = document.getElementById('lightboxClose');
@@ -413,13 +434,12 @@
   const getLenis = () => window.__SKA_lenis || null;
 
   if (overlay && lbImg && lbClose) {
-    const productImgs  = document.querySelectorAll('.item-visual img');
-    const archivalImgs = document.querySelectorAll('[data-lightbox-trigger] img');
-    const allLbImgs = [...productImgs, ...archivalImgs];
+    let lastFocusedTrigger = null;
 
-    const openLightbox = (img) => {
+    const openLightbox = (img, triggerEl) => {
+      lastFocusedTrigger = triggerEl || document.activeElement;
       lbImg.src = img.src;
-      lbImg.alt = img.alt;
+      lbImg.alt = img.alt || 'Archival plate full inspection';
       overlay.classList.add('is-open');
       document.body.style.overflow = 'hidden';
       const l = getLenis(); if (l) l.stop();
@@ -432,21 +452,45 @@
       const l = getLenis(); if (l) l.start();
       // Clear src after transition completes
       setTimeout(() => { lbImg.src = ''; }, 350);
+      if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
+        lastFocusedTrigger.focus();
+      }
     };
 
-    allLbImgs.forEach(img => {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', () => openLightbox(img));
+    // Attach click and keyboard triggers to all inspection elements
+    const triggers = document.querySelectorAll('[data-lightbox-trigger], .item-visual');
+    triggers.forEach(trigger => {
+      const img = trigger.querySelector('img');
+      if (!img) return;
+      trigger.style.cursor = 'zoom-in';
+
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        openLightbox(img, trigger);
+      });
+
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(img, trigger);
+        }
+      });
     });
 
     lbClose.addEventListener('click', closeLightbox);
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) closeLightbox();
     });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+
+    // Trap focus inside modal and close on Escape
+    overlay.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      } else if (e.key === 'Tab') {
+        e.preventDefault();
+        lbClose.focus();
+      }
     });
   }
-
 
 })();
