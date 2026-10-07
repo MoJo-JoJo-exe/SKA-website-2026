@@ -14,6 +14,7 @@
 
   // 2. Lenis Smooth Scrolling (Gentle, Luxurious Physics)
   let lenis = null;
+  let isProgrammaticScroll = false;
   if (hasLenis && !prefersReducedMotion) {
     try {
       lenis = new Lenis({
@@ -131,7 +132,15 @@
         e.preventDefault();
         toggleMenu(true);
         if (lenis) {
-          lenis.scrollTo(targetEl, { offset: -80 });
+          isProgrammaticScroll = true;
+          lenis.scrollTo(targetEl, {
+            offset: -80,
+            onComplete: () => {
+              isProgrammaticScroll = false;
+            }
+          });
+          // Failsafe timeout in case scrolling is interrupted
+          setTimeout(() => { isProgrammaticScroll = false; }, 2500);
         } else {
           targetEl.scrollIntoView({ behavior: 'smooth' });
         }
@@ -340,10 +349,10 @@
           invalidateOnRefresh: true,
           anticipatePin: 1,
           onLeave: () => {
-            if (lenis) lenis.reset();
+            if (lenis && !isProgrammaticScroll) lenis.reset();
           },
           onLeaveBack: () => {
-            if (lenis) lenis.reset();
+            if (lenis && !isProgrammaticScroll) lenis.reset();
           }
         }
       });
@@ -444,6 +453,14 @@
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
+    // Also listen to Lenis scroll for frame-accurate RAF updates
+    const hookLenis = () => {
+      const l = getLenis();
+      if (l) l.on('scroll', onScroll);
+      else setTimeout(hookLenis, 100);
+    };
+    hookLenis();
+
     // Delay initial call to let GSAP + Lenis initialize and pin sections first
     setTimeout(onScroll, 250);
   }

@@ -10,9 +10,7 @@
 
 - **Institution**: Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)
 - **Nature**: Authentic, generational **Baidya family Ayurvedic clinic, botanical pharmacy, and compounding compendium** in Kathmandu, Nepal.
-- **Location**: Bagbazar, Kathmandu 44600, Nepal.
-  - **Important Ward Clarification**: In historical municipal numbering, the clinic was located in **Ward 31**. Under current municipal delimitation, Bagbazar is **Ward 28**.
-  - **Rule**: Do **NOT** combine "31" and "Bagbazar" as a single street address ("31 Bagbazar" is deprecated). Only mention ward numbering where necessary (such as in legal address blocks: `Bagbazar, Ward No. 28 (formerly Ward 31), Kathmandu 44600`).
+- **Location**: Bagbazar, Ward No. 28, Kathmandu 44600, Nepal.
 - **GPS Coordinates**: `27°42'21.0"N 85°19'04.0"E` (Decimal: `27.705833, 85.317778`)
 - **Heritage**: Documented in archival color photography dated **1968 AD (2025 BS)** showing the traditional corner shopfront on Bagbazar road. Historical royal family associations and unbroken generational Baidya stewardship.
 - **Official Contact Details**:
@@ -96,7 +94,7 @@ Live Site: https://mojo-jojo-exe.github.io/SKA-website-2026/
 
 ### Essential Business Context:
 - **Heritage**: Generational Baidya family practice. Archival color photography from 1968 AD (2025 BS) confirms continuous operation at the corner of Bagbazar road. Historical royal associations exist in family archives.
-- **Location**: Bagbazar, Kathmandu (Ward 28, formerly Ward 31). GPS: 27°42'21.0"N 85°19'04.0"E. Note: Never write "31 Bagbazar" as a single street name.
+- **Location**: Bagbazar, Ward No. 28, Kathmandu 44600, Nepal. GPS: 27°42'21.0"N 85°19'04.0"E.
 - **Services**: 
   - Herbal Pharmacy & Dispensary: 7:00 AM – 8:00 PM Daily (365 days).
   - Clinical Doctor Consultations: 9:00 AM – 11:00 AM (Sunday–Friday).

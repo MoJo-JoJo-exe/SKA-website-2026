@@ -22,7 +22,7 @@ Official digital archive and institutional website for **Shree Krishna Aushadhal
 |---|---|
 | **Institution** | Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय) |
 | **Tradition** | Generational Baidya Family Stewardship · Ayurvedic Medicine & Compounding |
-| **Exact Address** | Bagbazar, Ward No. 28 (formerly Ward 31), Kathmandu 44600, Nepal |
+| **Exact Address** | Bagbazar, Ward No. 28, Kathmandu 44600, Nepal |
 | **GPS Coordinates** | `27°42'21.0"N 85°19'04.0"E` (Decimal: `27.705833, 85.317778`) |
 | **Herbal Pharmacy** | **7:00 AM – 8:00 PM**, Daily (Sunday – Saturday, 365 days a year) |
 | **Doctor Consultations** | **9:00 AM – 11:00 AM**, Sunday through Friday *(Closed Saturday for consultations)* |
