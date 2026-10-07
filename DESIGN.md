@@ -2,7 +2,7 @@
 ## Version 5.0 — The Apothecary Archive (Editorial Publication System)
 
 > **Institution**: Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)  
-> **Location**: Bagbazar, Ward No. 28 (formerly Ward 31), Kathmandu 44600, Nepal  
+> **Location**: Bagbazar, Ward No. 28, Kathmandu 44600, Nepal  
 > **Art Direction Concept**: *The Apothecary Archive* — Contemporary Materia Medica & Archival Institutional Record  
 > **Core Aesthetic**: Restrained, authentic, quiet confidence, architectural precision, and editorial typography.
 

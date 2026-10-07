@@ -405,23 +405,47 @@
   }
 
   // --- Nav Scroll-Spy ---
+  // Uses getBoundingClientRect for live position (handles GSAP-pinned sections whose
+  // offsetTop is unreliable after ScrollTrigger pins them). Clears all active states
+  // while the visitor is in the Hero zone so Working Apothecary never lights up at load.
   const navLinks = document.querySelectorAll('.nav__menu .nav__link');
   if (navLinks.length > 0) {
-    const sectionIds = Array.from(navLinks).map(l => l.getAttribute('href')).filter(h => h && h.startsWith('#'));
-    const sections = sectionIds.map(id => document.querySelector(id)).filter(Boolean);
+    const sectionIds = Array.from(navLinks)
+      .map(l => l.getAttribute('href'))
+      .filter(h => h && h.startsWith('#'));
+
+    const NAV_HEIGHT = 82; // px — matches .nav height
 
     const onScroll = () => {
-      const scrollMid = (window.scrollY || window.pageYOffset) + window.innerHeight * 0.4;
-      let activeId = sectionIds[0];
-      sections.forEach((sec, i) => {
-        if (sec.offsetTop <= scrollMid) activeId = sectionIds[i];
-      });
+      const scrollY = window.scrollY || window.pageYOffset;
+      const threshold = scrollY + NAV_HEIGHT + 4; // 4px tolerance
+
+      // Use live getBoundingClientRect so pinned sections report correctly
+      const tops = sectionIds.map(id => {
+        const el = document.querySelector(id);
+        if (!el) return null;
+        return { id, top: el.getBoundingClientRect().top + scrollY };
+      }).filter(Boolean);
+
+      // Find last section whose document-top is at/above the threshold
+      let activeId = null;
+      for (let i = 0; i < tops.length; i++) {
+        if (tops[i].top <= threshold) activeId = tops[i].id;
+      }
+
+      // If we haven't scrolled into the first nav section, keep everything clear (Hero state)
+      if (tops.length > 0 && scrollY + NAV_HEIGHT < tops[0].top) {
+        activeId = null;
+      }
+
       navLinks.forEach(l => {
         l.classList.toggle('is-active', l.getAttribute('href') === activeId);
       });
     };
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    // Delay initial call to let GSAP + Lenis initialize and pin sections first
+    setTimeout(onScroll, 250);
   }
 
   // --- Archival Plate & Product Lightbox ---
