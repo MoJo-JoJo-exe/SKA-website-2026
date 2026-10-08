@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mojo-jojo-exe.github.io/SKA-website-2026/sitemap.xml
+Sitemap: https://shreekrishnaaushadhalaya.com.np/sitemap.xml
