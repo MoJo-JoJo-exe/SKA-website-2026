@@ -135,9 +135,11 @@ button {
   border-radius: 3px;
 }
 
-/* Suppress focus ring for elements with custom styles */
 .btn:focus-visible,
-.nav__link:focus-visible {
+.nav__link:focus-visible,
+.filter-btn:focus-visible,
+.lightbox-close:focus-visible,
+.wap-nav-btn:focus-visible {
   outline: 2px solid var(--c-accent-ochre);
   outline-offset: 3px;
 }
@@ -1306,26 +1308,8 @@ button {
   position: relative;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
+  padding: clamp(4rem, 6vw, 5.5rem) 0 clamp(4.5rem, 7vw, 6.5rem);
   overflow: hidden;
-}
-
-@media (min-width: 1025px) {
-  .working-apothecary {
-    height: 100vh;
-    min-height: 620px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
-
-@media (max-width: 1024px) {
-  .working-apothecary {
-    padding: clamp(3.5rem, 6vw, 5rem) 0;
-    height: auto;
-    min-height: 0;
-    overflow: visible;
-  }
 }
 
 /* Header & Intro Row */
@@ -1337,7 +1321,7 @@ button {
 .wap-header__inner {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: clamp(1.75rem, 3.2vh, 3rem) var(--container-padding) 0;
+  padding: 0 var(--container-padding);
 }
 
 .wap-register-count {
@@ -1359,7 +1343,7 @@ button {
 @media (max-width: 768px) {
   .wap-intro-row {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 }
 
@@ -1386,7 +1370,7 @@ button {
 .wap-intro-text-block {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .wap-intro-text {
@@ -1396,31 +1380,82 @@ button {
   max-width: 520px;
 }
 
-/* Track Viewport & Moving Register */
+/* Archival Gallery Tactile Navigation Controls */
+.wap-nav-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  padding: 0.3rem 0.55rem;
+  background: var(--c-bg-primary);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.wap-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--c-accent-forest);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+  border-radius: 100px;
+  transition: background-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.wap-nav-btn:hover:not(:disabled) {
+  background-color: var(--c-accent-forest);
+  color: #FFFFFF;
+}
+
+.wap-nav-btn:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.wap-nav-btn:focus-visible {
+  outline: 2px solid var(--c-accent-ochre);
+  outline-offset: 2px;
+}
+
+.wap-nav-counter {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--c-accent-ochre);
+  text-transform: uppercase;
+  padding: 0 0.5rem;
+  border-left: 1px solid var(--c-border-subtle);
+  border-right: 1px solid var(--c-border-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Track Viewport: Continuous Natural Horizontal Gallery */
 .wap-track-viewport {
   width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: clamp(1.75rem, 3.5vh, 3rem) 0 clamp(2rem, 3.5vh, 3rem);
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-accent-ochre) var(--c-bg-surface-tint);
+  cursor: grab;
 }
 
-@media (min-width: 1025px) {
-  .wap-track-viewport {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: clamp(0.5rem, 1.5vh, 1.25rem) 0 clamp(1.5rem, 2.8vh, 2.75rem);
-  }
-}
-
-@media (max-width: 1024px) {
-  .wap-track-viewport {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding: 1.5rem var(--container-padding) 2.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--c-accent-ochre) var(--c-bg-surface-tint);
-  }
+.wap-track-viewport:active,
+.wap-track-viewport.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-behavior: auto;
 }
 
 .wap-track {
@@ -1429,7 +1464,7 @@ button {
   gap: clamp(1.75rem, 2.5vw, 2.75rem);
   padding-left: var(--container-padding);
   padding-right: clamp(3rem, 5vw, 6rem);
-  will-change: transform;
+  width: max-content;
 }
 
 /* Individual Archival Plate Item */
@@ -3184,9 +3219,20 @@ button {
     grid-column: span 1;
   }
 
+  .footer {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
   .footer__bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .partners-cta .btn {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
   }
 
   .footer__giant {

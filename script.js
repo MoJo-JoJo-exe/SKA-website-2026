@@ -309,81 +309,128 @@
     });
   });
 
-  // 11. Working Apothecary — Calibrated Horizontal Camera-Pan (Desktop Archival Traverse)
-  // Restores horizontal museum wall traverse with deliberate, unhurried pacing.
-  // Uses linear progress (ease: 'none') to eliminate mid-track velocity spikes,
-  // generous vertical distance (~400px scroll per photo) so visitors can examine details,
-  // and tightly coupled damping to prevent mouse-wheel flicks from racing past images.
-  const wapSection = document.getElementById('working-apothecary');
-  const wapTrack   = document.getElementById('wapTrack');
+  // 11. Working Apothecary — Fluid Archival Gallery Controller
+  // Replaces disruptive pinning with a natural, continuous gallery experience:
+  // - Preserves normal vertical scrolling (visitors can explore or scroll past anytime)
+  // - Enables smooth previous/next plate buttons and live plate counter
+  // - Supports tactile grab-and-drag horizontal scrolling on desktop
+  // - Preserves touch swiping on mobile and keyboard arrow navigation
+  // - Prevents accidental lightbox triggers during drag gestures
+  const wapSection       = document.getElementById('working-apothecary');
+  const wapTrackViewport = document.querySelector('.wap-track-viewport');
+  const wapTrack         = document.getElementById('wapTrack');
+  const wapPrevBtn       = document.getElementById('wapPrevBtn');
+  const wapNextBtn       = document.getElementById('wapNextBtn');
+  const wapNavCounter    = document.getElementById('wapNavCounter');
 
-  if (wapSection && wapTrack && hasGSAP && !prefersReducedMotion) {
-    const mm = gsap.matchMedia();
+  if (wapSection && wapTrackViewport && wapTrack) {
+    const plates = Array.from(wapTrack.querySelectorAll('.wap-item'));
+    const totalPlates = plates.length;
 
-    mm.add('(min-width: 1025px)', () => {
-      // Dynamic horizontal travel: spans all 10 plates and colophon with clean edge breathing room
-      const calculateTravel = () => {
-        const trackWidth = wapTrack.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        return Math.max(0, trackWidth - viewportWidth + 60);
-      };
+    // Calculate dynamic step based on first plate's width and gap
+    const getScrollStep = () => {
+      if (plates.length > 0) {
+        const firstPlate = plates[0];
+        const style = window.getComputedStyle(wapTrack);
+        const gap = parseFloat(style.gap) || 28;
+        return firstPlate.getBoundingClientRect().width + gap;
+      }
+      return 360;
+    };
 
-      // Calibrated viewing distance: 1.45x travel provides ~380-420px of deliberate vertical
-      // wheel scroll per photographic plate. Ensures comfortable viewing without rushing.
-      const getScrollDistance = () => {
-        const travel = calculateTravel();
-        return Math.max(2600, Math.min(4800, Math.round(travel * 1.45)));
-      };
+    // Update nav buttons disabled state and live counter indicator
+    const updateWapNav = () => {
+      const scrollLeft = wapTrackViewport.scrollLeft;
+      const maxScroll = wapTrackViewport.scrollWidth - wapTrackViewport.clientWidth;
 
-      // Timeline configuration: scrub 0.95 coupled with Lenis physics absorbs raw wheel ticks
-      // while settling smoothly without skating uncontrollably.
-      // onLeave / onLeaveBack: absorbs accumulated virtual scroll momentum at the pin boundary
-      // so transitioning to vertical document flow is calm and seamless, preventing velocity spikes.
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: wapSection,
-          start: 'top top',
-          end: () => `+=${getScrollDistance()}`,
-          pin: true,
-          scrub: 0.95,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-          onLeave: () => {
-            if (lenis && !isProgrammaticScroll) lenis.reset();
-          },
-          onLeaveBack: () => {
-            if (lenis && !isProgrammaticScroll) lenis.reset();
+      if (wapPrevBtn) wapPrevBtn.disabled = scrollLeft <= 8;
+      if (wapNextBtn) wapNextBtn.disabled = scrollLeft >= maxScroll - 8;
+
+      if (wapNavCounter && totalPlates > 0) {
+        const vpRect = wapTrackViewport.getBoundingClientRect();
+        let activeIdx = 0;
+        let minDiff = Infinity;
+
+        plates.forEach((p, idx) => {
+          const pRect = p.getBoundingClientRect();
+          const diff = Math.abs(pRect.left - vpRect.left);
+          if (diff < minDiff) {
+            minDiff = diff;
+            activeIdx = idx;
           }
-        }
-      });
+        });
 
-      // Phase 1: Calm Arrival (8%) — Section pins; Plate 01 and title rest stably in view
-      // to let the visitor orient before lateral movement begins.
-      tl.to(wapTrack, {
-        x: () => -Math.min(18, calculateTravel() * 0.015),
-        duration: 0.08,
-        ease: 'power1.out'
-      });
+        const plateNum = String(activeIdx + 1).padStart(2, '0');
+        wapNavCounter.textContent = `Plate ${plateNum} / ${totalPlates}`;
+      }
+    };
 
-      // Phase 2: Steady Camera Traverse (84%) — Linear ease guarantees uniform, predictable
-      // speed across all 10 plates. No acceleration or rushing through the middle photos.
-      tl.to(wapTrack, {
-        x: () => -calculateTravel(),
-        duration: 0.84,
-        ease: 'none'
-      });
+    wapTrackViewport.addEventListener('scroll', updateWapNav, { passive: true });
 
-      // Phase 3: Departure Hold (8%) — Settled pause on Colophon & final archival record
-      // before unpinning cleanly into Section 04 (Our Practice).
-      tl.to({}, {
-        duration: 0.08
+    if (wapPrevBtn) {
+      wapPrevBtn.addEventListener('click', () => {
+        wapTrackViewport.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
       });
+    }
 
-      return () => {
-        tl.kill();
-        gsap.set(wapTrack, { clearProps: 'transform' });
-      };
+    if (wapNextBtn) {
+      wapNextBtn.addEventListener('click', () => {
+        wapTrackViewport.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+      });
+    }
+
+    // Tactile Mouse Drag-to-Scroll on Desktop
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let dragDistance = 0;
+
+    wapTrackViewport.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isDown = true;
+      startX = e.pageX;
+      scrollStart = wapTrackViewport.scrollLeft;
+      dragDistance = 0;
+      wapTrackViewport.classList.add('is-dragging');
     });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const dx = e.pageX - startX;
+      dragDistance = Math.abs(dx);
+      wapTrackViewport.scrollLeft = scrollStart - dx;
+    });
+
+    const stopDrag = () => {
+      if (!isDown) return;
+      isDown = false;
+      wapTrackViewport.classList.remove('is-dragging');
+    };
+
+    window.addEventListener('mouseup', stopDrag);
+    window.addEventListener('mouseleave', stopDrag);
+
+    // Suppress lightbox click if user dragged the track
+    wapTrack.addEventListener('click', (e) => {
+      if (dragDistance > 6) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+
+    // Keyboard navigation: Left/Right arrows when focused inside track
+    wapTrackViewport.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        wapTrackViewport.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        wapTrackViewport.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+      }
+    });
+
+    // Initial state setup
+    updateWapNav();
   }
 
   // Recalculate ScrollTrigger positions on full page load
@@ -491,8 +538,8 @@
       overlay.classList.remove('is-open');
       document.body.style.overflow = '';
       const l = getLenis(); if (l) l.start();
-      // Clear src after transition completes
-      setTimeout(() => { lbImg.src = ''; }, 350);
+      // Remove src after transition completes to avoid empty-source browser fetch
+      setTimeout(() => { lbImg.removeAttribute('src'); }, 350);
       if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
         lastFocusedTrigger.focus();
       }

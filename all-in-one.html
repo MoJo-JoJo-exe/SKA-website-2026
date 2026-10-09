@@ -224,9 +224,11 @@ button {
   border-radius: 3px;
 }
 
-/* Suppress focus ring for elements with custom styles */
 .btn:focus-visible,
-.nav__link:focus-visible {
+.nav__link:focus-visible,
+.filter-btn:focus-visible,
+.lightbox-close:focus-visible,
+.wap-nav-btn:focus-visible {
   outline: 2px solid var(--c-accent-ochre);
   outline-offset: 3px;
 }
@@ -1395,26 +1397,8 @@ button {
   position: relative;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
+  padding: clamp(4rem, 6vw, 5.5rem) 0 clamp(4.5rem, 7vw, 6.5rem);
   overflow: hidden;
-}
-
-@media (min-width: 1025px) {
-  .working-apothecary {
-    height: 100vh;
-    min-height: 620px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-}
-
-@media (max-width: 1024px) {
-  .working-apothecary {
-    padding: clamp(3.5rem, 6vw, 5rem) 0;
-    height: auto;
-    min-height: 0;
-    overflow: visible;
-  }
 }
 
 /* Header & Intro Row */
@@ -1426,7 +1410,7 @@ button {
 .wap-header__inner {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: clamp(1.75rem, 3.2vh, 3rem) var(--container-padding) 0;
+  padding: 0 var(--container-padding);
 }
 
 .wap-register-count {
@@ -1448,7 +1432,7 @@ button {
 @media (max-width: 768px) {
   .wap-intro-row {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 }
 
@@ -1475,7 +1459,7 @@ button {
 .wap-intro-text-block {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .wap-intro-text {
@@ -1485,31 +1469,82 @@ button {
   max-width: 520px;
 }
 
-/* Track Viewport & Moving Register */
+/* Archival Gallery Tactile Navigation Controls */
+.wap-nav-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  padding: 0.3rem 0.55rem;
+  background: var(--c-bg-primary);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.wap-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--c-accent-forest);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+  border-radius: 100px;
+  transition: background-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.wap-nav-btn:hover:not(:disabled) {
+  background-color: var(--c-accent-forest);
+  color: #FFFFFF;
+}
+
+.wap-nav-btn:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+}
+
+.wap-nav-btn:focus-visible {
+  outline: 2px solid var(--c-accent-ochre);
+  outline-offset: 2px;
+}
+
+.wap-nav-counter {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--c-accent-ochre);
+  text-transform: uppercase;
+  padding: 0 0.5rem;
+  border-left: 1px solid var(--c-border-subtle);
+  border-right: 1px solid var(--c-border-subtle);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Track Viewport: Continuous Natural Horizontal Gallery */
 .wap-track-viewport {
   width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding: clamp(1.75rem, 3.5vh, 3rem) 0 clamp(2rem, 3.5vh, 3rem);
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-accent-ochre) var(--c-bg-surface-tint);
+  cursor: grab;
 }
 
-@media (min-width: 1025px) {
-  .wap-track-viewport {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: clamp(0.5rem, 1.5vh, 1.25rem) 0 clamp(1.5rem, 2.8vh, 2.75rem);
-  }
-}
-
-@media (max-width: 1024px) {
-  .wap-track-viewport {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    padding: 1.5rem var(--container-padding) 2.5rem;
-    scrollbar-width: thin;
-    scrollbar-color: var(--c-accent-ochre) var(--c-bg-surface-tint);
-  }
+.wap-track-viewport:active,
+.wap-track-viewport.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-behavior: auto;
 }
 
 .wap-track {
@@ -1518,7 +1553,7 @@ button {
   gap: clamp(1.75rem, 2.5vw, 2.75rem);
   padding-left: var(--container-padding);
   padding-right: clamp(3rem, 5vw, 6rem);
-  will-change: transform;
+  width: max-content;
 }
 
 /* Individual Archival Plate Item */
@@ -3273,9 +3308,20 @@ button {
     grid-column: span 1;
   }
 
+  .footer {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
   .footer__bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .partners-cta .btn {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
   }
 
   .footer__giant {
@@ -3478,7 +3524,7 @@ button {
       </nav>
 
       <div class="nav__actions">
-        <a href="tel:015322079" class="btn btn--nav">
+        <a href="tel:+97715322079" class="btn btn--nav">
           <span>Call Clinic</span>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
@@ -3514,7 +3560,7 @@ button {
 
       <div class="mobile-menu__footer">
         <div class="m-contact-row">
-          <a href="tel:015322079" class="btn btn--primary btn--full">Call: 01-5322079</a>
+          <a href="tel:+97715322079" class="btn btn--primary btn--full">Call: 01-5322079</a>
           <a href="https://wa.me/9779843748078" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--full">WhatsApp Business ↗</a>
         </div>
         <p class="m-hours">Pharmacy: 7 AM – 8 PM Daily · Consultations: 9 AM – 11 AM (Sun–Fri)</p>
@@ -3776,6 +3822,17 @@ button {
               <p class="wap-intro-text">
                 Preserved as un-retouched scans from the Baidya family archive, these photographs document the people, machinery, and compounding activity inside the institution. No dates were recorded on the original prints.
               </p>
+              <div class="wap-nav-controls" aria-label="Archival gallery navigation">
+                <button type="button" class="wap-nav-btn wap-nav-btn--prev" id="wapPrevBtn" aria-label="View previous plate" disabled>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+                  <span>Prev</span>
+                </button>
+                <span class="wap-nav-counter" id="wapNavCounter" aria-live="polite">Plate 01 / 10</span>
+                <button type="button" class="wap-nav-btn wap-nav-btn--next" id="wapNextBtn" aria-label="View next plate">
+                  <span>Next</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -4349,7 +4406,7 @@ button {
                 Morning clinical diagnosis focuses on constitutional balance (Prakriti), pulse characteristics (Nadi Pariksha), and metabolic vitality. While scheduled doctor visits run 9:00 to 11:00 AM, our senior physician and registered practitioners remain on hand at the dispensary counter to answer questions, explain medicine courses, and assist patients with unhurried care.
               </p>
               <div class="consultation-box__actions">
-                <a href="tel:015322079" class="btn btn--primary btn--full">
+                <a href="tel:+97715322079" class="btn btn--primary btn--full">
                   <span>Call to Inquire: 01-5322079</span>
                 </a>
                 <a href="https://wa.me/9779843748078" target="_blank" rel="noopener noreferrer" class="consultation-secondary-link">
@@ -4628,8 +4685,8 @@ button {
 
             <div class="v-detail-col">
               <span class="v-label">DIRECT CHANNELS</span>
-              <a href="tel:015322079" class="v-contact-link">Landline: 01-5322079</a>
-              <a href="tel:9843748078" class="v-contact-link">Mobile: 984-3748078</a>
+              <a href="tel:+97715322079" class="v-contact-link">Landline: 01-5322079</a>
+              <a href="tel:+9779843748078" class="v-contact-link">Mobile: 984-3748078</a>
               <a href="mailto:shreekrishna_aush@hotmail.com" class="v-contact-link">Email: shreekrishna_aush@hotmail.com</a>
               <a href="https://wa.me/9779843748078" target="_blank" rel="noopener noreferrer" class="v-contact-link">WhatsApp: +977 984-3748078 ↗</a>
             </div>
@@ -4642,7 +4699,7 @@ button {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
             </a>
             <div class="visit-secondary-actions">
-              <a href="tel:015322079" class="visit-text-link">
+              <a href="tel:+97715322079" class="visit-text-link">
                 <span>Call Directly: 01-5322079</span>
               </a>
               <span class="v-link-sep" aria-hidden="true">·</span>
@@ -4689,8 +4746,8 @@ button {
 
         <div class="footer__col">
           <span class="footer__col-title">Direct Inquiries</span>
-          <a href="tel:015322079">Dispensary: 01-5322079</a>
-          <a href="tel:9843748078">Mobile: 984-3748078</a>
+          <a href="tel:+97715322079">Dispensary: 01-5322079</a>
+          <a href="tel:+9779843748078">Mobile: 984-3748078</a>
           <a href="mailto:shreekrishna_aush@hotmail.com">Email: shreekrishna_aush@hotmail.com</a>
           <a href="https://wa.me/9779843748078" target="_blank" rel="noopener noreferrer">WhatsApp: +977 984-3748078 ↗</a>
           <a href="https://www.instagram.com/into_the_ayurveda/?hl=en" target="_blank" rel="noopener noreferrer">Instagram: @into_the_ayurveda ↗</a>
@@ -4712,7 +4769,7 @@ button {
        15. FLOATING MOBILE ACTION BAR (CALL · WHATSAPP · DIRECTIONS)
        ====================================================================== -->
   <aside class="mobile-action-bar" aria-label="Quick Actions">
-    <a href="tel:015322079" class="m-action-btn">
+    <a href="tel:+97715322079" class="m-action-btn">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       <span>Call</span>
     </a>
@@ -4727,9 +4784,9 @@ button {
   </aside>
 
   <!-- Lightbox Overlay (for archival plate and specimen inspection) -->
-  <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Archival photographic plate inspection">
+  <div class="lightbox-overlay" id="lightboxOverlay" role="dialog" aria-modal="true" aria-label="Archival photographic plate inspection" aria-describedby="lightboxImg">
     <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close archival inspection view">✕</button>
-    <img id="lightboxImg" src="" alt="">
+    <img id="lightboxImg" alt="Enlarged archival inspection plate">
   </div>
 
   <!-- Local Scripts (Local copies — zero CDN dependency) -->
@@ -5048,81 +5105,128 @@ button {
     });
   });
 
-  // 11. Working Apothecary — Calibrated Horizontal Camera-Pan (Desktop Archival Traverse)
-  // Restores horizontal museum wall traverse with deliberate, unhurried pacing.
-  // Uses linear progress (ease: 'none') to eliminate mid-track velocity spikes,
-  // generous vertical distance (~400px scroll per photo) so visitors can examine details,
-  // and tightly coupled damping to prevent mouse-wheel flicks from racing past images.
-  const wapSection = document.getElementById('working-apothecary');
-  const wapTrack   = document.getElementById('wapTrack');
+  // 11. Working Apothecary — Fluid Archival Gallery Controller
+  // Replaces disruptive pinning with a natural, continuous gallery experience:
+  // - Preserves normal vertical scrolling (visitors can explore or scroll past anytime)
+  // - Enables smooth previous/next plate buttons and live plate counter
+  // - Supports tactile grab-and-drag horizontal scrolling on desktop
+  // - Preserves touch swiping on mobile and keyboard arrow navigation
+  // - Prevents accidental lightbox triggers during drag gestures
+  const wapSection       = document.getElementById('working-apothecary');
+  const wapTrackViewport = document.querySelector('.wap-track-viewport');
+  const wapTrack         = document.getElementById('wapTrack');
+  const wapPrevBtn       = document.getElementById('wapPrevBtn');
+  const wapNextBtn       = document.getElementById('wapNextBtn');
+  const wapNavCounter    = document.getElementById('wapNavCounter');
 
-  if (wapSection && wapTrack && hasGSAP && !prefersReducedMotion) {
-    const mm = gsap.matchMedia();
+  if (wapSection && wapTrackViewport && wapTrack) {
+    const plates = Array.from(wapTrack.querySelectorAll('.wap-item'));
+    const totalPlates = plates.length;
 
-    mm.add('(min-width: 1025px)', () => {
-      // Dynamic horizontal travel: spans all 10 plates and colophon with clean edge breathing room
-      const calculateTravel = () => {
-        const trackWidth = wapTrack.scrollWidth;
-        const viewportWidth = window.innerWidth;
-        return Math.max(0, trackWidth - viewportWidth + 60);
-      };
+    // Calculate dynamic step based on first plate's width and gap
+    const getScrollStep = () => {
+      if (plates.length > 0) {
+        const firstPlate = plates[0];
+        const style = window.getComputedStyle(wapTrack);
+        const gap = parseFloat(style.gap) || 28;
+        return firstPlate.getBoundingClientRect().width + gap;
+      }
+      return 360;
+    };
 
-      // Calibrated viewing distance: 1.45x travel provides ~380-420px of deliberate vertical
-      // wheel scroll per photographic plate. Ensures comfortable viewing without rushing.
-      const getScrollDistance = () => {
-        const travel = calculateTravel();
-        return Math.max(2600, Math.min(4800, Math.round(travel * 1.45)));
-      };
+    // Update nav buttons disabled state and live counter indicator
+    const updateWapNav = () => {
+      const scrollLeft = wapTrackViewport.scrollLeft;
+      const maxScroll = wapTrackViewport.scrollWidth - wapTrackViewport.clientWidth;
 
-      // Timeline configuration: scrub 0.95 coupled with Lenis physics absorbs raw wheel ticks
-      // while settling smoothly without skating uncontrollably.
-      // onLeave / onLeaveBack: absorbs accumulated virtual scroll momentum at the pin boundary
-      // so transitioning to vertical document flow is calm and seamless, preventing velocity spikes.
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: wapSection,
-          start: 'top top',
-          end: () => `+=${getScrollDistance()}`,
-          pin: true,
-          scrub: 0.95,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-          onLeave: () => {
-            if (lenis && !isProgrammaticScroll) lenis.reset();
-          },
-          onLeaveBack: () => {
-            if (lenis && !isProgrammaticScroll) lenis.reset();
+      if (wapPrevBtn) wapPrevBtn.disabled = scrollLeft <= 8;
+      if (wapNextBtn) wapNextBtn.disabled = scrollLeft >= maxScroll - 8;
+
+      if (wapNavCounter && totalPlates > 0) {
+        const vpRect = wapTrackViewport.getBoundingClientRect();
+        let activeIdx = 0;
+        let minDiff = Infinity;
+
+        plates.forEach((p, idx) => {
+          const pRect = p.getBoundingClientRect();
+          const diff = Math.abs(pRect.left - vpRect.left);
+          if (diff < minDiff) {
+            minDiff = diff;
+            activeIdx = idx;
           }
-        }
-      });
+        });
 
-      // Phase 1: Calm Arrival (8%) — Section pins; Plate 01 and title rest stably in view
-      // to let the visitor orient before lateral movement begins.
-      tl.to(wapTrack, {
-        x: () => -Math.min(18, calculateTravel() * 0.015),
-        duration: 0.08,
-        ease: 'power1.out'
-      });
+        const plateNum = String(activeIdx + 1).padStart(2, '0');
+        wapNavCounter.textContent = `Plate ${plateNum} / ${totalPlates}`;
+      }
+    };
 
-      // Phase 2: Steady Camera Traverse (84%) — Linear ease guarantees uniform, predictable
-      // speed across all 10 plates. No acceleration or rushing through the middle photos.
-      tl.to(wapTrack, {
-        x: () => -calculateTravel(),
-        duration: 0.84,
-        ease: 'none'
-      });
+    wapTrackViewport.addEventListener('scroll', updateWapNav, { passive: true });
 
-      // Phase 3: Departure Hold (8%) — Settled pause on Colophon & final archival record
-      // before unpinning cleanly into Section 04 (Our Practice).
-      tl.to({}, {
-        duration: 0.08
+    if (wapPrevBtn) {
+      wapPrevBtn.addEventListener('click', () => {
+        wapTrackViewport.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
       });
+    }
 
-      return () => {
-        tl.kill();
-        gsap.set(wapTrack, { clearProps: 'transform' });
-      };
+    if (wapNextBtn) {
+      wapNextBtn.addEventListener('click', () => {
+        wapTrackViewport.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+      });
+    }
+
+    // Tactile Mouse Drag-to-Scroll on Desktop
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let dragDistance = 0;
+
+    wapTrackViewport.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isDown = true;
+      startX = e.pageX;
+      scrollStart = wapTrackViewport.scrollLeft;
+      dragDistance = 0;
+      wapTrackViewport.classList.add('is-dragging');
     });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      const dx = e.pageX - startX;
+      dragDistance = Math.abs(dx);
+      wapTrackViewport.scrollLeft = scrollStart - dx;
+    });
+
+    const stopDrag = () => {
+      if (!isDown) return;
+      isDown = false;
+      wapTrackViewport.classList.remove('is-dragging');
+    };
+
+    window.addEventListener('mouseup', stopDrag);
+    window.addEventListener('mouseleave', stopDrag);
+
+    // Suppress lightbox click if user dragged the track
+    wapTrack.addEventListener('click', (e) => {
+      if (dragDistance > 6) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+
+    // Keyboard navigation: Left/Right arrows when focused inside track
+    wapTrackViewport.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        wapTrackViewport.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        wapTrackViewport.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+      }
+    });
+
+    // Initial state setup
+    updateWapNav();
   }
 
   // Recalculate ScrollTrigger positions on full page load
@@ -5230,8 +5334,8 @@ button {
       overlay.classList.remove('is-open');
       document.body.style.overflow = '';
       const l = getLenis(); if (l) l.start();
-      // Clear src after transition completes
-      setTimeout(() => { lbImg.src = ''; }, 350);
+      // Remove src after transition completes to avoid empty-source browser fetch
+      setTimeout(() => { lbImg.removeAttribute('src'); }, 350);
       if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
         lastFocusedTrigger.focus();
       }
