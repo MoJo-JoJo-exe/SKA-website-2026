@@ -227,8 +227,7 @@ button {
 .btn:focus-visible,
 .nav__link:focus-visible,
 .filter-btn:focus-visible,
-.lightbox-close:focus-visible,
-.wap-nav-btn:focus-visible {
+.lightbox-close:focus-visible {
   outline: 2px solid var(--c-accent-ochre);
   outline-offset: 3px;
 }
@@ -1397,8 +1396,31 @@ button {
   position: relative;
   background-color: var(--c-bg-secondary);
   border-top: 1px solid var(--c-border-subtle);
-  padding: clamp(4rem, 6vw, 5.5rem) 0 clamp(4.5rem, 7vw, 6.5rem);
   overflow: hidden;
+}
+
+@media (min-width: 1025px) {
+  .working-apothecary {
+    height: 100vh;
+    min-height: 620px;
+    max-height: 860px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: calc(var(--header-height) + 1.25rem);
+    padding-bottom: clamp(1.5rem, 2.8vh, 2.5rem);
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 1024px) {
+  .working-apothecary {
+    padding: clamp(3.5rem, 6vw, 5rem) 0;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
 }
 
 /* Header & Intro Row */
@@ -1469,82 +1491,35 @@ button {
   max-width: 520px;
 }
 
-/* Archival Gallery Tactile Navigation Controls */
-.wap-nav-controls {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 0.5rem;
-  padding: 0.3rem 0.55rem;
-  background: var(--c-bg-primary);
-  border: 1px solid var(--c-border-subtle);
-  border-radius: 100px;
-  width: fit-content;
-}
-
-.wap-nav-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: transparent;
-  border: none;
-  color: var(--c-accent-forest);
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  cursor: pointer;
-  padding: 0.35rem 0.65rem;
-  border-radius: 100px;
-  transition: background-color var(--transition-fast), color var(--transition-fast), opacity var(--transition-fast);
-}
-
-.wap-nav-btn:hover:not(:disabled) {
-  background-color: var(--c-accent-forest);
-  color: #FFFFFF;
-}
-
-.wap-nav-btn:disabled {
-  opacity: 0.32;
-  cursor: not-allowed;
-}
-
-.wap-nav-btn:focus-visible {
-  outline: 2px solid var(--c-accent-ochre);
-  outline-offset: 2px;
-}
-
-.wap-nav-counter {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--c-accent-ochre);
-  text-transform: uppercase;
-  padding: 0 0.5rem;
-  border-left: 1px solid var(--c-border-subtle);
-  border-right: 1px solid var(--c-border-subtle);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Track Viewport: Continuous Natural Horizontal Gallery */
+/* Track Viewport: Desktop Pinned Horizontal Camera Traverse & Mobile Touch Swipe */
 .wap-track-viewport {
   width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  padding: clamp(1.75rem, 3.5vh, 3rem) 0 clamp(2rem, 3.5vh, 3rem);
-  scrollbar-width: thin;
-  scrollbar-color: var(--c-accent-ochre) var(--c-bg-surface-tint);
-  cursor: grab;
 }
 
-.wap-track-viewport:active,
-.wap-track-viewport.is-dragging {
-  cursor: grabbing;
-  user-select: none;
-  scroll-behavior: auto;
+@media (min-width: 1025px) {
+  .wap-track-viewport {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(0.5rem, 1.5vh, 1.25rem) 0 clamp(1rem, 2vh, 1.75rem);
+  }
+}
+
+@media (max-width: 1024px) {
+  .wap-track-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    padding: 1.5rem var(--container-padding) 2.5rem;
+    scrollbar-width: none; /* Hide visible scrollbar on modern browsers */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  .wap-track-viewport::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
 }
 
 .wap-track {
@@ -1552,8 +1527,9 @@ button {
   align-items: center; /* Optical museum horizon: plates align around center with curated vertical offsets */
   gap: clamp(1.75rem, 2.5vw, 2.75rem);
   padding-left: var(--container-padding);
-  padding-right: clamp(3rem, 5vw, 6rem);
+  padding-right: clamp(4rem, 6vw, 8rem);
   width: max-content;
+  will-change: transform;
 }
 
 /* Individual Archival Plate Item */
@@ -3822,17 +3798,6 @@ button {
               <p class="wap-intro-text">
                 Preserved as un-retouched scans from the Baidya family archive, these photographs document the people, machinery, and compounding activity inside the institution. No dates were recorded on the original prints.
               </p>
-              <div class="wap-nav-controls" aria-label="Archival gallery navigation">
-                <button type="button" class="wap-nav-btn wap-nav-btn--prev" id="wapPrevBtn" aria-label="View previous plate" disabled>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-                  <span>Prev</span>
-                </button>
-                <span class="wap-nav-counter" id="wapNavCounter" aria-live="polite">Plate 01 / 10</span>
-                <button type="button" class="wap-nav-btn wap-nav-btn--next" id="wapNextBtn" aria-label="View next plate">
-                  <span>Next</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -4929,8 +4894,17 @@ button {
         toggleMenu(true);
         if (lenis) {
           isProgrammaticScroll = true;
-          lenis.scrollTo(targetEl, {
-            offset: -80,
+          let target = targetEl;
+          let offset = -80;
+          if (targetId === '#working-apothecary' && typeof ScrollTrigger !== 'undefined') {
+            const st = ScrollTrigger.getById('wapPin');
+            if (st && typeof st.start === 'number') {
+              target = st.start;
+              offset = 0;
+            }
+          }
+          lenis.scrollTo(target, {
+            offset: offset,
             onComplete: () => {
               isProgrammaticScroll = false;
             }
@@ -5105,128 +5079,56 @@ button {
     });
   });
 
-  // 11. Working Apothecary — Fluid Archival Gallery Controller
-  // Replaces disruptive pinning with a natural, continuous gallery experience:
-  // - Preserves normal vertical scrolling (visitors can explore or scroll past anytime)
-  // - Enables smooth previous/next plate buttons and live plate counter
-  // - Supports tactile grab-and-drag horizontal scrolling on desktop
-  // - Preserves touch swiping on mobile and keyboard arrow navigation
-  // - Prevents accidental lightbox triggers during drag gestures
-  const wapSection       = document.getElementById('working-apothecary');
-  const wapTrackViewport = document.querySelector('.wap-track-viewport');
-  const wapTrack         = document.getElementById('wapTrack');
-  const wapPrevBtn       = document.getElementById('wapPrevBtn');
-  const wapNextBtn       = document.getElementById('wapNextBtn');
-  const wapNavCounter    = document.getElementById('wapNavCounter');
+  // 11. Working Apothecary — Restored Calibrated Horizontal Camera-Pan (Desktop Archival Traverse)
+  // Restores the approved scroll-driven horizontal photographic sequence:
+  // - Vertical scrolling down smoothly translates the 10 archival photographs horizontally.
+  // - Scrolling back up naturally reverses the movement.
+  // - Calibrated bounded scroll distance (~1,800-2,100px) provides an unhurried, comfortable pace
+  //   without trapping the visitor in an excessive 4,000px scroll-trap.
+  // - Linear progress (ease: 'none') eliminates awkward start/end dead zones.
+  // - Free of disruptive lenis.reset() calls, ensuring buttery-smooth boundary transitions.
+  // - Desktop only (min-width: 1025px); mobile devices utilize clean touch swipe.
+  const wapSection = document.getElementById('working-apothecary');
+  const wapTrack   = document.getElementById('wapTrack');
 
-  if (wapSection && wapTrackViewport && wapTrack) {
-    const plates = Array.from(wapTrack.querySelectorAll('.wap-item'));
-    const totalPlates = plates.length;
+  if (wapSection && wapTrack && hasGSAP && !prefersReducedMotion) {
+    const mm = gsap.matchMedia();
 
-    // Calculate dynamic step based on first plate's width and gap
-    const getScrollStep = () => {
-      if (plates.length > 0) {
-        const firstPlate = plates[0];
-        const style = window.getComputedStyle(wapTrack);
-        const gap = parseFloat(style.gap) || 28;
-        return firstPlate.getBoundingClientRect().width + gap;
-      }
-      return 360;
-    };
+    mm.add('(min-width: 1025px)', () => {
+      // Dynamic horizontal travel based on live DOM dimensions
+      const calculateTravel = () => {
+        const trackWidth = wapTrack.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        return Math.max(0, trackWidth - viewportWidth + 60);
+      };
 
-    // Update nav buttons disabled state and live counter indicator
-    const updateWapNav = () => {
-      const scrollLeft = wapTrackViewport.scrollLeft;
-      const maxScroll = wapTrackViewport.scrollWidth - wapTrackViewport.clientWidth;
+      // Calibrated viewing distance: 0.72x travel (~1,800-2,100px total scroll distance)
+      // provides ~180-210px of deliberate vertical scroll per photographic plate.
+      const getScrollDistance = () => {
+        const travel = calculateTravel();
+        return Math.max(1400, Math.min(2200, Math.round(travel * 0.72)));
+      };
 
-      if (wapPrevBtn) wapPrevBtn.disabled = scrollLeft <= 8;
-      if (wapNextBtn) wapNextBtn.disabled = scrollLeft >= maxScroll - 8;
-
-      if (wapNavCounter && totalPlates > 0) {
-        const vpRect = wapTrackViewport.getBoundingClientRect();
-        let activeIdx = 0;
-        let minDiff = Infinity;
-
-        plates.forEach((p, idx) => {
-          const pRect = p.getBoundingClientRect();
-          const diff = Math.abs(pRect.left - vpRect.left);
-          if (diff < minDiff) {
-            minDiff = diff;
-            activeIdx = idx;
-          }
-        });
-
-        const plateNum = String(activeIdx + 1).padStart(2, '0');
-        wapNavCounter.textContent = `Plate ${plateNum} / ${totalPlates}`;
-      }
-    };
-
-    wapTrackViewport.addEventListener('scroll', updateWapNav, { passive: true });
-
-    if (wapPrevBtn) {
-      wapPrevBtn.addEventListener('click', () => {
-        wapTrackViewport.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+      const tween = gsap.to(wapTrack, {
+        x: () => -calculateTravel(),
+        ease: 'none',
+        scrollTrigger: {
+          id: 'wapPin',
+          trigger: wapSection,
+          start: 'top top',
+          end: () => `+=${getScrollDistance()}`,
+          pin: true,
+          scrub: 0.65,
+          invalidateOnRefresh: true,
+          anticipatePin: 1
+        }
       });
-    }
 
-    if (wapNextBtn) {
-      wapNextBtn.addEventListener('click', () => {
-        wapTrackViewport.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
-      });
-    }
-
-    // Tactile Mouse Drag-to-Scroll on Desktop
-    let isDown = false;
-    let startX = 0;
-    let scrollStart = 0;
-    let dragDistance = 0;
-
-    wapTrackViewport.addEventListener('mousedown', (e) => {
-      if (e.button !== 0) return;
-      isDown = true;
-      startX = e.pageX;
-      scrollStart = wapTrackViewport.scrollLeft;
-      dragDistance = 0;
-      wapTrackViewport.classList.add('is-dragging');
+      return () => {
+        tween.kill();
+        gsap.set(wapTrack, { clearProps: 'transform' });
+      };
     });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      const dx = e.pageX - startX;
-      dragDistance = Math.abs(dx);
-      wapTrackViewport.scrollLeft = scrollStart - dx;
-    });
-
-    const stopDrag = () => {
-      if (!isDown) return;
-      isDown = false;
-      wapTrackViewport.classList.remove('is-dragging');
-    };
-
-    window.addEventListener('mouseup', stopDrag);
-    window.addEventListener('mouseleave', stopDrag);
-
-    // Suppress lightbox click if user dragged the track
-    wapTrack.addEventListener('click', (e) => {
-      if (dragDistance > 6) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    }, true);
-
-    // Keyboard navigation: Left/Right arrows when focused inside track
-    wapTrackViewport.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        wapTrackViewport.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        wapTrackViewport.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
-      }
-    });
-
-    // Initial state setup
-    updateWapNav();
   }
 
   // Recalculate ScrollTrigger positions on full page load
