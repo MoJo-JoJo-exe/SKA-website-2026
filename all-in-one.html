@@ -3726,7 +3726,7 @@ button {
             >
           </picture>
           <!-- Museum Catalogue Annotation (Protected & Preserved) -->
-          <figcaption class="archive-annotation" role="note" aria-label="Premises location note">
+          <figcaption class="archive-annotation" aria-label="Premises location note">
             <div class="archive-annotation__tag">
               <span class="ann-index">FIG. 01 · CORNER RIGHT</span>
               <strong class="ann-subject">Shree Krishna Aushadhalaya</strong>
@@ -4138,22 +4138,22 @@ button {
             An in-house compendium of 37 proprietary and classical formulations prepared from ethically sourced Himalayan minerals and wild-harvested botanicals.
           </p>
           <!-- Archival Directory Classification Index -->
-          <div class="apothecary-index-nav" id="apothecaryFilters" role="tablist" aria-label="Apothecary classification index">
+          <div class="apothecary-index-nav" id="apothecaryFilters" role="group" aria-label="Filter formulations by category">
             <span class="index-nav__caption">INDEX CLASSIFICATION:</span>
             <div class="index-nav__group">
-              <button type="button" class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">
+              <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">
                 <span class="btn-idx">00</span> SPECIMENS SHOWN
               </button>
-              <button type="button" class="filter-btn" data-filter="churna" role="tab" aria-selected="false">
+              <button type="button" class="filter-btn" data-filter="churna" aria-pressed="false">
                 <span class="btn-idx">01</span> CHURNA (POWDERS)
               </button>
-              <button type="button" class="filter-btn" data-filter="vati" role="tab" aria-selected="false">
+              <button type="button" class="filter-btn" data-filter="vati" aria-pressed="false">
                 <span class="btn-idx">02</span> VATI (TABLETS)
               </button>
-              <button type="button" class="filter-btn" data-filter="mineral" role="tab" aria-selected="false">
+              <button type="button" class="filter-btn" data-filter="mineral" aria-pressed="false">
                 <span class="btn-idx">03</span> MINERAL &amp; SHILAJIT
               </button>
-              <button type="button" class="filter-btn" data-filter="special" role="tab" aria-selected="false">
+              <button type="button" class="filter-btn" data-filter="special" aria-pressed="false">
                 <span class="btn-idx">04</span> CLASSICAL BLENDS
               </button>
             </div>
@@ -4935,10 +4935,10 @@ button {
         // Toggle active state and update accessibility attributes
         filterButtons.forEach(b => {
           b.classList.remove('is-active');
-          b.setAttribute('aria-selected', 'false');
+          b.setAttribute('aria-pressed', 'false');
         });
         btn.classList.add('is-active');
-        btn.setAttribute('aria-selected', 'true');
+        btn.setAttribute('aria-pressed', 'true');
 
         const filterValue = btn.getAttribute('data-filter');
 

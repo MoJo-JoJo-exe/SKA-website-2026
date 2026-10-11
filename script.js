@@ -167,10 +167,10 @@
         // Toggle active state and update accessibility attributes
         filterButtons.forEach(b => {
           b.classList.remove('is-active');
-          b.setAttribute('aria-selected', 'false');
+          b.setAttribute('aria-pressed', 'false');
         });
         btn.classList.add('is-active');
-        btn.setAttribute('aria-selected', 'true');
+        btn.setAttribute('aria-pressed', 'true');
 
         const filterValue = btn.getAttribute('data-filter');
 

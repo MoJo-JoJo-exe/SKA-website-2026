@@ -1,7 +1,7 @@
 # Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)
 ### Historic Baidya Family Ayurvedic Clinic & Apothecary · Bagbazar, Kathmandu, Nepal
 
-[![Live Website](https://img.shields.io/badge/Live_Site-mojo--jojo--exe.github.io%2FSKA--website--2026-16241C?style=for-the-badge)](https://mojo-jojo-exe.github.io/SKA-website-2026/)
+[![Live Website](https://img.shields.io/badge/Live_Site-shreekrishnaaushadhalaya.com.np-16241C?style=for-the-badge)](https://shreekrishnaaushadhalaya.com.np/)
 [![WCAG AA](https://img.shields.io/badge/Accessibility-WCAG_AA_Pass-87591A?style=for-the-badge)](#)
 [![Zero Build](https://img.shields.io/badge/Architecture-Zero_Dependencies-16241C?style=for-the-badge)](#)
 
@@ -11,7 +11,7 @@ Official digital archive and institutional website for **Shree Krishna Aushadhal
 
 ## 🌐 Live Website
 
-- **Production URL**: **[https://mojo-jojo-exe.github.io/SKA-website-2026/](https://mojo-jojo-exe.github.io/SKA-website-2026/)**
+- **Production URL**: **[https://shreekrishnaaushadhalaya.com.np/](https://shreekrishnaaushadhalaya.com.np/)**
 - **Repository**: [https://github.com/MoJo-JoJo-exe/SKA-website-2026](https://github.com/MoJo-JoJo-exe/SKA-website-2026)
 
 ---

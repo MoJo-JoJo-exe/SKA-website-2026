@@ -24,7 +24,7 @@
   - **Herbal Pharmacy & Dispensary**: **7:00 AM – 8:00 PM**, Daily (Sunday through Saturday, 365 days a year).
   - **Doctor Consultations**: **9:00 AM – 11:00 AM**, Sunday through Friday *(Closed Saturdays for doctor consultations; pharmacy remains open).*
 - **International Compounding**: Formulates and supplies classical and customized Ayurvedic medicines to partner companies across Europe and internationally.
-- **Production URL**: [https://mojo-jojo-exe.github.io/SKA-website-2026/](https://mojo-jojo-exe.github.io/SKA-website-2026/)
+- **Production URL**: [https://shreekrishnaaushadhalaya.com.np/](https://shreekrishnaaushadhalaya.com.np/)
 - **GitHub Repository**: [https://github.com/MoJo-JoJo-exe/SKA-website-2026](https://github.com/MoJo-JoJo-exe/SKA-website-2026)
 
 ---
@@ -90,7 +90,7 @@ You are an expert creative director, editorial designer, and brand strategist sp
 Review the website structure, copy, and visual identity of:
 **Shree Krishna Aushadhalaya (श्री कृष्ण औषधालय)**
 Historic Baidya Family Ayurvedic Clinic & Apothecary in Bagbazar, Kathmandu, Nepal.
-Live Site: https://mojo-jojo-exe.github.io/SKA-website-2026/
+Live Site: https://shreekrishnaaushadhalaya.com.np/
 
 ### Essential Business Context:
 - **Heritage**: Generational Baidya family practice. Archival color photography from 1968 AD (2025 BS) confirms continuous operation at the corner of Bagbazar road. Historical royal associations exist in family archives.
