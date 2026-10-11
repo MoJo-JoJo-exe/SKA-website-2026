@@ -456,7 +456,9 @@
   const lbClose  = document.getElementById('lightboxClose');
 
   // Get lenis instance if available (created in IIFE above, stored on window for cross-IIFE access)
-  const getLenis = () => window.__SKA_lenis || null;
+  function getLenis() {
+    return window.__SKA_lenis || null;
+  }
 
   if (overlay && lbImg && lbClose) {
     let lastFocusedTrigger = null;
