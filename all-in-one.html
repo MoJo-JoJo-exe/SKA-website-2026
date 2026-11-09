@@ -2078,12 +2078,13 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  opacity: 0.6;
+  opacity: 0.88;
   transition: opacity var(--transition-fast), color var(--transition-fast);
   pointer-events: none;
 }
 
-.item-visual:hover .specimen-inspect-hint {
+.item-visual:hover .specimen-inspect-hint,
+.item-visual:focus-visible .specimen-inspect-hint {
   opacity: 1;
   color: var(--c-accent-forest);
 }
@@ -2783,7 +2784,7 @@ button {
   font-size: clamp(4.5rem, 16vw, 13rem);
   line-height: 1;
   color: #FFFFFF;
-  opacity: 0.14;
+  opacity: 0.34;
   text-align: center;
   white-space: nowrap;
   pointer-events: none;
