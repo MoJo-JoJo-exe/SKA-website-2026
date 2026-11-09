@@ -247,7 +247,7 @@ button {
 
 .archival-meta-bar__index {
   font-variant-numeric: tabular-nums;
-  opacity: 0.75;
+  opacity: 0.9;
   letter-spacing: 0.06em;
   font-size: 0.6875rem;
 }
@@ -680,7 +680,7 @@ button {
 
 .hero-meta-item--coords {
   color: var(--c-text-muted);
-  opacity: 0.7;
+  opacity: 0.9;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.05em;
 }
@@ -736,7 +736,7 @@ button {
   color: var(--c-text-muted);
   font-weight: 400;
   letter-spacing: 0.02em;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
 /* Standfirst — one clear editorial sentence */
@@ -791,7 +791,7 @@ button {
   padding-top: 1.25rem;
   max-width: 460px;
   font-weight: 400;
-  opacity: 0.75;
+  opacity: 0.9;
 }
 
 /* Image column */
@@ -1021,7 +1021,7 @@ button {
 
 .archive-meta-index {
   font-variant-numeric: tabular-nums;
-  opacity: 0.75;
+  opacity: 0.9;
   letter-spacing: 0.06em;
   font-size: 0.6875rem;
 }
@@ -1576,7 +1576,7 @@ button {
   font-size: 0.625rem;
   letter-spacing: 0.08em;
   color: var(--c-text-muted);
-  opacity: 0.55;
+  opacity: 0.85;
   font-variant-numeric: tabular-nums;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   text-transform: uppercase;
@@ -1789,7 +1789,7 @@ button {
 
 .apothecary-meta-count {
   font-variant-numeric: tabular-nums;
-  opacity: 0.75;
+  opacity: 0.9;
   letter-spacing: 0.06em;
   font-size: 0.6875rem;
 }
@@ -1912,7 +1912,7 @@ button {
   text-transform: uppercase;
   color: var(--c-text-muted);
   font-variant-numeric: tabular-nums;
-  opacity: 0.75;
+  opacity: 0.9;
 }
 
 .plate-class {
@@ -1987,12 +1987,13 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  opacity: 0.6;
+  opacity: 0.88;
   transition: opacity var(--transition-fast), color var(--transition-fast);
   pointer-events: none;
 }
 
-.item-visual:hover .specimen-inspect-hint {
+.item-visual:hover .specimen-inspect-hint,
+.item-visual:focus-visible .specimen-inspect-hint {
   opacity: 1;
   color: var(--c-accent-forest);
 }
@@ -2692,7 +2693,7 @@ button {
   font-size: clamp(4.5rem, 16vw, 13rem);
   line-height: 1;
   color: #FFFFFF;
-  opacity: 0.14;
+  opacity: 0.34;
   text-align: center;
   white-space: nowrap;
   pointer-events: none;

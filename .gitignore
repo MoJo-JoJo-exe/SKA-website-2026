@@ -10,8 +10,6 @@ Thumbs.db
 .vscode/
 *.swp
 
-# Build scripts (not needed on GitHub)
-bundle.cjs
 
 # Temp
 *.log
