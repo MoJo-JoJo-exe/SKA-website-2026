@@ -2492,7 +2492,7 @@ button {
 
 .asymmetric-gallery {
   display: block;
-  column-count: 3;
+  column-count: 2;
   column-gap: 1.75rem;
 }
 
@@ -2502,6 +2502,11 @@ button {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.asym-item--lead {
+  column-span: all;
+  margin-bottom: 2rem;
 }
 
 .asym-item .img-frame {
@@ -3028,6 +3033,10 @@ button {
     margin-bottom: 1.5rem;
   }
 
+  .asym-item--lead {
+    margin-bottom: 1.75rem;
+  }
+
   .visit-details-strip {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -3238,6 +3247,10 @@ button {
   }
 
   .asym-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .asym-item--lead {
     margin-bottom: 1.5rem;
   }
 
@@ -4519,8 +4532,8 @@ button {
         </div>
 
         <div class="asymmetric-gallery">
-          <!-- Plate 08-A: Street Context Approach -->
-          <figure class="asym-item" data-animate="fade-up">
+          <!-- Plate 08-A: Street Context Approach (Lead Panoramic Feature) -->
+          <figure class="asym-item asym-item--lead" data-animate="fade-up">
             <div class="img-frame">
               <img src="assets/images/street-context.jpg" alt="Bagbazar street approach to the Shree Krishna Aushadhalaya building" width="1024" height="473" loading="lazy" decoding="async">
             </div>
