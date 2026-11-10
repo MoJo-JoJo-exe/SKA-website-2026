@@ -2491,36 +2491,14 @@ button {
 }
 
 .asymmetric-gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 2.25rem;
-}
-
-.asym-row {
-  display: grid;
-  gap: 1.75rem;
-  align-items: start;
-}
-
-.asym-row--primary {
-  grid-template-columns: 1.35fr 1fr;
-}
-
-/* Heights removed: images display at natural aspect ratio to preserve full photographic content */
-.asym-row--primary .img-frame {
-  height: auto;
-}
-
-.asym-row--secondary {
-  grid-template-columns: 1fr 1.35fr 0.85fr;
-}
-
-/* Heights removed: images display at natural aspect ratio to preserve full photographic content */
-.asym-row--secondary .img-frame {
-  height: auto;
+  display: block;
+  column-count: 3;
+  column-gap: 1.75rem;
 }
 
 .asym-item {
+  break-inside: avoid;
+  margin-bottom: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -2528,14 +2506,22 @@ button {
 
 .asym-item .img-frame {
   width: 100%;
+  overflow: hidden;
+  background-color: var(--c-bg-surface-tint);
+  border: 1px solid var(--c-border-subtle);
+  border-radius: 2px;
 }
 
 .asym-item .img-frame img {
   width: 100%;
   height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform var(--transition-slow);
+}
+
+.asym-item:hover .img-frame img {
+  transform: scale(1.02);
 }
 
 .asym-caption {
@@ -3034,15 +3020,12 @@ button {
   }
 
   .asymmetric-gallery {
-    grid-template-columns: repeat(2, 1fr);
+    column-count: 2;
+    column-gap: 1.5rem;
   }
 
-  .asym-item--wide {
-    grid-column: span 2;
-  }
-
-  .asym-item--tall {
-    grid-row: span 1;
+  .asym-item {
+    margin-bottom: 1.5rem;
   }
 
   .visit-details-strip {
@@ -3250,16 +3233,13 @@ button {
   }
 
   .asymmetric-gallery {
-    gap: 2rem;
+    column-count: 1;
+    column-gap: 0;
   }
 
-  .asym-row--primary,
-  .asym-row--secondary {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .asym-item {
+    margin-bottom: 1.5rem;
   }
-
-  /* Mobile: images remain at natural aspect ratios in single-column layout */
 
   .visit-actions {
     flex-direction: column;
@@ -4539,51 +4519,45 @@ button {
         </div>
 
         <div class="asymmetric-gallery">
-          <!-- Architectural Pair: Road Approach & Doorway Threshold -->
-          <div class="asym-row asym-row--primary">
-            <!-- Plate 08-A: Street Context Approach -->
-            <figure class="asym-item" data-animate="fade-up">
-              <div class="img-frame">
-                <img src="assets/images/street-context.jpg" alt="Bagbazar street approach to the Shree Krishna Aushadhalaya building" width="1024" height="473" loading="lazy" decoding="async">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-A</span> Bagbazar Road Perspective · Kathmandu</figcaption>
-            </figure>
+          <!-- Plate 08-A: Street Context Approach -->
+          <figure class="asym-item" data-animate="fade-up">
+            <div class="img-frame">
+              <img src="assets/images/street-context.jpg" alt="Bagbazar street approach to the Shree Krishna Aushadhalaya building" width="1024" height="473" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-A</span> Bagbazar Road Perspective · Kathmandu</figcaption>
+          </figure>
 
-            <!-- Plate 08-B: Street Entrance Perspective -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.1">
-              <div class="img-frame">
-                <img src="assets/images/street-entrance-perspective.jpg" alt="Street-level view looking up at entrance door #509 of Shree Krishna Aushadhalaya" width="473" height="1024" loading="lazy" decoding="async">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-B</span> Doorway Entrance · Bagbazar Sidewalk</figcaption>
-            </figure>
-          </div>
+          <!-- Plate 08-B: Street Entrance Perspective -->
+          <figure class="asym-item" data-animate="fade-up" data-delay="0.1">
+            <div class="img-frame">
+              <img src="assets/images/street-entrance-perspective.jpg" alt="Street-level view looking up at entrance door #509 of Shree Krishna Aushadhalaya" width="473" height="1024" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-B</span> Doorway Entrance · Bagbazar Sidewalk</figcaption>
+          </figure>
 
-          <!-- Architectural Triptych: Timber Eaves, Clinic Signboard, Interior Signage -->
-          <div class="asym-row asym-row--secondary">
-            <!-- Plate 08-C: Upper Facade Garlands -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.15">
-              <div class="img-frame">
-                <img src="assets/images/century-heritage.jpg" alt="Upper facade of dispensary adorned with festive marigold garlands in Bagbazar" width="640" height="640" loading="lazy" decoding="async">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-C</span> Traditional Timber Eaves &amp; Shutters</figcaption>
-            </figure>
+          <!-- Plate 08-C: Upper Facade Garlands -->
+          <figure class="asym-item" data-animate="fade-up" data-delay="0.15">
+            <div class="img-frame">
+              <img src="assets/images/century-heritage.jpg" alt="Upper facade of dispensary adorned with festive marigold garlands in Bagbazar" width="640" height="640" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-C</span> Traditional Timber Eaves &amp; Shutters</figcaption>
+          </figure>
 
-            <!-- Plate 08-D: Signboard Detail -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.2">
-              <div class="img-frame">
-                <img src="assets/images/signboard-detail.jpg" alt="Hand-painted registered signboard of Shree Krishna Aushadhalaya in Bagbazar" width="1024" height="473" loading="lazy" decoding="async">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-D</span> Registered Clinic Signboard · Bagbazar</figcaption>
-            </figure>
+          <!-- Plate 08-D: Signboard Detail -->
+          <figure class="asym-item" data-animate="fade-up" data-delay="0.2">
+            <div class="img-frame">
+              <img src="assets/images/signboard-detail.jpg" alt="Hand-painted registered signboard of Shree Krishna Aushadhalaya in Bagbazar" width="1024" height="473" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-D</span> Registered Clinic Signboard · Bagbazar</figcaption>
+          </figure>
 
-            <!-- Plate 08-E: Indoor Signboard -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.25">
-              <div class="img-frame">
-                <img src="assets/images/indoor-signboard.jpg" alt="Interior wooden sign announcing traditional Ayurvedic medicines" width="473" height="1024" loading="lazy" decoding="async">
-              </div>
-              <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-E</span> Dispensary Wooden Signage · Interior</figcaption>
-            </figure>
-          </div>
+          <!-- Plate 08-E: Indoor Signboard -->
+          <figure class="asym-item" data-animate="fade-up" data-delay="0.25">
+            <div class="img-frame">
+              <img src="assets/images/indoor-signboard.jpg" alt="Interior wooden sign announcing traditional Ayurvedic medicines" width="473" height="1024" loading="lazy" decoding="async">
+            </div>
+            <figcaption class="asym-caption"><span class="asym-plate">PLATE 08-E</span> Dispensary Wooden Signage · Interior</figcaption>
+          </figure>
         </div>
 
       </div>
