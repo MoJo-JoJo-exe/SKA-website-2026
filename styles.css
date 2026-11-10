@@ -2395,215 +2395,59 @@ button {
   padding: 0 var(--container-padding);
 }
 
-.visual-archive .archival-meta-bar {
+.visual-archive__header {
   margin-bottom: 3.5rem;
 }
 
-/* ── Hero Composition: Monogram + Editorial Narrative ── */
-.visual-archive__hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2.5rem, 5vw, 4.5rem);
-  align-items: center;
-  margin-bottom: 4.5rem;
-}
-
-/* Monogram Card */
-.va-monogram {
+.asymmetric-gallery {
   display: flex;
   flex-direction: column;
+  gap: 2.25rem;
 }
 
-.va-monogram__plate {
-  background-color: var(--c-bg-surface-tint);
-  border: 1px solid rgba(135, 89, 26, 0.28);
-  border-radius: 4px;
-  padding: 1.5rem 1.75rem;
-  box-shadow: 0 4px 20px rgba(22, 36, 28, 0.04);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.va-monogram__plate:hover {
-  border-color: var(--c-accent-ochre);
-  box-shadow: 0 8px 30px rgba(22, 36, 28, 0.07);
-}
-
-.va-monogram__meta-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--c-border-subtle);
-  padding-bottom: 0.75rem;
-  margin-bottom: 1.25rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.08em;
-  color: var(--c-accent-ochre);
-}
-
-.va-monogram__visual {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 0 1.25rem;
-}
-
-.va-monogram__img {
-  width: 100%;
-  max-width: 480px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 6px 16px rgba(22, 36, 28, 0.06));
-  transition: transform var(--transition-slow);
-}
-
-.va-monogram__plate:hover .va-monogram__img {
-  transform: scale(1.015);
-}
-
-.va-monogram__meta-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--c-border-subtle);
-  padding-top: 0.75rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.625rem;
-  letter-spacing: 0.06em;
-  color: var(--c-text-muted);
-}
-
-/* Editorial Narrative Block */
-.va-editorial {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.va-editorial__eyebrow {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--c-accent-ochre);
-}
-
-.va-editorial .section-title {
-  margin: 0;
-  font-size: clamp(2.25rem, 3.8vw, 3.25rem);
-  line-height: 1.1;
-  color: var(--c-accent-forest);
-}
-
-.va-editorial .section-lead {
-  margin: 0;
-  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
-  line-height: 1.75;
-  color: var(--c-text-muted);
-  max-width: 520px;
-}
-
-.va-editorial__ledger {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  border-top: 1px solid var(--c-border-subtle);
-  padding-top: 1.25rem;
-  margin-top: 0.5rem;
-}
-
-.va-ledger-col dt {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.625rem;
-  letter-spacing: 0.08em;
-  color: var(--c-text-muted);
-  margin-bottom: 0.25rem;
-}
-
-.va-ledger-col dd {
-  margin: 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.8125rem;
-  letter-spacing: 0.02em;
-  color: var(--c-accent-forest);
-  font-weight: 500;
-}
-
-/* ── Photographic Gallery Grid (Zero Whitespace Architecture) ── */
-.va-gallery-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  border-bottom: 1px solid var(--c-border-subtle);
-  padding-bottom: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.va-gallery-header__title {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--c-accent-ochre);
-}
-
-.va-gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.va-gallery__row {
+.asym-row {
   display: grid;
   gap: 1.75rem;
-  align-items: stretch;
+  align-items: start;
 }
 
-.va-gallery__row--top {
-  grid-template-columns: 1.4fr 1fr;
+.asym-row--primary {
+  grid-template-columns: 1.35fr 1fr;
 }
 
-.va-gallery__row--bottom {
-  grid-template-columns: 1fr 1.3fr 0.9fr;
+/* Heights removed: images display at natural aspect ratio to preserve full photographic content */
+.asym-row--primary .img-frame {
+  height: auto;
 }
 
-.va-plate {
-  margin: 0;
+.asym-row--secondary {
+  grid-template-columns: 1fr 1.35fr 0.85fr;
+}
+
+/* Heights removed: images display at natural aspect ratio to preserve full photographic content */
+.asym-row--secondary .img-frame {
+  height: auto;
+}
+
+.asym-item {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.va-plate .img-frame {
+.asym-item .img-frame {
   width: 100%;
-  overflow: hidden;
-  background-color: var(--c-bg-surface-tint);
-  border: 1px solid var(--c-border-subtle);
-  border-radius: 2px;
 }
 
-.va-gallery__row--top .img-frame {
-  height: clamp(280px, 24vw, 340px);
-}
-
-.va-gallery__row--bottom .img-frame {
-  height: clamp(220px, 18vw, 260px);
-}
-
-.va-plate .img-frame img {
+.asym-item .img-frame img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   display: block;
+  object-fit: cover;
   transition: transform var(--transition-slow);
 }
 
-.va-plate:hover .img-frame img {
-  transform: scale(1.03);
-}
-
-.va-plate .asym-caption {
+.asym-caption {
   font-size: 0.75rem;
   letter-spacing: 0.04em;
   color: var(--c-text-muted);
@@ -3098,18 +2942,16 @@ button {
     grid-column: span 2;
   }
 
-  .visual-archive__hero {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+  .asymmetric-gallery {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .va-gallery__row--top,
-  .va-gallery__row--bottom {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .va-gallery__row--bottom .va-plate:last-child {
+  .asym-item--wide {
     grid-column: span 2;
+  }
+
+  .asym-item--tall {
+    grid-row: span 1;
   }
 
   .visit-details-strip {
@@ -3316,42 +3158,17 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .visual-archive__hero {
+  .asymmetric-gallery {
+    gap: 2rem;
+  }
+
+  .asym-row--primary,
+  .asym-row--secondary {
     grid-template-columns: 1fr;
     gap: 2rem;
-    margin-bottom: 3rem;
   }
 
-  .va-monogram__plate {
-    padding: 1.25rem 1rem;
-  }
-
-  .va-editorial .section-title {
-    font-size: clamp(1.85rem, 6vw, 2.5rem);
-  }
-
-  .va-editorial__ledger {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .va-gallery__row--top,
-  .va-gallery__row--bottom {
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-  }
-
-  .va-gallery__row--top .img-frame {
-    height: 220px;
-  }
-
-  .va-gallery__row--bottom .img-frame {
-    height: 200px;
-  }
-
-  .va-gallery__row--bottom .va-plate:last-child {
-    grid-column: span 1;
-  }
+  /* Mobile: images remain at natural aspect ratios in single-column layout */
 
   .visit-actions {
     flex-direction: column;
