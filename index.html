@@ -1131,35 +1131,88 @@
     </section>
 
     <!-- ======================================================================
-         08. THE VISUAL ARCHIVE: ASYMMETRIC ARCHITECTURAL GALLERY
+         08. THE VISUAL ARCHIVE: ARCHIVAL APERTURE & DOCUMENTARY LEDGER
          ====================================================================== -->
     <section class="visual-archive" id="visual-archive">
       <div class="visual-archive__inner">
 
-        <div class="visual-archive__header" data-animate="fade-up">
-          <header class="archival-meta-bar">
-            <div class="archival-meta-bar__doc">
-              <span>SECTION 08</span>
-              <span class="meta-sep">/</span>
-              <span>PHOTOGRAPHIC RECORD</span>
+        <header class="archival-meta-bar" data-animate="fade-up">
+          <div class="archival-meta-bar__doc">
+            <span>SECTION 08</span>
+            <span class="meta-sep">/</span>
+            <span>PHOTOGRAPHIC RECORD</span>
+          </div>
+          <div class="archival-meta-bar__right">
+            <span class="archival-meta-bar__index">REF. SKA-ARCH-08</span>
+            <a href="https://www.instagram.com/into_the_ayurveda/?hl=en" target="_blank" rel="noopener noreferrer" class="gallery-instagram-cta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              <span>@into_the_ayurveda ↗</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- Hero Composition: Photographic 'श्री' Aperture Monogram + Editorial Narrative -->
+        <div class="visual-archive__hero">
+          <!-- Left: Monumental Photographic 'श्री' Monogram -->
+          <div class="va-monogram" data-animate="fade-up">
+            <div class="va-monogram__plate">
+              <div class="va-monogram__meta-top">
+                <span class="va-monogram__plate-code">APERTURE MONOGRAM · 08-00</span>
+                <span class="va-monogram__plate-tag">EST. 1968 AD</span>
+              </div>
+              <div class="va-monogram__visual">
+                <picture>
+                  <source srcset="assets/images/archival-shri-lens.webp" type="image/webp">
+                  <img
+                    src="assets/images/archival-shri-lens.png"
+                    alt="Devanagari letter Shri framing photographs of Shree Krishna Aushadhalaya facade and historic Bagbazar street"
+                    width="1024"
+                    height="512"
+                    loading="lazy"
+                    decoding="async"
+                    class="va-monogram__img"
+                  >
+                </picture>
+              </div>
+              <div class="va-monogram__meta-bottom">
+                <span>L: APOTHECARY PREMISES</span>
+                <span class="meta-sep">·</span>
+                <span>R: BAGBAZAR STREETSCAPE</span>
+              </div>
             </div>
-            <div class="archival-meta-bar__right">
-              <span class="archival-meta-bar__index">REF. SKA-ARCH-08</span>
-              <a href="https://www.instagram.com/into_the_ayurveda/?hl=en" target="_blank" rel="noopener noreferrer" class="gallery-instagram-cta">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                <span>@into_the_ayurveda ↗</span>
-              </a>
-            </div>
-          </header>
-          <h2 class="section-title" data-animate="split-lines">Bagbazar Through the Lens</h2>
-          <p class="section-lead">Authentic glimpses of our landmark premises, signage, dispensary interior, and historic neighbourhood.</p>
+          </div>
+
+          <!-- Right: Editorial Narrative -->
+          <div class="va-editorial" data-animate="fade-up" data-delay="0.1">
+            <span class="va-editorial__eyebrow">Visual Archive &amp; Neighborhood Record</span>
+            <h2 class="section-title" data-animate="split-lines">Bagbazar Through the Lens</h2>
+            <p class="section-lead">
+              Authentic glimpses of our landmark premises, hand-painted wooden signage, dispensary interior, and the historic streetscape that has enveloped Shree Krishna Aushadhalaya across generations.
+            </p>
+            <dl class="va-editorial__ledger">
+              <div class="va-ledger-col">
+                <dt>COORDINATES</dt>
+                <dd>27°42′22″N 85°19′04″E</dd>
+              </div>
+              <div class="va-ledger-col">
+                <dt>LOCATION RECORD</dt>
+                <dd>Ward No. 28, Kathmandu</dd>
+              </div>
+            </dl>
+          </div>
         </div>
 
-        <div class="asymmetric-gallery">
-          <!-- Architectural Pair: Road Approach & Doorway Threshold -->
-          <div class="asym-row asym-row--primary">
+        <!-- Asymmetrical Editorial Gallery: 5 Curated Plates (Zero-Whitespace Architecture) -->
+        <div class="va-gallery">
+          <div class="va-gallery-header" data-animate="fade-up">
+            <span class="va-gallery-header__title">Documentary Ledger · Five Curated Plates</span>
+            <span class="archival-meta-bar__index">BAGBAZAR ARCHIVE</span>
+          </div>
+
+          <!-- Row 1: Road Approach & Threshold Entrance -->
+          <div class="va-gallery__row va-gallery__row--top">
             <!-- Plate 08-A: Street Context Approach -->
-            <figure class="asym-item" data-animate="fade-up">
+            <figure class="va-plate" data-animate="fade-up">
               <div class="img-frame">
                 <img src="assets/images/street-context.jpg" alt="Bagbazar street approach to the Shree Krishna Aushadhalaya building" width="1024" height="473" loading="lazy" decoding="async">
               </div>
@@ -1167,7 +1220,7 @@
             </figure>
 
             <!-- Plate 08-B: Street Entrance Perspective -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.1">
+            <figure class="va-plate" data-animate="fade-up" data-delay="0.1">
               <div class="img-frame">
                 <img src="assets/images/street-entrance-perspective.jpg" alt="Street-level view looking up at entrance door #509 of Shree Krishna Aushadhalaya" width="473" height="1024" loading="lazy" decoding="async">
               </div>
@@ -1175,10 +1228,10 @@
             </figure>
           </div>
 
-          <!-- Architectural Triptych: Timber Eaves, Clinic Signboard, Interior Signage -->
-          <div class="asym-row asym-row--secondary">
+          <!-- Row 2: Timber Eaves, Clinic Signboard, Interior Signage -->
+          <div class="va-gallery__row va-gallery__row--bottom">
             <!-- Plate 08-C: Upper Facade Garlands -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.15">
+            <figure class="va-plate" data-animate="fade-up" data-delay="0.15">
               <div class="img-frame">
                 <img src="assets/images/century-heritage.jpg" alt="Upper facade of dispensary adorned with festive marigold garlands in Bagbazar" width="640" height="640" loading="lazy" decoding="async">
               </div>
@@ -1186,7 +1239,7 @@
             </figure>
 
             <!-- Plate 08-D: Signboard Detail -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.2">
+            <figure class="va-plate" data-animate="fade-up" data-delay="0.2">
               <div class="img-frame">
                 <img src="assets/images/signboard-detail.jpg" alt="Hand-painted registered signboard of Shree Krishna Aushadhalaya in Bagbazar" width="1024" height="473" loading="lazy" decoding="async">
               </div>
@@ -1194,7 +1247,7 @@
             </figure>
 
             <!-- Plate 08-E: Indoor Signboard -->
-            <figure class="asym-item" data-animate="fade-up" data-delay="0.25">
+            <figure class="va-plate" data-animate="fade-up" data-delay="0.25">
               <div class="img-frame">
                 <img src="assets/images/indoor-signboard.jpg" alt="Interior wooden sign announcing traditional Ayurvedic medicines" width="473" height="1024" loading="lazy" decoding="async">
               </div>
